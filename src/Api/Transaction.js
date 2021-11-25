@@ -29,18 +29,28 @@ async function createTransaction() {
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader()
-    }
+    },
+    body: JSON.stringify({
+      user_id: data.user_id,
+      course_id: data.course_id,
+      payment_id: data.payment_id
+    })
   });
   return res.json();
 }
 
-async function updateTransaction(id) {
-  const res = await fetch(`${API_SERVER}/admin/transaction/` + id, {
+async function updateTransaction(data) {
+  const res = await fetch(`${API_SERVER}/admin/transaction/` + data.id, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader()
-    }
+    },
+    body: JSON.stringify({
+      user_id: data.user_id,
+      course_id: data.course_id,
+      payment_id: data.payment_id
+    })
   });
   return res.json();
 }

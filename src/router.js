@@ -36,9 +36,6 @@ const Tasks = Loader(lazy(() => import('src/content/dashboards/Tasks')));
 const Messenger = Loader(
   lazy(() => import('src/content/applications/Messenger'))
 );
-const Transactions = Loader(
-  lazy(() => import('src/content/applications/Transactions'))
-);
 const UserProfile = Loader(
   lazy(() => import('src/content/applications/Users/profile'))
 );
@@ -54,6 +51,9 @@ const Courses = Loader(
 );
 const Instructors = Loader(
   lazy(() => import('src/content/pages/Management/Instructor'))
+);
+const Transactions = Loader(
+  lazy(() => import('src/content/pages/Management/Transaction'))
 );
 
 // Components
@@ -182,10 +182,6 @@ const routes = [
         element: <Navigate to="/management/transactions" replace />
       },
       {
-        path: 'transactions',
-        element: <Transactions />
-      },
-      {
         path: 'users',
         element: <Users />
       },
@@ -196,6 +192,10 @@ const routes = [
       {
         path: 'instructors',
         element: <Instructors />
+      },
+      {
+        path: 'transactions',
+        element: <Transactions />
       },
       {
         path: 'profile',
