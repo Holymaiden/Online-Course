@@ -2,7 +2,7 @@ import { API_SERVER } from './index';
 import authHeader from './authHeader';
 
 async function getAllUserCourse() {
-  const res = await fetch(`${API_SERVER}/admin/userCourse`, {
+  const res = await fetch(`${API_SERVER}/admin/userCourse/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ async function createUserCourse() {
 }
 
 async function updateUserCourse(id) {
-  const res = await fetch(`${API_SERVER}/admin/userCourse/` + id, {
+  const res = await fetch(`${API_SERVER}/admin/userCourse/` + data.id, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

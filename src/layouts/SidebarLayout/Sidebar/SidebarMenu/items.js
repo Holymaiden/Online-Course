@@ -47,11 +47,6 @@ const menuItems = [
     heading: 'Management',
     items: [
       {
-        name: 'Transactions',
-        icon: TableChartTwoToneIcon,
-        link: '/management/transactions'
-      },
-      {
         name: 'Users',
         icon: PeopleAltIcon,
         link: '/management/users'
@@ -65,6 +60,11 @@ const menuItems = [
         name: 'Instructors',
         icon: EmojiPeopleIcon,
         link: '/management/instructors'
+      },
+      {
+        name: 'Transactions',
+        icon: TableChartTwoToneIcon,
+        link: '/management/transactions'
       },
       {
         name: 'User Profile',

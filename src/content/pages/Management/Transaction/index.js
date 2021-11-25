@@ -4,13 +4,13 @@ import PageTitleWrapper from 'src/components/PageTitleWrapper';
 import { Container, Grid } from '@mui/material';
 import Footer from 'src/components/Footer';
 
-import RecentOrders from './RecentOrders';
+import TableDatas from './TableDatas';
 
 function ApplicationsTransactions() {
   return (
     <>
       <Helmet>
-        <title>Transactions - Applications</title>
+        <title>Transactions - Managements</title>
       </Helmet>
       <PageTitleWrapper>
         <PageHeader />
@@ -24,7 +24,7 @@ function ApplicationsTransactions() {
           spacing={3}
         >
           <Grid item xs={12}>
-            <RecentOrders />
+            <TableDatas />
           </Grid>
         </Grid>
       </Container>
