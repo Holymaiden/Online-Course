@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
 
 import {
   Avatar,
@@ -23,6 +23,8 @@ import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
 import { getCurrentUser } from '../../../../Api/Users';
+// import { Logout } from '../../../../Api/auth';
+import { useAuth } from '../../../../contexts/auth.context';
 
 const UserBoxButton = styled(Button)(
   ({ theme }) => `
@@ -60,9 +62,9 @@ const UserBoxDescription = styled(Typography)(
 );
 
 function HeaderUserbox() {
-  const [user, setUser] = useState([]);
+  const [user, setUsers] = useState([]);
   useEffect(() => {
-    getCurrentUser().then((data) => setUser(data));
+    getCurrentUser().then((data) => setUsers(data));
   }, []);
   user.avatar = '/static/images/avatars/1.jpg';
 
@@ -75,6 +77,13 @@ function HeaderUserbox() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+  const { setUser } = useAuth();
+
+  const handlelogout = () => {
+    setUser(null);
+    localStorage.removeItem('user');
+    return <Navigate to="/login" replace />;
   };
 
   return (
@@ -136,7 +145,7 @@ function HeaderUserbox() {
         </List>
         <Divider />
         <Box sx={{ m: 1 }}>
-          <Button color="primary" fullWidth>
+          <Button color="primary" fullWidth onClick={handlelogout}>
             <LockOpenTwoToneIcon sx={{ mr: 1 }} />
             Sign out
           </Button>
