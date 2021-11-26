@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Avatar,
@@ -40,19 +40,31 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 function Update(props) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  const [data, setData] = useState({
+    id: '',
+    username: '',
+    password: '',
+    email: '',
+    avatar: ''
+  });
   const { onClose, selectedValue, open } = props;
-  const id = selectedValue.id;
 
   const handleClose = () => {
     onClose('');
   };
+  useEffect(
+    () =>
+      setData({
+        id: selectedValue.id,
+        username: selectedValue.username,
+        email: selectedValue.email,
+        avatar: selectedValue.avatar
+      }),
+    [open]
+  );
 
-  function onUpdate({ username, password, email, id }) {
-    console.log(username, email, password, id);
-    updateUser({ username, password, email, id }).then(function (result) {
+  function onUpdate(data) {
+    updateUser(data).then(function (result) {
       console.log(result.data);
       window.location.reload();
     });
@@ -76,29 +88,59 @@ function Update(props) {
           required
           id="outlined-username"
           label="Username"
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setData({ ...data, username: e.target.value })}
           defaultValue={selectedValue.username}
         />
         <TextField
           id="outlined-email"
           label="Email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setData({ ...data, email: e.target.value })}
           defaultValue={selectedValue.email}
         />
       </div>
-      <TextField
-        required
-        id="outlined-password-input"
-        label="Password"
-        type="password"
-        autoComplete="current-password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <div>
+        <TextField
+          required
+          id="outlined-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          onChange={(e) => setData({ ...data, password: e.target.value })}
+        />
+        <label htmlFor="btn-upload">
+          <input
+            id="btn-upload"
+            name="avatar"
+            style={{
+              display: 'none',
+              marginTop: '2ch',
+              width: 215,
+              height: 50,
+              marginLeft: '2ch'
+            }}
+            type="file"
+            onChange={(e) => setData({ ...data, avatar: e.target.files[0] })}
+          />
+          <Button
+            style={{
+              marginTop: '2ch',
+              width: 215,
+              height: 50,
+              marginLeft: '2ch'
+            }}
+            className="btn-choose"
+            variant="outlined"
+            component="span"
+          >
+            Choose Files
+          </Button>
+        </label>
+      </div>
       <Box mt={2} mb={2}>
         <Button
           variant="contained"
           style={{ margin: '0 auto', display: 'flex', marginBottom: 2 }}
-          onClick={() => onUpdate({ username, password, email, id })}
+          onClick={() => onUpdate(data)}
         >
           Update
         </Button>

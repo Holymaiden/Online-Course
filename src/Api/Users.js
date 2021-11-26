@@ -13,34 +13,38 @@ async function getAllUser() {
   return res.json();
 }
 
-async function createUser({ username, password, email }) {
+async function createUser({ username, password, email, avatar }) {
+  var formdata = new FormData();
+  formdata.append('username', username);
+  formdata.append('email', email);
+  formdata.append('password', password);
+  formdata.append('avatar', avatar);
+
   const res = await fetch(`${API_SERVER}/register`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      Accept: 'application/json',
       Authorization: authHeader()
     },
-    body: JSON.stringify({
-      username: username,
-      email: email,
-      password: password
-    })
+    body: formdata
   });
   return res.json();
 }
 
-async function updateUser({ username, password, email, id }) {
-  const res = await fetch(`${API_SERVER}/admin/user/` + id, {
+async function updateUser(data) {
+  var formdata = new FormData();
+  formdata.append('username', data.username);
+  formdata.append('email', data.email);
+  formdata.append('password', data.password);
+  formdata.append('avatar', data.avatar);
+
+  const res = await fetch(`${API_SERVER}/admin/user/` + data.id, {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json',
+      Accept: 'application/json',
       Authorization: authHeader()
     },
-    body: JSON.stringify({
-      username: username,
-      email: email,
-      password: password
-    })
+    body: formdata
   });
   return res.json();
 }
