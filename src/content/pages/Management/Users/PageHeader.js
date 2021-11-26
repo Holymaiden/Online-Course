@@ -23,19 +23,19 @@ function Create(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [avatar, setAvatar] = useState([]);
   const { onClose, open } = props;
 
   const handleClose = () => {
     onClose('');
   };
 
-  function onCreate({ username, password, email }) {
-    createUser({ username, password, email }).then(function (result) {
+  function onCreate({ username, password, email, avatar }) {
+    createUser({ username, password, email, avatar }).then(function (result) {
       console.log(result.data);
       window.location.reload();
     });
   }
-
   return (
     <Dialog
       onClose={handleClose}
@@ -62,19 +62,49 @@ function Create(props) {
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <TextField
-        required
-        id="outlined-password-input"
-        label="Password"
-        type="password"
-        autoComplete="current-password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <div>
+        <TextField
+          required
+          id="outlined-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <label htmlFor="btn-upload">
+          <input
+            id="btn-upload"
+            name="avatar"
+            style={{
+              display: 'none',
+              marginTop: '2ch',
+              width: 215,
+              height: 50,
+              marginLeft: '2ch'
+            }}
+            type="file"
+            onChange={(e) => setAvatar(e.target.files[0])}
+          />
+          <Button
+            style={{
+              marginTop: '2ch',
+              width: 215,
+              height: 50,
+              marginLeft: '2ch'
+            }}
+            className="btn-choose"
+            variant="outlined"
+            component="span"
+          >
+            Choose Files
+          </Button>
+        </label>
+      </div>
       <Box mt={2} mb={2}>
         <Button
           variant="contained"
           style={{ margin: '0 auto', display: 'flex', marginBottom: 2 }}
-          onClick={() => onCreate({ username, password, email })}
+          onClick={() => onCreate({ username, password, email, avatar })}
         >
           Create
         </Button>
