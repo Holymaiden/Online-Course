@@ -23,24 +23,37 @@ async function getByIdTeachingMaterial(slug) {
   return res.json();
 }
 
-async function createTeachingMaterial() {
+async function createTeachingMaterial(data) {
   const res = await fetch(`${API_SERVER}/admin/teachingMaterial`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader()
-    }
+    },
+    body: JSON.stringify({
+      course_id: data.course_id,
+      title: data.title,
+      content: data.content,
+      description: data.description
+    })
   });
   return res.json();
 }
 
-async function updateTeachingMaterial(id) {
-  const res = await fetch(`${API_SERVER}/admin/teachingMaterial/` + id, {
+async function updateTeachingMaterial(data) {
+  const res = await fetch(`${API_SERVER}/admin/teachingMaterial/` + data.id, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader()
-    }
+    },
+    body: JSON.stringify({
+      course_id: data.course_id,
+      title: data.title,
+      content: data.content,
+      description: data.description,
+      status: data.status
+    })
   });
   return res.json();
 }

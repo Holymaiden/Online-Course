@@ -14,10 +14,9 @@ import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
 import { forwardRef, useEffect, useState } from 'react';
 import { Box } from '@mui/system';
 
-import { getAllUser, getCurrentUser } from '../../../../Api/Users';
-import { createTransaction } from '../../../../Api/Transaction';
-import { getAllUserCourse } from '../../../../Api/UserCourse';
-import { getAllPayment } from '../../../../Api/Payment';
+import { getCurrentUser } from '../../../../Api/Users';
+import { createTeachingMaterial } from '../../../../Api/TeachingMaterial';
+import { getAllCourse } from '../../../../Api/Course';
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -27,38 +26,26 @@ function Create(props) {
   const { onClose, open } = props;
   const [data, setData] = useState({
     id: '',
-    user_id: '',
-    username: '',
     course_id: '',
-    course: '',
-    payment_id: '',
-    payment: ''
+    title: '',
+    content: '',
+    description: '',
+    status: ''
   });
 
   const [rows, setRows] = useState([]);
-  const [courses, setCourses] = useState([]);
-  const [payments, setPayments] = useState([]);
   useEffect(() => {
-    getAllUser().then(function (result) {
+    getAllCourse().then(function (result) {
       setRows(result.data);
     });
-    getAllPayment().then(function (result) {
-      setPayments(result.data);
-    });
   }, []);
-
-  useEffect(() => {
-    getAllUserCourse().then(function (result) {
-      setCourses(result.data);
-    });
-  }, [data.user_id]);
 
   const handleClose = () => {
     onClose('');
   };
 
   function onCreate(data) {
-    createTransaction(data).then(function (result) {
+    createTeachingMaterial(data).then(function (result) {
       console.log(result.data);
       window.location.reload();
     });
@@ -76,25 +63,9 @@ function Create(props) {
         '& .MuiButton-root': { width: '10ch' }
       }}
     >
-      <DialogTitle>Create Transaction</DialogTitle>
+      <DialogTitle>Create Teaching Material</DialogTitle>
       <div style={{ marginLeft: 45 }}>
         <div>
-          <TextField
-            id="outlined-select-users"
-            select
-            label="User"
-            value={data.user_id}
-            onChange={(event) =>
-              setData({ ...data, user_id: event.target.value })
-            }
-            helperText="Please select your user"
-          >
-            {rows.map((option) => (
-              <MenuItem key={option.id} value={option.id}>
-                {option.username}
-              </MenuItem>
-            ))}
-          </TextField>
           <TextField
             id="outlined-select-course"
             select
@@ -105,31 +76,38 @@ function Create(props) {
             }
             helperText="Please select your course"
           >
-            {courses.map((option) =>
-              option.user_id == data.user_id ? (
-                <MenuItem key={option.course_id} value={option.course_id}>
-                  {option.course}
-                </MenuItem>
-              ) : null
-            )}
-          </TextField>
-          <TextField
-            id="outlined-select-payment"
-            select
-            label="Payment"
-            value={data.payment_id}
-            onChange={(event) =>
-              setData({ ...data, payment_id: event.target.value })
-            }
-            helperText="Please select your payment"
-          >
-            {payments.map((option) => (
+            {rows.map((option) => (
               <MenuItem key={option.id} value={option.id}>
-                {option.account_number}
+                {option.title}
               </MenuItem>
             ))}
           </TextField>
+          <TextField
+            required
+            id="outlined-title"
+            label="Title"
+            onChange={(e) => setData({ ...data, title: e.target.value })}
+            helperText="Please add your title"
+          />
         </div>
+        <TextField
+          id="outlined-multiline-flexible"
+          label="Content"
+          multiline
+          maxRows={5}
+          style={{ width: 470 }}
+          helperText="Please add your content"
+          onChange={(e) => setData({ ...data, content: e.target.value })}
+        />
+        <TextField
+          id="outlined-multiline-flexible"
+          label="Description"
+          multiline
+          maxRows={5}
+          style={{ width: 470 }}
+          helperText="Please add your description"
+          onChange={(e) => setData({ ...data, description: e.target.value })}
+        />
       </div>
       <Box mt={2} mb={2}>
         <Button
@@ -168,10 +146,10 @@ function PageHeader() {
     <Grid container justifyContent="space-between" alignItems="center">
       <Grid item>
         <Typography variant="h3" component="h3" gutterBottom>
-          Transactions
+          Teaching Materials
         </Typography>
         <Typography variant="subtitle2">
-          {user.username}, these are all Transactions
+          {user.username}, these are all Teaching Materias
         </Typography>
       </Grid>
       <Grid item>
@@ -181,7 +159,7 @@ function PageHeader() {
           startIcon={<AddTwoToneIcon fontSize="small" />}
           onClick={handleClickOpen}
         >
-          Create Transaction
+          Create Teaching Material
         </Button>
         <Create open={open} onClose={handleClose} />
       </Grid>

@@ -55,6 +55,9 @@ const Instructors = Loader(
 const Transactions = Loader(
   lazy(() => import('src/content/pages/Management/Transaction'))
 );
+const TeachingMaterials = Loader(
+  lazy(() => import('src/content/pages/Management/TeachingMaterials'))
+);
 
 // Components
 
@@ -192,6 +195,10 @@ const routes = [
       {
         path: 'instructors',
         element: <Instructors />
+      },
+      {
+        path: 'teachingmaterials',
+        element: <TeachingMaterials />
       },
       {
         path: 'transactions',
