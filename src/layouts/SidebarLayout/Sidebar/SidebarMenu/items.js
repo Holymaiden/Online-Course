@@ -16,6 +16,7 @@ import VerifiedUserTwoToneIcon from '@mui/icons-material/VerifiedUserTwoTone';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import LaptopChromebookIcon from '@mui/icons-material/LaptopChromebook';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import ArticleIcon from '@mui/icons-material/Article';
 
 const menuItems = [
   {
@@ -60,6 +61,11 @@ const menuItems = [
         name: 'Instructors',
         icon: EmojiPeopleIcon,
         link: '/management/instructors'
+      },
+      {
+        name: 'Teaching Materials',
+        icon: ArticleIcon,
+        link: '/management/teachingmaterials'
       },
       {
         name: 'Transactions',
