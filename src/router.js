@@ -52,12 +52,16 @@ const Courses = Loader(
 const Instructors = Loader(
   lazy(() => import('src/content/pages/Management/Instructor'))
 );
-const Transactions = Loader(
-  lazy(() => import('src/content/pages/Management/Transaction'))
-);
 const TeachingMaterials = Loader(
   lazy(() => import('src/content/pages/Management/TeachingMaterials'))
 );
+
+// Money
+
+const Transactions = Loader(
+  lazy(() => import('src/content/pages/Money/Transaction'))
+);
+const Carts = Loader(lazy(() => import('src/content/pages/Money/Cart')));
 
 // Components
 
@@ -199,27 +203,50 @@ const routes = [
       {
         path: 'teachingmaterials',
         element: <TeachingMaterials />
+      }
+    ]
+  },
+  {
+    path: 'Money',
+    element: [
+      <ProtectedRoute>
+        <SidebarLayout />
+      </ProtectedRoute>
+    ],
+    children: [
+      {
+        path: '/',
+        element: <Navigate to="/money/transactions" replace />
       },
       {
         path: 'transactions',
         element: <Transactions />
       },
       {
-        path: 'profile',
-        children: [
-          {
-            path: '/',
-            element: <Navigate to="details" replace />
-          },
-          {
-            path: 'details',
-            element: <UserProfile />
-          },
-          {
-            path: 'settings',
-            element: <UserSettings />
-          }
-        ]
+        path: 'carts',
+        element: <Carts />
+      }
+    ]
+  },
+  {
+    path: 'profile',
+    element: [
+      <ProtectedRoute>
+        <SidebarLayout />
+      </ProtectedRoute>
+    ],
+    children: [
+      {
+        path: '/',
+        element: <Navigate to="/profile/details" replace />
+      },
+      {
+        path: 'details',
+        element: <UserProfile />
+      },
+      {
+        path: 'settings',
+        element: <UserSettings />
       }
     ]
   },
