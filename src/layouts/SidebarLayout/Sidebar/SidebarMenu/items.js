@@ -2,7 +2,7 @@ import DesignServicesTwoToneIcon from '@mui/icons-material/DesignServicesTwoTone
 import BrightnessLowTwoToneIcon from '@mui/icons-material/BrightnessLowTwoTone';
 import MmsTwoToneIcon from '@mui/icons-material/MmsTwoTone';
 import TableChartTwoToneIcon from '@mui/icons-material/TableChartTwoTone';
-import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BallotTwoToneIcon from '@mui/icons-material/BallotTwoTone';
 import BeachAccessTwoToneIcon from '@mui/icons-material/BeachAccessTwoTone';
 import EmojiEventsTwoToneIcon from '@mui/icons-material/EmojiEventsTwoTone';
@@ -66,26 +66,21 @@ const menuItems = [
         name: 'Teaching Materials',
         icon: ArticleIcon,
         link: '/management/teachingmaterials'
+      }
+    ]
+  },
+  {
+    heading: 'Money',
+    items: [
+      {
+        name: 'Carts',
+        icon: ShoppingCartIcon,
+        link: '/money/carts'
       },
       {
         name: 'Transactions',
         icon: TableChartTwoToneIcon,
-        link: '/management/transactions'
-      },
-      {
-        name: 'User Profile',
-        icon: AccountCircleTwoToneIcon,
-        link: '/management/profile',
-        items: [
-          {
-            name: 'Profile Details',
-            link: '/management/profile/details'
-          },
-          {
-            name: 'User Settings',
-            link: '/management/profile/settings'
-          }
-        ]
+        link: '/money/transactions'
       }
     ]
   },

@@ -6,11 +6,11 @@ import Footer from 'src/components/Footer';
 
 import TableDatas from './TableDatas';
 
-function ApplicationsTransactions() {
+function ApplicationsCart() {
   return (
     <>
       <Helmet>
-        <title>Transactions - Managements</title>
+        <title>Cart - Money</title>
       </Helmet>
       <PageTitleWrapper>
         <PageHeader />
@@ -33,4 +33,4 @@ function ApplicationsTransactions() {
   );
 }
 
-export default ApplicationsTransactions;
+export default ApplicationsCart;

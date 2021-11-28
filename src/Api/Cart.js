@@ -34,24 +34,34 @@ async function getByIdCart(id) {
   return res.json();
 }
 
-async function createCart() {
+async function createCart(data) {
   const res = await fetch(`${API_SERVER}/cart`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader()
-    }
+    },
+    body: JSON.stringify({
+      user_id: data.user_id,
+      course_id: data.course_id,
+      price: data.price
+    })
   });
   return res.json();
 }
 
-async function updateCart(id) {
-  const res = await fetch(`${API_SERVER}/cart/` + id, {
+async function updateCart(data) {
+  const res = await fetch(`${API_SERVER}/cart/` + data.id, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader()
-    }
+    },
+    body: JSON.stringify({
+      user_id: data.user_id,
+      course_id: data.course_id,
+      price: data.price
+    })
   });
   return res.json();
 }
