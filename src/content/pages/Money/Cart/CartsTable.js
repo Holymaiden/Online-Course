@@ -164,7 +164,7 @@ Update.propTypes = {
 
 const getStatusLabel = (Status) => {
   if (!Status) {
-    Status = 0;
+    Status = 2;
   } else {
     Status = 1;
   }
@@ -173,7 +173,7 @@ const getStatusLabel = (Status) => {
       text: 'Completed',
       color: 'success'
     },
-    0: {
+    2: {
       text: 'Process',
       color: 'warning'
     }
@@ -243,10 +243,6 @@ const CartsTable = ({ datas }) => {
     {
       id: 2,
       name: 'Process'
-    },
-    {
-      id: 3,
-      name: 'Failed'
     }
   ];
 
@@ -347,7 +343,7 @@ const CartsTable = ({ datas }) => {
               </TableCell>
               <TableCell>User</TableCell>
               <TableCell>Course</TableCell>
-              <TableCell align="right">Price</TableCell>
+              <TableCell>Price</TableCell>
               <TableCell align="right">Status</TableCell>
               <TableCell align="right">Actions</TableCell>
             </TableRow>
@@ -387,7 +383,7 @@ const CartsTable = ({ datas }) => {
                       {datas.course}
                     </Typography>
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell>
                     <Typography
                       variant="body1"
                       fontWeight="bold"
@@ -395,7 +391,7 @@ const CartsTable = ({ datas }) => {
                       gutterBottom
                       noWrap
                     >
-                      {datas.price}
+                      Rp. {datas.price}
                     </Typography>
                   </TableCell>
                   <TableCell align="right">

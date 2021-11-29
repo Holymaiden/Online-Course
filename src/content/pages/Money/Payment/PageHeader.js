@@ -7,16 +7,14 @@ import {
   Dialog,
   DialogTitle,
   TextField,
-  MenuItem,
   Slide
 } from '@mui/material';
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
 import { forwardRef, useEffect, useState } from 'react';
 import { Box } from '@mui/system';
 
-import { getCurrentUser, getAllUser } from '../../../../Api/Users';
-import { createCart } from '../../../../Api/Cart';
-import { getAllCourse } from '../../../../Api/Course';
+import { getCurrentUser } from '../../../../Api/Users';
+import { createPayment } from '../../../../Api/Payment';
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -26,28 +24,16 @@ function Create(props) {
   const { onClose, open } = props;
   const [data, setData] = useState({
     id: '',
-    user_id: '',
-    course_id: '',
-    price: ''
+    name: '',
+    account_number: ''
   });
-
-  const [rows, setRows] = useState([]);
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    getAllCourse().then(function (result) {
-      setRows(result.data);
-    });
-    getAllUser().then(function (result) {
-      setUsers(result.data);
-    });
-  }, []);
 
   const handleClose = () => {
     onClose('');
   };
 
   function onCreate(data) {
-    createCart(data).then(function (result) {
+    createPayment(data).then(function (result) {
       console.log(result.data);
       window.location.reload();
     });
@@ -65,49 +51,23 @@ function Create(props) {
         '& .MuiButton-root': { width: '10ch' }
       }}
     >
-      <DialogTitle>Create Cart</DialogTitle>
+      <DialogTitle>Create Payment</DialogTitle>
       <div style={{ marginLeft: 45 }}>
-        <div>
-          <TextField
-            id="outlined-select-user"
-            select
-            label="User"
-            value={data.user_id}
-            onChange={(event) =>
-              setData({ ...data, user_id: event.target.value })
-            }
-            helperText="Please select your user"
-          >
-            {users.map((option) => (
-              <MenuItem key={option.id} value={option.id}>
-                {option.username}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            id="outlined-select-course"
-            select
-            label="Course"
-            value={data.course_id}
-            onChange={(event) =>
-              setData({ ...data, course_id: event.target.value })
-            }
-            helperText="Please select your course"
-          >
-            {rows.map((option) => (
-              <MenuItem key={option.id} value={option.id}>
-                {option.title}
-              </MenuItem>
-            ))}
-          </TextField>
-        </div>
         <TextField
           required
-          id="outlined-price"
-          label="Price"
+          id="outlined-name"
+          label="Name"
           style={{ width: 470 }}
-          onChange={(e) => setData({ ...data, price: e.target.value })}
-          helperText="Please add your price"
+          onChange={(e) => setData({ ...data, name: e.target.value })}
+          helperText="Please add your name"
+        />
+        <TextField
+          required
+          id="outlined-account-number"
+          label="Account Number"
+          style={{ width: 470 }}
+          onChange={(e) => setData({ ...data, account_number: e.target.value })}
+          helperText="Please add your account number"
         />
       </div>
       <Box mt={2} mb={2}>
@@ -147,10 +107,10 @@ function PageHeader() {
     <Grid container justifyContent="space-between" alignItems="center">
       <Grid item>
         <Typography variant="h3" component="h3" gutterBottom>
-          Cart
+          Payments
         </Typography>
         <Typography variant="subtitle2">
-          {user.username}, these are all Carts
+          {user.username}, these are all Payments
         </Typography>
       </Grid>
       <Grid item>
@@ -160,7 +120,7 @@ function PageHeader() {
           startIcon={<AddTwoToneIcon fontSize="small" />}
           onClick={handleClickOpen}
         >
-          Create Cart
+          Create Payment
         </Button>
         <Create open={open} onClose={handleClose} />
       </Grid>

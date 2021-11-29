@@ -192,16 +192,16 @@ Update.propTypes = {
 
 const getStatusLabel = (Status) => {
   if (!Status) {
-    Status = 0;
+    Status = 2;
   }
   const map = {
-    0: {
-      text: 'Pending',
-      color: 'warning'
-    },
     1: {
       text: 'Completed',
       color: 'success'
+    },
+    2: {
+      text: 'Pending',
+      color: 'warning'
     }
   };
 
@@ -283,10 +283,6 @@ const TransactionsTable = ({ datas }) => {
     {
       id: 2,
       name: 'Pending'
-    },
-    {
-      id: 3,
-      name: 'Failed'
     }
   ];
 

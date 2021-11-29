@@ -23,24 +23,32 @@ async function getByIdPayment(id) {
   return res.json();
 }
 
-async function createPayment() {
+async function createPayment(data) {
   const res = await fetch(`${API_SERVER}/admin/payment`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader()
-    }
+    },
+    body: JSON.stringify({
+      name: data.name,
+      account_number: data.account_number
+    })
   });
   return res.json();
 }
 
-async function updatePayment(id) {
-  const res = await fetch(`${API_SERVER}/admin/payment/` + id, {
+async function updatePayment(data) {
+  const res = await fetch(`${API_SERVER}/admin/payment/` + data.id, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader()
-    }
+    },
+    body: JSON.stringify({
+      name: data.name,
+      account_number: data.account_number
+    })
   });
   return res.json();
 }

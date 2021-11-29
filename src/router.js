@@ -62,6 +62,7 @@ const Transactions = Loader(
   lazy(() => import('src/content/pages/Money/Transaction'))
 );
 const Carts = Loader(lazy(() => import('src/content/pages/Money/Cart')));
+const Payments = Loader(lazy(() => import('src/content/pages/Money/Payment')));
 
 // Components
 
@@ -225,6 +226,10 @@ const routes = [
       {
         path: 'carts',
         element: <Carts />
+      },
+      {
+        path: 'payments',
+        element: <Payments />
       }
     ]
   },

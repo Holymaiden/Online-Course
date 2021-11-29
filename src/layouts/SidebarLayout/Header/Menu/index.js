@@ -63,7 +63,6 @@ const ListWrapper = styled(Box)(
 );
 
 function HeaderMenu() {
-
   const ref = useRef(null);
   const [isOpen, setOpen] = useState(false);
 
@@ -133,6 +132,28 @@ function HeaderMenu() {
         </MenuItem>
         <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/modals">
           Modals
+        </MenuItem>
+        <MenuItem
+          sx={{ px: 3 }}
+          component={NavLink}
+          to="/components/accordions"
+        >
+          Accordions
+        </MenuItem>
+        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/tabs">
+          Tabs
+        </MenuItem>
+        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/badges">
+          Badges
+        </MenuItem>
+        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/tooltips">
+          Tooltips
+        </MenuItem>
+        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/avatars">
+          Avatars
+        </MenuItem>
+        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/cards">
+          Cards
         </MenuItem>
       </Menu>
     </>
