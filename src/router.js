@@ -55,6 +55,9 @@ const Instructors = Loader(
 const TeachingMaterials = Loader(
   lazy(() => import('src/content/pages/Management/TeachingMaterials'))
 );
+const Schedules = Loader(
+  lazy(() => import('src/content/pages/Management/Schedule'))
+);
 
 // Money
 
@@ -196,6 +199,10 @@ const routes = [
       {
         path: 'courses',
         element: <Courses />
+      },
+      {
+        path: 'schedules',
+        element: <Schedules />
       },
       {
         path: 'instructors',

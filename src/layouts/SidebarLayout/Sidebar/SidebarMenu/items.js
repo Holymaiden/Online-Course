@@ -9,6 +9,7 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import LaptopChromebookIcon from '@mui/icons-material/LaptopChromebook';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 import ArticleIcon from '@mui/icons-material/Article';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 
 const menuItems = [
   {
@@ -48,6 +49,11 @@ const menuItems = [
         name: 'Courses',
         icon: LaptopChromebookIcon,
         link: '/management/courses'
+      },
+      {
+        name: 'Schedules',
+        icon: DateRangeIcon,
+        link: '/management/schedules'
       },
       {
         name: 'Instructors',
