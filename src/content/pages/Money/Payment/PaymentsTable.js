@@ -25,31 +25,16 @@ import {
   DialogTitle,
   TextField,
   Button,
-  Slide
+  Slide,
+  Avatar
 } from '@mui/material';
 
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import BulkActions from './BulkActions';
 
-import { updateCourse, destroyCourse } from '../../../../Api/Course';
-import { getAllCategory } from '../../../../Api/Category';
+import { updatePayment, destroyPayment } from '../../../../Api/Payment';
 import Label from 'src/components/Label';
-
-const statuss = [
-  {
-    id: 1,
-    status: 'Completed'
-  },
-  {
-    id: 2,
-    status: 'Pending'
-  },
-  {
-    id: 3,
-    status: 'Failed'
-  }
-];
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -59,54 +44,29 @@ function Update(props) {
   const { onClose, selectedValue, open } = props;
   const [data, setData] = useState({
     id: '',
-    title: '',
-    description: '',
-    price: '',
-    category: '',
-    status: ''
+    name: '',
+    account_number: ''
   });
   useEffect(
     () =>
       setData({
         id: selectedValue.id,
-        title: selectedValue.title,
-        description: selectedValue.description,
-        price: selectedValue.price,
-        category: selectedValue.category,
-        status: selectedValue.status
+        name: selectedValue.name,
+        account_number: selectedValue.account_number
       }),
     [open]
   );
-
-  const [rows, setRows] = useState([]);
-  useEffect(() => {
-    getAllCategory().then(function (result) {
-      setRows(result.data);
-    });
-  }, []);
-  const categorys = rows.map((data) => ({
-    id: data.id,
-    title: data.title
-  }));
 
   const handleClose = () => {
     onClose('');
   };
 
   function onUpdate(data) {
-    updateCourse(data).then(function (result) {
+    updatePayment(data).then(function (result) {
       console.log(result.data);
       window.location.reload();
     });
   }
-
-  const handleChange = (event) => {
-    setData({ ...data, category: event.target.value });
-  };
-
-  const handleChange2 = (event) => {
-    setData({ ...data, status: event.target.value });
-  };
 
   return (
     <Dialog
@@ -120,71 +80,26 @@ function Update(props) {
         '& .MuiButton-root': { width: '10ch' }
       }}
     >
-      <DialogTitle>Update Course</DialogTitle>
+      <DialogTitle>Update Payment</DialogTitle>
       <div style={{ marginLeft: 45 }}>
         <TextField
           required
-          id="outlined-title"
-          label="Title"
+          id="outlined-name"
+          label="Name"
           style={{ width: 470 }}
-          onChange={(e) => setData({ ...data, title: e.target.value })}
-          helperText="Please add your title"
-          defaultValue={selectedValue.title}
+          onChange={(e) => setData({ ...data, name: e.target.value })}
+          helperText="Please add your name"
+          defaultValue={selectedValue.name}
         />
-        <div>
-          <TextField
-            id="outlined-multiline-flexible"
-            label="Description"
-            multiline
-            maxRows={5}
-            style={{ width: 470 }}
-            helperText="Please add your description"
-            onChange={(e) => setData({ ...data, description: e.target.value })}
-            defaultValue={selectedValue.description}
-          />
-        </div>
         <TextField
           required
-          id="outlined-price-input"
-          label="Price"
+          id="outlined-account-number"
+          label="Account Number"
           style={{ width: 470 }}
-          autoComplete="current-price"
-          helperText="Please add your price"
-          onChange={(e) => setData({ ...data, price: e.target.value })}
-          defaultValue={selectedValue.price}
+          onChange={(e) => setData({ ...data, account_number: e.target.value })}
+          helperText="Please add your account number"
+          defaultValue={selectedValue.account_number}
         />
-        <div>
-          <TextField
-            id="outlined-select-category"
-            select
-            label="Category"
-            value={data.category}
-            onChange={handleChange}
-            helperText="Please select your category"
-            defaultValue={selectedValue.category}
-          >
-            {categorys.map((option) => (
-              <MenuItem key={option.id} value={option.id}>
-                {option.title}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            id="outlined-select-status"
-            select
-            label="Status"
-            value={data.status}
-            onChange={handleChange2}
-            helperText="Please select your status"
-            defaultValue={selectedValue.status}
-          >
-            {statuss.map((option) => (
-              <MenuItem key={option.id} value={option.id}>
-                {option.status}
-              </MenuItem>
-            ))}
-          </TextField>
-        </div>
       </div>
       <Box mt={2} mb={2}>
         <Button
@@ -206,17 +121,18 @@ Update.propTypes = {
 };
 
 const getStatusLabel = (Status) => {
+  if (!Status) {
+    Status = 2;
+  } else {
+    Status = 1;
+  }
   const map = {
-    3: {
-      text: 'Failed',
-      color: 'error'
-    },
     1: {
       text: 'Completed',
       color: 'success'
     },
     2: {
-      text: 'Pending',
+      text: 'Process',
       color: 'warning'
     }
   };
@@ -242,17 +158,14 @@ const applyPagination = (datas, page, limit) => {
   return datas.slice(page * limit, page * limit + limit);
 };
 
-const CoursesTable = ({ datas }) => {
-  const [selectedCourses, setSelectedCourses] = useState([]);
+const PaymentsTable = ({ datas }) => {
+  const [selectedPayments, setSelectedPayments] = useState([]);
   const [selectedData, setData] = useState({
     id: '',
-    title: '',
-    description: '',
-    price: '',
-    category: '',
-    status: ''
+    name: '',
+    account_number: ''
   });
-  const selectedBulkActions = selectedCourses.length > 0;
+  const selectedBulkActions = selectedPayments.length > 0;
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(5);
   const [filters, setFilters] = useState({
@@ -261,14 +174,11 @@ const CoursesTable = ({ datas }) => {
 
   const [open, setOpen] = useState(false);
 
-  const handleClickOpen = (id, title, description, price, category, status) => {
+  const handleClickOpen = (id, name, account_number) => {
     setData({
       id: id,
-      title: title,
-      description: description,
-      price: price,
-      category: category,
-      status: status
+      name: name,
+      account_number: account_number
     });
     setOpen(true);
   };
@@ -288,11 +198,7 @@ const CoursesTable = ({ datas }) => {
     },
     {
       id: 2,
-      name: 'Pending'
-    },
-    {
-      id: 3,
-      name: 'Failed'
+      name: 'Process'
     }
   ];
 
@@ -310,16 +216,16 @@ const CoursesTable = ({ datas }) => {
   };
 
   const handleSelectAllDatas = (event) => {
-    setSelectedCourses(
+    setSelectedPayments(
       event.target.checked ? datas.map((datas) => datas.id) : []
     );
   };
 
   const handleSelectOneData = (event, userId) => {
-    if (!selectedCourses.includes(userId)) {
-      setSelectedCourses((prevSelected) => [...prevSelected, userId]);
+    if (!selectedPayments.includes(userId)) {
+      setSelectedPayments((prevSelected) => [...prevSelected, userId]);
     } else {
-      setSelectedCourses((prevSelected) =>
+      setSelectedPayments((prevSelected) =>
         prevSelected.filter((id) => id !== userId)
       );
     }
@@ -334,14 +240,14 @@ const CoursesTable = ({ datas }) => {
   };
 
   const filteredDatas = applyFilters(datas, filters);
-  const paginatedCourses = applyPagination(filteredDatas, page, limit);
+  const paginatedPayments = applyPagination(filteredDatas, page, limit);
   const selectedSomeDatas =
-    selectedCourses.length > 0 && selectedCourses.length < datas.length;
-  const selectedAllDatas = selectedCourses.length === datas.length;
+    selectedPayments.length > 0 && selectedPayments.length < datas.length;
+  const selectedAllDatas = selectedPayments.length === datas.length;
   const theme = useTheme();
 
   function onDelete(id) {
-    destroyCourse(id).then(function (result) {
+    destroyPayment(id).then(function (result) {
       console.log(result.data);
       window.location.reload();
     });
@@ -375,7 +281,7 @@ const CoursesTable = ({ datas }) => {
               </FormControl>
             </Box>
           }
-          title="Recent Courses"
+          title="Recent Payments"
         />
       )}
       <Divider />
@@ -391,25 +297,22 @@ const CoursesTable = ({ datas }) => {
                   onChange={handleSelectAllDatas}
                 />
               </TableCell>
-              <TableCell>Title</TableCell>
-              <TableCell>Category</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell align="right">Price</TableCell>
-              <TableCell align="right">Status</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell align="center">Account Number</TableCell>
               <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {paginatedCourses.map((datas) => {
-              const isCoursesSelected = selectedCourses.includes(datas.id);
+            {paginatedPayments.map((datas) => {
+              const isPaymentsSelected = selectedPayments.includes(datas.id);
               return (
-                <TableRow hover key={datas.id} selected={isCoursesSelected}>
+                <TableRow hover key={datas.id} selected={isPaymentsSelected}>
                   <TableCell padding="checkbox">
                     <Checkbox
                       color="primary"
-                      checked={isCoursesSelected}
+                      checked={isPaymentsSelected}
                       onChange={(event) => handleSelectOneData(event, datas.id)}
-                      value={isCoursesSelected}
+                      value={isPaymentsSelected}
                     />
                   </TableCell>
                   <TableCell>
@@ -420,10 +323,10 @@ const CoursesTable = ({ datas }) => {
                       gutterBottom
                       noWrap
                     >
-                      {datas.title}
+                      {datas.name}
                     </Typography>
                   </TableCell>
-                  <TableCell>
+                  <TableCell align="center">
                     <Typography
                       variant="body1"
                       fontWeight="bold"
@@ -431,34 +334,8 @@ const CoursesTable = ({ datas }) => {
                       gutterBottom
                       noWrap
                     >
-                      {datas.category}
+                      Rp. {datas.account_number}
                     </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      variant="body1"
-                      fontWeight="bold"
-                      color="text.primary"
-                      gutterBottom
-                      noWrap
-                    >
-                      {datas.description}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      variant="body1"
-                      fontWeight="bold"
-                      color="text.primary"
-                      gutterBottom
-                      noWrap
-                      align="right"
-                    >
-                      Rp. {datas.price}
-                    </Typography>
-                  </TableCell>
-                  <TableCell align="right">
-                    {getStatusLabel(datas.status)}
                   </TableCell>
                   <TableCell align="right">
                     <Tooltip title="Edit Order" arrow>
@@ -474,11 +351,8 @@ const CoursesTable = ({ datas }) => {
                         onClick={() => {
                           handleClickOpen(
                             datas.id,
-                            datas.title,
-                            datas.description,
-                            datas.price,
-                            datas.category_id,
-                            datas.status
+                            datas.name,
+                            datas.account_number
                           );
                         }}
                       >
@@ -521,12 +395,12 @@ const CoursesTable = ({ datas }) => {
   );
 };
 
-CoursesTable.propTypes = {
+PaymentsTable.propTypes = {
   datas: PropTypes.array.isRequired
 };
 
-CoursesTable.defaultProps = {
+PaymentsTable.defaultProps = {
   datas: []
 };
 
-export default CoursesTable;
+export default PaymentsTable;
