@@ -11,7 +11,6 @@ function Popular() {
   useEffect(() => {
     getPopularCourse().then(function (result) {
       SetPopular(result.data);
-      console.log(result.data);
     });
   }, []);
 

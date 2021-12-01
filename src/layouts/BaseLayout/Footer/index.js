@@ -7,6 +7,9 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import GoogleIcon from '@mui/icons-material/Google';
 
+import { getPopularCategory } from '../../../Api/Category';
+import { useEffect, useState } from 'react';
+
 const FooterWrapper = styled(Box)(
   ({ theme }) => `
         border-radius: 0;
@@ -15,6 +18,13 @@ const FooterWrapper = styled(Box)(
 );
 
 function Footer() {
+  const [Popular, setPopular] = useState([]);
+  useEffect(() => {
+    getPopularCategory(3).then(function (result) {
+      setPopular(result.data);
+    });
+  }, []);
+
   return (
     <FooterWrapper sx={{ p: 2, borderTop: 2, paddingTop: 5 }}>
       <Container maxWidth="lg">
@@ -57,11 +67,13 @@ function Footer() {
                 variant="subtitle1"
                 color="#5A47AB"
               >
-                Page 1
+                Category
               </Typography>
-              <Typography>Page 2</Typography>
-              <Typography>Page 2</Typography>
-              <Typography>Page 2</Typography>
+              {Popular
+                ? Popular.map((datas) => (
+                    <Typography>{datas.category}</Typography>
+                  ))
+                : null}
             </Box>
             <Box>
               <Typography
