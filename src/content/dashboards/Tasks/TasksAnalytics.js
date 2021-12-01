@@ -43,8 +43,6 @@ const DotPrimary = styled('span')(
 );
 
 function TasksAnalytics() {
-  
-
   const transactions = {
     income: [28, 47, 41, 34, 69, 91, 49, 82, 52, 72, 32, 99],
     expenses: [38, 85, 64, 40, 97, 82, 58, 42, 55, 46, 57, 70]
@@ -59,8 +57,8 @@ function TasksAnalytics() {
         'Apr',
         'May',
         'Jun',
-'Jul',
-'Aug',
+        'Jul',
+        'Aug',
         'Sep',
         'Oct',
         'Nov',
@@ -111,7 +109,6 @@ function TasksAnalytics() {
               anchorEl={actionRef1.current}
               onClose={() => setOpenMenuPeriod(false)}
               open={openPeriod}
-              
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'right'

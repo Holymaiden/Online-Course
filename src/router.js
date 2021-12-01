@@ -21,7 +21,7 @@ const Loader = (Component) => (props) =>
 
 // Pages
 
-const Overview = Loader(lazy(() => import('src/content/overview')));
+const Overview = Loader(lazy(() => import('src/content/pages/Home/overview')));
 const Login = Loader(lazy(() => import('src/content/pages/Auth/Login/Login')));
 const SignUp = Loader(
   lazy(() => import('src/content/pages/Auth/SignUp/SignUp'))

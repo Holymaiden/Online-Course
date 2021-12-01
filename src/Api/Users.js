@@ -63,6 +63,9 @@ async function destroyUser({ id }) {
 
 async function getCurrentUser() {
   let decoded = localStorage.getItem('user');
+  if (!decoded) {
+    return null;
+  }
   decoded = jwt.decode(decoded, { complete: true });
   return decoded.payload.data;
 }
