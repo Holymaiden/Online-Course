@@ -12,6 +12,17 @@ async function getAllCourse() {
   return res.json();
 }
 
+async function getPopularCourse() {
+  const res = await fetch(`${API_SERVER}/popularcourse`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader()
+    }
+  });
+  return res.json();
+}
+
 async function createCourse({ title, description, price, category }) {
   const res = await fetch(`${API_SERVER}/admin/course`, {
     method: 'POST',
@@ -58,4 +69,10 @@ async function destroyCourse(id) {
   return res.json();
 }
 
-export { getAllCourse, createCourse, updateCourse, destroyCourse };
+export {
+  getAllCourse,
+  createCourse,
+  updateCourse,
+  destroyCourse,
+  getPopularCourse
+};
