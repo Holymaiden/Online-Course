@@ -4,12 +4,23 @@ import { Navigate } from 'react-router-dom';
 import SidebarLayout from 'src/layouts/SidebarLayout';
 import BaseLayout from 'src/layouts/BaseLayout';
 import { useAuth } from './contexts/auth.context';
+import jwt from 'jsonwebtoken';
 
 import SuspenseLoader from 'src/components/SuspenseLoader';
 
 function ProtectedRoute({ children }) {
   let { user } = useAuth();
-  return user ? children : <Navigate to="/login" replace />;
+  let auth = false;
+  if (user) {
+    let decoded = jwt.decode(user, { complete: true });
+    decoded.payload.data.role.forEach((element) => {
+      if (element.role_name === 'admin') {
+        return (auth = true);
+      }
+    });
+  }
+
+  return auth ? children : <Navigate to="/" replace />;
 }
 
 const Loader = (Component) => (props) =>
@@ -116,14 +127,6 @@ const routes = [
         element: <Overview />
       },
       {
-        path: 'login',
-        element: <Login />
-      },
-      {
-        path: 'signup',
-        element: <SignUp />
-      },
-      {
         path: 'overview',
         element: <Navigate to="/" replace />
       },
@@ -179,6 +182,14 @@ const routes = [
         element: <Messenger />
       }
     ]
+  },
+  {
+    path: 'login',
+    element: <Login />
+  },
+  {
+    path: 'signup',
+    element: <SignUp />
   },
   {
     path: 'management',
