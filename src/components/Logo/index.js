@@ -94,6 +94,7 @@ const LogoText = styled(Box)(
   ({ theme }) => `
         font-size: ${theme.typography.pxToRem(15)};
         font-weight: ${theme.typography.fontWeightBold};
+        color: #ffffff;
 `
 );
 
