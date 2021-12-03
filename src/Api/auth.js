@@ -1,15 +1,15 @@
 import { API_SERVER } from './index';
 import { useEffect } from 'react';
 
-async function loginUser({ username, password }) {
+async function loginUser(data) {
   const res = await fetch(`${API_SERVER}/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      username: username,
-      password: password
+      username: data.username,
+      password: data.password
     })
   });
   return res.json();
