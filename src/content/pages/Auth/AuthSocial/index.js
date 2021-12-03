@@ -11,15 +11,15 @@ export default function AuthSocial() {
     <>
       <Stack direction="row" spacing={2}>
         <Button fullWidth size="large" color="inherit" variant="outlined">
-          <GoogleIcon color="#DF3E30" height={24} />
+          <GoogleIcon style={{ color: '#DF3E30' }} height={24} />
         </Button>
 
         <Button fullWidth size="large" color="inherit" variant="outlined">
-          <FacebookIcon color="#1877F2" height={24} />
+          <FacebookIcon style={{ color: '#1877F2' }} height={24} />
         </Button>
 
         <Button fullWidth size="large" color="inherit" variant="outlined">
-          <TwitterIcon color="#1C9CEA" height={24} />
+          <TwitterIcon style={{ color: '#1C9CEA' }} height={24} />
         </Button>
       </Stack>
 

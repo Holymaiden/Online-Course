@@ -31,6 +31,22 @@ async function createUser({ username, password, email, avatar }) {
   return res.json();
 }
 
+async function createPeserta(data) {
+  const res = await fetch(`${API_SERVER}/registerPeserta`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader()
+    },
+    body: JSON.stringify({
+      username: data.firstName + data.lastName,
+      email: data.email,
+      password: data.password
+    })
+  });
+  return res.json();
+}
+
 async function updateUser(data) {
   var formdata = new FormData();
   formdata.append('username', data.username);
@@ -70,4 +86,11 @@ async function getCurrentUser() {
   return decoded.payload.data;
 }
 
-export { getAllUser, createUser, destroyUser, updateUser, getCurrentUser };
+export {
+  getAllUser,
+  createUser,
+  destroyUser,
+  updateUser,
+  getCurrentUser,
+  createPeserta
+};

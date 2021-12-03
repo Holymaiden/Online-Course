@@ -82,7 +82,7 @@ export default function SignUp() {
             variant="h3"
             sx={{ px: 5, mt: 10, mb: 5, color: '#ffffff' }}
           >
-            Manage the job more effectively with Minimal
+            Jadilah Peserta Pelajar
           </Typography>
           <img
             alt="register"
@@ -95,10 +95,10 @@ export default function SignUp() {
         <ContentStyle>
           <Box sx={{ mb: 5 }}>
             <Typography variant="h4" gutterBottom>
-              Get started absolutely free.
+              Ikutlah dengan kursus, bawa tradisi belajar ke masa depan.
             </Typography>
             <Typography sx={{ color: 'text.secondary' }}>
-              Free forever. No credit card needed.
+              Pengalaman belajar sebagai bagian dari komunitas kami.
             </Typography>
           </Box>
 
