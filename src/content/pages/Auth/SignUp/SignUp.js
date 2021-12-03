@@ -6,7 +6,7 @@ import { Box, Card, Link, Container, Typography } from '@mui/material';
 import AuthLayout from '../../../../layouts/AuthLayout';
 // components
 import { MHidden } from '../../../../components/@material-extend';
-import RegisterForm from '../../../../components/Register';
+import RegisterForm from './RegisterForm';
 import AuthSocial from '../AuthSocial';
 import { forwardRef, useEffect, useState } from 'react';
 import { useAuth } from '../../../../contexts/auth.context';
@@ -63,7 +63,7 @@ export default function SignUp() {
     }
   }, []);
   return (
-    <RootStyle title="Register">
+    <RootStyle title="Sign Up">
       <AuthLayout>
         Already have an account? &nbsp;
         <Link
