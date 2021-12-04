@@ -391,7 +391,7 @@ const CartsTable = ({ datas }) => {
                       gutterBottom
                       noWrap
                     >
-                      Rp. {datas.price}
+                      Rp. {datas.price.toLocaleString()}
                     </Typography>
                   </TableCell>
                   <TableCell align="right">

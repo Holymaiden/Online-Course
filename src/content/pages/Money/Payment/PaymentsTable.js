@@ -334,7 +334,7 @@ const PaymentsTable = ({ datas }) => {
                       gutterBottom
                       noWrap
                     >
-                      Rp. {datas.account_number}
+                      {datas.account_number}
                     </Typography>
                   </TableCell>
                   <TableCell align="right">

@@ -454,7 +454,7 @@ const CoursesTable = ({ datas }) => {
                       noWrap
                       align="right"
                     >
-                      Rp. {datas.price}
+                      Rp. {datas.price.toLocaleString()}
                     </Typography>
                   </TableCell>
                   <TableCell align="right">

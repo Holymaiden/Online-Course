@@ -44,7 +44,6 @@ const DialogWrapper = styled(Dialog)(
 
 const SearchInputWrapper = styled(TextField)(
   ({ theme }) => `
-    background: ${theme.colors.alpha.white[100]};
 
     .MuiInputBase-input {
         font-size: ${theme.typography.pxToRem(17)};
@@ -54,7 +53,7 @@ const SearchInputWrapper = styled(TextField)(
 
 const DialogTitleWrapper = styled(DialogTitle)(
   ({ theme }) => `
-    background: ${theme.colors.alpha.black[5]};
+    background: #5A47AB;
     padding: ${theme.spacing(3)}
 `
 );
@@ -87,11 +86,21 @@ function HeaderSearch() {
 
   return (
     <>
-      <Tooltip arrow title="Search">
-        <IconButton color="primary" onClick={handleClickOpen}>
-          <SearchTwoToneIcon />
-        </IconButton>
-      </Tooltip>
+      <SearchInputWrapper
+        autoFocus={true}
+        onClick={handleClickOpen}
+        onChange={handleClickOpen}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchTwoToneIcon />
+            </InputAdornment>
+          )
+        }}
+        placeholder="Search materies here..."
+        fullWidth
+        label="Search"
+      />
 
       <DialogWrapper
         open={open}
@@ -104,6 +113,7 @@ function HeaderSearch() {
       >
         <DialogTitleWrapper>
           <SearchInputWrapper
+            sx={{ background: '#5A47AB' }}
             value={searchValue}
             autoFocus={true}
             onChange={handleSearchChange}
@@ -119,10 +129,10 @@ function HeaderSearch() {
             label="Search"
           />
         </DialogTitleWrapper>
-        <Divider />
+        <Divider sx={{ background: '#ffffff' }} />
 
         {openSearchResults && (
-          <DialogContent>
+          <DialogContent sx={{ background: '#5A47AB' }}>
             <Box
               sx={{ pt: 0, pb: 1 }}
               display="flex"

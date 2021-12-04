@@ -70,7 +70,7 @@ function Hero() {
                 width: '40%'
               }}
               component={RouterLink}
-              to="/signup"
+              to="/kursus"
             >
               <Typography
                 variant="h4"
