@@ -6,11 +6,11 @@ function Daftar() {
   return (
     <Container
       maxWidth="lg"
-      sx={{ textAlign: 'center', pt: 10, mb: 10 }}
+      sx={{ textAlign: 'center', pt: 5, mb: 10 }}
       style={{ color: '#ffffff' }}
     >
       <Grid
-        spacing={{ xs: 12 }}
+        spacing={{ xs: 6 }}
         justifyContent="center"
         alignItems="center"
         container

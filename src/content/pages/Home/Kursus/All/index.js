@@ -1,41 +1,76 @@
 import {
-  CardContent,
+  IconButton,
   CardMedia,
+  Card,
   Container,
   Grid,
   Typography,
-  lighten,
+  CardContent,
+  Stack,
   CardActions,
-  Button,
-  IconButton
+  FormControl,
+  Select,
+  MenuItem,
+  InputLabel,
+  Pagination,
+  TablePagination
 } from '@mui/material';
-
-import { Link as RouterLink } from 'react-router-dom';
-
-import { getPopularCourse } from '../../../../../Api/Course';
+import { useEffect, useState } from 'react';
 
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import PaymentIcon from '@mui/icons-material/Payment';
-import { useEffect, useState } from 'react';
 
-function Course() {
-  const [popular, SetPopular] = useState([]);
+import { getAllCategory } from '../../../../../Api/Category';
+import { getAllInstructor } from '../../../../../Api/Instructor';
+import { getAllCourseKursus } from '../../../../../Api/Course';
+
+import { Link as RouterLink } from 'react-router-dom';
+
+const applyPagination = (datas, page, limit) => {
+  return datas.slice(page * limit, page * limit + limit);
+};
+
+function All() {
+  const [data, setData] = useState({
+    category: '',
+    instructor: '',
+    star: ''
+  });
+  const [category, setCategory] = useState([]);
+  const [instructor, setInstructor] = useState([]);
+  const [course, setCourse] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    getPopularCourse(6).then(function (result) {
-      SetPopular(result.data);
+    getAllInstructor().then(function (result) {
+      setInstructor(result.data);
+    });
+    getAllCategory().then(function (result) {
+      setCategory(result.data);
     });
   }, []);
+
+  useEffect(() => {
+    getAllCourseKursus(data).then(function (result) {
+      setCourse(result.data);
+    });
+  }, [data]);
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const paginatedCarts = applyPagination(course, page - 1, 10);
 
   return (
     <Container
       maxWidth="lg"
-      sx={{ textAlign: 'center', pt: 10, mb: 10 }}
+      sx={{ textAlign: 'center', pt: 5, mb: 10 }}
       style={{ color: '#ffffff' }}
     >
       <Grid
-        spacing={{ xs: 3 }}
+        spacing={{ xs: 6 }}
         justifyContent="center"
         alignItems="center"
         container
@@ -54,7 +89,7 @@ function Course() {
               }
             }}
           >
-            Materi Unggulan Kami
+            Semua Materi
           </Typography>
           <Typography
             fontWeight="medium"
@@ -67,14 +102,99 @@ function Course() {
               color: `#796F6F`
             }}
           >
-            Temukan materi dengan mudah tentang subjek yang Anda inginkan dan
-            mulailah belajar.
+            Temukan materi belajar dengan mudah tentang apa yang Anda inginkan
+            dan mulailah belajar.
           </Typography>
         </Grid>
         <Grid item xs={12}>
           <Grid container>
-            {popular
-              ? popular.map((datas) => (
+            <Grid item xs={12}>
+              <Card sx={{ background: '#5A47AB' }}>
+                <CardContent>
+                  <Stack spacing={3} direction="row">
+                    <FormControl fullWidth>
+                      <InputLabel
+                        id="demo-simple-select-label"
+                        sx={{ color: `#ffffff` }}
+                      >
+                        Category
+                      </InputLabel>
+                      <Select
+                        value={data.category}
+                        label="Category"
+                        sx={{ color: `#ffffff` }}
+                        onChange={(event) =>
+                          setData({ ...data, category: event.target.value })
+                        }
+                      >
+                        <MenuItem value="">All</MenuItem>
+                        {category
+                          ? category.map((datas) => (
+                              <MenuItem value={datas.id}>
+                                {datas.title}
+                              </MenuItem>
+                            ))
+                          : null}
+                      </Select>
+                    </FormControl>
+                    <FormControl fullWidth>
+                      <InputLabel
+                        id="demo-simple-select-label"
+                        sx={{ color: `#ffffff` }}
+                      >
+                        Instructor
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={data.instructor}
+                        label="Instructor"
+                        sx={{ color: `#ffffff` }}
+                        onChange={(event) =>
+                          setData({ ...data, instructor: event.target.value })
+                        }
+                      >
+                        <MenuItem value="">All</MenuItem>
+                        {instructor
+                          ? instructor.map((datas) => (
+                              <MenuItem value={datas.user_id}>
+                                {datas.username}
+                              </MenuItem>
+                            ))
+                          : null}
+                      </Select>
+                    </FormControl>
+                    <FormControl fullWidth>
+                      <InputLabel
+                        id="demo-simple-select-label"
+                        sx={{ color: `#ffffff` }}
+                      >
+                        Star
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={data.star}
+                        label="Star"
+                        sx={{ color: `#ffffff` }}
+                        onChange={(event) =>
+                          setData({ ...data, star: event.target.value })
+                        }
+                      >
+                        <MenuItem value="">All</MenuItem>
+                        <MenuItem value={1}>1</MenuItem>
+                        <MenuItem value={2}>2</MenuItem>
+                        <MenuItem value={3}>3</MenuItem>
+                        <MenuItem value={4}>4</MenuItem>
+                        <MenuItem value={5}>5</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Stack>
+                </CardContent>
+              </Card>
+            </Grid>
+            {paginatedCarts
+              ? paginatedCarts.map((datas) => (
                   <Grid
                     xs={12}
                     sm={3.5}
@@ -86,11 +206,7 @@ function Course() {
                   >
                     <CardMedia
                       component="img"
-                      image={
-                        datas.image
-                          ? datas.image
-                          : '/static/images/overview/anu.svg'
-                      }
+                      image="/static/images/overview/anu.svg"
                       alt="camp"
                     />
                     <CardContent>
@@ -105,7 +221,7 @@ function Course() {
                           mb: 2
                         }}
                       >
-                        {datas.category_title}
+                        {datas.category}
                       </Typography>
                       <Typography
                         textAlign="left"
@@ -200,9 +316,15 @@ function Course() {
               : null}
           </Grid>
         </Grid>
+        <Pagination
+          count={course.length / 10}
+          onChange={handlePageChange}
+          page={page}
+          color="primary"
+        />
       </Grid>
     </Container>
   );
 }
 
-export default Course;
+export default All;

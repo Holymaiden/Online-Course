@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 
 import Hero from './Hero';
 import Course from './Course';
-import Popular from './Popular';
+import All from './All';
 
 const KursusWrapper = styled(Box)(
   () => `
@@ -20,7 +20,7 @@ function Kursus() {
   return (
     <KursusWrapper>
       <Helmet>
-        <title>Online Course Maiden Admin Dashboard</title>
+        <title>Materi - Online Course Maiden</title>
       </Helmet>
       <Card sx={{ p: 10, backgroundColor: `#5A47AB` }}>
         <Hero />
@@ -28,7 +28,7 @@ function Kursus() {
 
       <Container>
         <Course />
-        <Popular />
+        <All />
       </Container>
     </KursusWrapper>
   );

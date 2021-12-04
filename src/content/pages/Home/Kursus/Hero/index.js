@@ -48,7 +48,7 @@ function Hero() {
                 sm: 20,
                 xs: 15
               },
-              color: `#ffffff`
+              color: `#FBD15B`
             }}
           >
             Katalog Kursus Kami
@@ -62,7 +62,7 @@ function Hero() {
               color: `#F2F2F2`
             }}
           >
-            Cari instruktur atau materi pilihan Anda.
+            Cari Instruktur atau Materi Pilihan Anda.
           </Typography>
           <Box
             sx={{

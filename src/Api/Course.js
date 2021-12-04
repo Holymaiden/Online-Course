@@ -23,6 +23,25 @@ async function getAllCoursePaging(search = '') {
   return res.json();
 }
 
+async function getAllCourseKursus(data) {
+  const res = await fetch(
+    `${API_SERVER}/course/kursus/list?category=` +
+      data.category +
+      '&instructor=' +
+      data.instructor +
+      '&star=' +
+      data.star,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: authHeader()
+      }
+    }
+  );
+  return res.json();
+}
+
 async function getPopularCourse(limit) {
   const res = await fetch(`${API_SERVER}/popularcourse?limit=` + limit, {
     method: 'GET',
@@ -86,5 +105,6 @@ export {
   updateCourse,
   destroyCourse,
   getPopularCourse,
-  getAllCoursePaging
+  getAllCoursePaging,
+  getAllCourseKursus
 };

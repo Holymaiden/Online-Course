@@ -10,7 +10,7 @@ function Course() {
       style={{ color: '#ffffff' }}
     >
       <Grid
-        spacing={{ xs: 12 }}
+        spacing={{ xs: 6 }}
         justifyContent="center"
         alignItems="center"
         container

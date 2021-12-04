@@ -23,10 +23,10 @@ import {
 import { styled } from '@mui/material/styles';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import FindInPageTwoToneIcon from '@mui/icons-material/FindInPageTwoTone';
-
 import ChevronRightTwoToneIcon from '@mui/icons-material/ChevronRightTwoTone';
 
 import { getAllCoursePaging } from '../../../../../Api/Course';
+import { Link as RouterLink } from 'react-router-dom';
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -166,7 +166,11 @@ function HeaderSearch() {
             <List disablePadding>
               {course
                 ? course.map((datas) => (
-                    <ListItem button>
+                    <ListItem
+                      button
+                      component={RouterLink}
+                      to={'/kursus/' + datas.slug}
+                    >
                       <Hidden smDown>
                         <ListItemAvatar>
                           <Avatar
