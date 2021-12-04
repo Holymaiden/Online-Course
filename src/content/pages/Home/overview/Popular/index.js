@@ -9,7 +9,7 @@ function Popular() {
   const [popular, SetPopular] = useState([]);
 
   useEffect(() => {
-    getPopularCourse().then(function (result) {
+    getPopularCourse(9).then(function (result) {
       SetPopular(result.data);
     });
   }, []);

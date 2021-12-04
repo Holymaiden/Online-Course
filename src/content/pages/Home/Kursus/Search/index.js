@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import {
   Avatar,
   Link,
@@ -25,6 +25,8 @@ import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import FindInPageTwoToneIcon from '@mui/icons-material/FindInPageTwoTone';
 
 import ChevronRightTwoToneIcon from '@mui/icons-material/ChevronRightTwoTone';
+
+import { getAllCoursePaging } from '../../../../../Api/Course';
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
@@ -83,6 +85,14 @@ function HeaderSearch() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const [course, SetCourse] = useState([]);
+
+  useEffect(() => {
+    getAllCoursePaging(searchValue).then(function (result) {
+      SetCourse(result.data);
+    });
+  }, [searchValue]);
 
   return (
     <>
@@ -154,118 +164,47 @@ function HeaderSearch() {
             </Box>
             <Divider sx={{ my: 1 }} />
             <List disablePadding>
-              <ListItem button>
-                <Hidden smDown>
-                  <ListItemAvatar>
-                    <Avatar
-                      sx={{
-                        background: (theme) => theme.palette.secondary.main
-                      }}
-                    >
-                      <FindInPageTwoToneIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                </Hidden>
-                <Box flex="1">
-                  <Box display="flex" justifyContent="space-between">
-                    <Link
-                      href="#"
-                      underline="hover"
-                      sx={{ fontWeight: 'bold' }}
-                      variant="body2"
-                    >
-                      Dashboard for Healthcare Platform
-                    </Link>
-                  </Box>
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    sx={{
-                      color: (theme) =>
-                        lighten(theme.palette.secondary.main, 0.5)
-                    }}
-                  >
-                    This page contains all the necessary information for
-                    managing all hospital staff.
-                  </Typography>
-                </Box>
-                <ChevronRightTwoToneIcon />
-              </ListItem>
-              <Divider sx={{ my: 1 }} component="li" />
-              <ListItem button>
-                <Hidden smDown>
-                  <ListItemAvatar>
-                    <Avatar
-                      sx={{
-                        background: (theme) => theme.palette.secondary.main
-                      }}
-                    >
-                      <FindInPageTwoToneIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                </Hidden>
-                <Box flex="1">
-                  <Box display="flex" justifyContent="space-between">
-                    <Link
-                      href="#"
-                      underline="hover"
-                      sx={{ fontWeight: 'bold' }}
-                      variant="body2"
-                    >
-                      Example Projects Application
-                    </Link>
-                  </Box>
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    sx={{
-                      color: (theme) =>
-                        lighten(theme.palette.secondary.main, 0.5)
-                    }}
-                  >
-                    This is yet another search result pointing to a app page.
-                  </Typography>
-                </Box>
-                <ChevronRightTwoToneIcon />
-              </ListItem>
-              <Divider sx={{ my: 1 }} component="li" />
-              <ListItem button>
-                <Hidden smDown>
-                  <ListItemAvatar>
-                    <Avatar
-                      sx={{
-                        background: (theme) => theme.palette.secondary.main
-                      }}
-                    >
-                      <FindInPageTwoToneIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                </Hidden>
-                <Box flex="1">
-                  <Box display="flex" justifyContent="space-between">
-                    <Link
-                      href="#"
-                      underline="hover"
-                      sx={{ fontWeight: 'bold' }}
-                      variant="body2"
-                    >
-                      Search Results Page
-                    </Link>
-                  </Box>
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    sx={{
-                      color: (theme) =>
-                        lighten(theme.palette.secondary.main, 0.5)
-                    }}
-                  >
-                    Choose if you would like to show or not this typography
-                    section here...
-                  </Typography>
-                </Box>
-                <ChevronRightTwoToneIcon />
-              </ListItem>
+              {course
+                ? course.map((datas) => (
+                    <ListItem button>
+                      <Hidden smDown>
+                        <ListItemAvatar>
+                          <Avatar
+                            sx={{
+                              background: (theme) =>
+                                theme.palette.secondary.main
+                            }}
+                          >
+                            <FindInPageTwoToneIcon />
+                          </Avatar>
+                        </ListItemAvatar>
+                      </Hidden>
+                      <Box flex="1">
+                        <Box display="flex" justifyContent="space-between">
+                          <Link
+                            href="#"
+                            underline="hover"
+                            sx={{ fontWeight: 'bold' }}
+                            variant="body2"
+                          >
+                            {datas.title}
+                          </Link>
+                        </Box>
+                        <Typography
+                          component="span"
+                          variant="body2"
+                          sx={{
+                            color: (theme) =>
+                              lighten(theme.palette.secondary.main, 0.5)
+                          }}
+                        >
+                          {datas.description}
+                        </Typography>
+                      </Box>
+                      <ChevronRightTwoToneIcon />
+                    </ListItem>
+                  ))
+                : null}
             </List>
             <Divider sx={{ mt: 1, mb: 2 }} />
             <Box sx={{ textAlign: 'center' }}>
