@@ -2,7 +2,7 @@ import { API_SERVER } from './index';
 import authHeader from './authHeader';
 
 async function getAllInstructor() {
-  const res = await fetch(`${API_SERVER}/admin/instructor`, {
+  const res = await fetch(`${API_SERVER}/instructor`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

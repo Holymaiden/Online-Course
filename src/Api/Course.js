@@ -42,6 +42,17 @@ async function getAllCourseKursus(data) {
   return res.json();
 }
 
+async function getCourseBySlug(slug) {
+  const res = await fetch(`${API_SERVER}/course/` + slug, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader()
+    }
+  });
+  return res.json();
+}
+
 async function getPopularCourse(limit) {
   const res = await fetch(`${API_SERVER}/popularcourse?limit=` + limit, {
     method: 'GET',
@@ -106,5 +117,6 @@ export {
   destroyCourse,
   getPopularCourse,
   getAllCoursePaging,
-  getAllCourseKursus
+  getAllCourseKursus,
+  getCourseBySlug
 };

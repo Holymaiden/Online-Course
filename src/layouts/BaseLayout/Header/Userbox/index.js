@@ -35,7 +35,7 @@ const UserBoxButton = styled(Button)(
 
 const MenuUserBox = styled(Box)(
   ({ theme }) => `
-        background: ${`#5A47AB`};
+        background: #5A47AB;
         padding: ${theme.spacing(2)};
 `
 );
@@ -126,15 +126,15 @@ function HeaderUserbox() {
         <MenuUserBox sx={{ minWidth: 210 }} display="flex">
           <Avatar
             variant="rounded"
-            alt={user ? user.username : null}
-            src={user}
+            alt={user ? user.username : ''}
+            src={user ? user.avatar : ''}
           />
           <UserBoxText>
             <UserBoxLabel variant="body1">
-              {user ? user.username : null}
+              {user ? user.username : ''}
             </UserBoxLabel>
             <UserBoxDescription variant="body2">
-              {user ? user.email : null}
+              {user ? user.email : ''}
             </UserBoxDescription>
           </UserBoxText>
         </MenuUserBox>
