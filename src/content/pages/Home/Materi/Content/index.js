@@ -6,7 +6,8 @@ import {
   Typography,
   CardContent,
   CardActions,
-  CardActionArea
+  CardActionArea,
+  Card
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 
@@ -15,8 +16,10 @@ import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import PaymentIcon from '@mui/icons-material/Payment';
 
 import { getCourseBySlug } from '../../../../../Api/Course';
+import Sidebar from '../Sidebar';
 
 import { useNavigate, useParams } from 'react-router-dom';
+import parse from 'html-react-parser';
 
 function Content() {
   const { useMateri } = useParams();
@@ -26,7 +29,7 @@ function Content() {
     getCourseBySlug(useMateri).then(function (result) {
       setCourse(result.data);
     });
-  }, []);
+  }, [useMateri]);
 
   let navigate = useNavigate();
 
@@ -42,191 +45,106 @@ function Content() {
         alignItems="center"
         container
       >
-        <Grid item xs={9}>
+        <Grid item xs={8}>
           <Grid container>
-            <Grid
-              xs={12}
-              lg={3.5}
-              xs={3}
-              mt={5}
-              mx={3}
-              item
-              border={1}
-              borderColor="#F2F2F2"
+            <CardActionArea
+              onClick={() => {
+                navigate('/materi/' + course.slug);
+              }}
             >
-              <CardActionArea
-                onClick={() => {
-                  navigate('/materi/' + course.slug);
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  image="/static/images/overview/anu.svg"
-                  alt="camp"
-                />
-                <CardContent>
+              <CardMedia
+                component="img"
+                image="/static/images/overview/anu.svg"
+                alt="camp"
+              />
+              <CardContent>
+                <Typography
+                  textAlign="left"
+                  sx={{
+                    fontSize: {
+                      lg: 20,
+                      sm: 10,
+                      color: `#5A47AB`
+                    },
+                    fontWeight: 'bold'
+                  }}
+                >
+                  {course.title}
+                </Typography>
+                <Typography
+                  textAlign="left"
+                  sx={{
+                    fontSize: {
+                      lg: 18,
+                      sm: 8,
+                      color: `#796F6F`
+                    }
+                  }}
+                >
+                  Pemateri {course.description}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <IconButton aria-label="Time">
+                  <AccessTimeIcon style={{ color: '#796F6F' }} />
                   <Typography
-                    textAlign="left"
                     sx={{
                       fontSize: {
-                        lg: 18,
-                        sm: 8,
-                        color: `#796F6F`
-                      },
-                      mb: 2
-                    }}
-                  >
-                    {course.category}
-                  </Typography>
-                  <Typography
-                    textAlign="left"
-                    sx={{
-                      fontSize: {
-                        lg: 20,
+                        lg: 15,
                         sm: 10,
-                        color: `#5A47AB`
+                        color: '#796F6F'
                       },
-                      fontWeight: 'bold'
+                      pl: 0.5
                     }}
                   >
-                    {course.title} - HTML
+                    3 hr
                   </Typography>
+                </IconButton>
+                <IconButton aria-label="Stars">
+                  <LocalActivityIcon style={{ color: '#23BA29' }} />
                   <Typography
-                    textAlign="left"
                     sx={{
                       fontSize: {
-                        lg: 18,
-                        sm: 8,
-                        color: `#796F6F`
-                      }
+                        lg: 15,
+                        sm: 10,
+                        color: `#23BA29`
+                      },
+                      pl: 0.5
                     }}
                   >
-                    {course.username}
+                    4.5
                   </Typography>
-                </CardContent>
-                <CardActions>
-                  <IconButton aria-label="Time">
-                    <AccessTimeIcon style={{ color: '#796F6F' }} />
-                    <Typography
-                      sx={{
-                        fontSize: {
-                          lg: 15,
-                          sm: 10,
-                          color: '#796F6F'
-                        },
-                        pl: 0.5
-                      }}
-                    >
-                      3 hr
-                    </Typography>
-                  </IconButton>
-                  <IconButton aria-label="Stars">
-                    <LocalActivityIcon style={{ color: '#23BA29' }} />
-                    <Typography
-                      sx={{
-                        fontSize: {
-                          lg: 15,
-                          sm: 10,
-                          color: `#23BA29`
-                        },
-                        pl: 0.5
-                      }}
-                    >
-                      4.5
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: {
-                          lg: 15,
-                          sm: 10,
-                          color: '#796F6F'
-                        },
-                        pl: 0.5
-                      }}
-                    >
-                      (300)
-                    </Typography>
-                  </IconButton>
-                  <IconButton
-                    aria-label="Pay"
-                    style={{ marginLeft: { lg: 50, sm: 25 } }}
+                  <Typography
+                    sx={{
+                      fontSize: {
+                        lg: 15,
+                        sm: 10,
+                        color: '#796F6F'
+                      },
+                      pl: 0.5
+                    }}
                   >
-                    <PaymentIcon style={{ color: '#5A47AB' }} />
-                    <Typography
-                      sx={{
-                        fontSize: {
-                          lg: 15,
-                          sm: 10,
-                          color: `#5A47AB`
-                        },
-                        pl: 0.5
-                      }}
-                    >
-                      Rp. {course.price}
-                    </Typography>
-                  </IconButton>
-                </CardActions>
-              </CardActionArea>
-            </Grid>
+                    (300)
+                  </Typography>
+                </IconButton>
+              </CardActions>
+            </CardActionArea>
+            <Typography
+              textAlign="left"
+              sx={{
+                fontSize: {
+                  lg: 18,
+                  sm: 8,
+                  color: `#796F6F`
+                },
+                ml: 2
+              }}
+            >
+              {parse(new String(course.content).toString())}
+            </Typography>
           </Grid>
         </Grid>
-        <Grid item xs={3}>
-          <Grid container>
-            <Grid item border={1} borderColor="#F2F2F2">
-              <CardActionArea
-                onClick={() => {
-                  navigate('/materi/' + course.slug);
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  image="/static/images/overview/anu.svg"
-                  alt="camp"
-                />
-                <CardContent>
-                  <Typography
-                    textAlign="left"
-                    sx={{
-                      fontSize: {
-                        lg: 18,
-                        sm: 8,
-                        color: `#796F6F`
-                      },
-                      mb: 2
-                    }}
-                  >
-                    {course.category}
-                  </Typography>
-                  <Typography
-                    textAlign="left"
-                    sx={{
-                      fontSize: {
-                        lg: 20,
-                        sm: 10,
-                        color: `#5A47AB`
-                      },
-                      fontWeight: 'bold'
-                    }}
-                  >
-                    {course.title} - HTML
-                  </Typography>
-                  <Typography
-                    textAlign="left"
-                    sx={{
-                      fontSize: {
-                        lg: 18,
-                        sm: 8,
-                        color: `#796F6F`
-                      }
-                    }}
-                  >
-                    {course.username}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Grid>
-          </Grid>
-        </Grid>
+        <Sidebar />
       </Grid>
     </Container>
   );

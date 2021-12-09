@@ -17,6 +17,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import PaymentIcon from '@mui/icons-material/Payment';
 import { useEffect, useState } from 'react';
+import { Box } from '@mui/system';
 
 function Course() {
   let navigate = useNavigate();
@@ -107,7 +108,7 @@ function Course() {
                               sm: 8,
                               color: `#796F6F`
                             },
-                            mb: 2
+                            mb: 1
                           }}
                         >
                           {datas.category_title}
@@ -138,8 +139,14 @@ function Course() {
                           {datas.username}
                         </Typography>
                       </CardContent>
-                      <CardActions>
-                        <IconButton aria-label="Time">
+                      <CardActions sx={{ justifyContent: 'space-between' }}>
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            pl: 0.7
+                          }}
+                        >
                           <AccessTimeIcon style={{ color: '#796F6F' }} />
                           <Typography
                             sx={{
@@ -153,8 +160,14 @@ function Course() {
                           >
                             3 hr
                           </Typography>
-                        </IconButton>
-                        <IconButton aria-label="Stars">
+                        </Box>
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            pl: 0.7
+                          }}
+                        >
                           <LocalActivityIcon style={{ color: '#23BA29' }} />
                           <Typography
                             sx={{
@@ -180,10 +193,13 @@ function Course() {
                           >
                             (300)
                           </Typography>
-                        </IconButton>
-                        <IconButton
-                          aria-label="Pay"
-                          style={{ marginLeft: { lg: 50, sm: 25 } }}
+                        </Box>
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            pl: 0.7
+                          }}
                         >
                           <PaymentIcon style={{ color: '#5A47AB' }} />
                           <Typography
@@ -198,7 +214,7 @@ function Course() {
                           >
                             Rp. {datas.price.toLocaleString()}
                           </Typography>
-                        </IconButton>
+                        </Box>
                       </CardActions>
                     </CardActionArea>
                   </Grid>

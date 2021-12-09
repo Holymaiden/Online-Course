@@ -227,7 +227,7 @@ function All() {
                               sm: 8,
                               color: `#796F6F`
                             },
-                            mb: 2
+                            mb: 1
                           }}
                         >
                           {datas.category}
