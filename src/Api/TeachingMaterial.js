@@ -23,6 +23,17 @@ async function getByIdTeachingMaterial(slug) {
   return res.json();
 }
 
+async function getBySlugTeachingMaterial(slug) {
+  const res = await fetch(`${API_SERVER}/teachingMaterial/slug/` + slug, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader()
+    }
+  });
+  return res.json();
+}
+
 async function createTeachingMaterial(data) {
   const res = await fetch(`${API_SERVER}/admin/teachingMaterial`, {
     method: 'POST',
@@ -77,5 +88,6 @@ export {
   createTeachingMaterial,
   getByIdTeachingMaterial,
   destroyTeachingMaterial,
-  updateTeachingMaterial
+  updateTeachingMaterial,
+  getBySlugTeachingMaterial
 };

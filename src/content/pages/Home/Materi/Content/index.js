@@ -17,6 +17,7 @@ import PaymentIcon from '@mui/icons-material/Payment';
 
 import { getCourseBySlug } from '../../../../../Api/Course';
 import Sidebar from '../Sidebar';
+import Belajar from '../Belajar';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
@@ -142,6 +143,7 @@ function Content() {
             >
               {parse(new String(course.content).toString())}
             </Typography>
+            <Belajar />
           </Grid>
         </Grid>
         <Sidebar />
