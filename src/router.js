@@ -23,6 +23,16 @@ function ProtectedRoute({ children }) {
   return auth ? children : <Navigate to="/" replace />;
 }
 
+function LoginRoute({ children }) {
+  let { user } = useAuth();
+  let auth = false;
+  if (user) {
+    return (auth = true);
+  }
+
+  return auth ? children : <Navigate to="/" replace />;
+}
+
 const Loader = (Component) => (props) =>
   (
     <Suspense fallback={<SuspenseLoader />}>
@@ -49,11 +59,12 @@ const Tasks = Loader(lazy(() => import('src/content/dashboards/Tasks')));
 const Messenger = Loader(
   lazy(() => import('src/content/applications/Messenger'))
 );
+
 const UserProfile = Loader(
-  lazy(() => import('src/content/applications/Users/profile'))
+  lazy(() => import('src/content/pages/Users/profile'))
 );
 const UserSettings = Loader(
-  lazy(() => import('src/content/applications/Users/settings'))
+  lazy(() => import('src/content/pages/Users/settings'))
 );
 
 // Managements
@@ -263,11 +274,6 @@ const routes = [
   },
   {
     path: 'profile',
-    element: [
-      <ProtectedRoute>
-        <SidebarLayout />
-      </ProtectedRoute>
-    ],
     children: [
       {
         path: '/',

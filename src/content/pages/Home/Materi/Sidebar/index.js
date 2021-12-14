@@ -1,4 +1,11 @@
-import { CardMedia, Grid, Typography, CardContent, Card } from '@mui/material';
+import {
+  CardMedia,
+  Grid,
+  Typography,
+  CardContent,
+  Card,
+  Button
+} from '@mui/material';
 import { useEffect, useState } from 'react';
 
 import { getCourseBySlug } from '../../../../../Api/Course';
@@ -16,10 +23,10 @@ function Sidebar() {
   }, [useMateri]);
 
   return (
-    <Grid item xs={3} sx={{ mr: 1 }}>
+    <Grid item lg={3} md={12} sx={{ mr: 1, alignSelf: 'start' }}>
       <Grid container>
         <Grid item border={1} borderColor="#F2F2F2">
-          <Card sx={{ maxWidth: 345, backgroundColor: '#ffffff' }}>
+          <Card sx={{ backgroundColor: '#ffffff' }}>
             <CardMedia
               component="img"
               image="/static/images/overview/anu.svg"
@@ -67,6 +74,9 @@ function Sidebar() {
               >
                 {course.username}
               </Typography>
+              <Button variant="contained" sx={{ mt: 5 }}>
+                Pesan Sekarang
+              </Button>
             </CardContent>
           </Card>
         </Grid>

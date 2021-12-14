@@ -13,7 +13,6 @@ import { useEffect, useState } from 'react';
 
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
-import PaymentIcon from '@mui/icons-material/Payment';
 
 import { getCourseBySlug } from '../../../../../Api/Course';
 import Sidebar from '../Sidebar';

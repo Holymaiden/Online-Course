@@ -134,7 +134,7 @@ function HeaderSearch() {
                 </InputAdornment>
               )
             }}
-            placeholder="Search terms here..."
+            placeholder="Search Materies here..."
             fullWidth
             label="Search"
           />
