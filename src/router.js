@@ -63,9 +63,6 @@ const Messenger = Loader(
 const UserProfile = Loader(
   lazy(() => import('src/content/pages/Users/profile'))
 );
-const UserSettings = Loader(
-  lazy(() => import('src/content/pages/Users/settings'))
-);
 
 // Managements
 
@@ -282,10 +279,6 @@ const routes = [
       {
         path: 'details',
         element: <UserProfile />
-      },
-      {
-        path: 'settings',
-        element: <UserSettings />
       }
     ]
   },

@@ -15,34 +15,37 @@ import StarTwoToneIcon from '@mui/icons-material/StarTwoTone';
 
 const AvatarPrimary = styled(Avatar)(
   ({ theme }) => `
-      background: ${theme.colors.primary.lighter};
-      color: ${theme.colors.primary.main};
+   
       width: ${theme.spacing(7)};
       height: ${theme.spacing(7)};
 `
 );
 
 function RecentActivity() {
-
   const theme = useTheme();
 
   return (
-    <Card>
-      <CardHeader title="Recent Activity" />
+    <Card sx={{ color: '#ffffff', background: '#4A47A3' }}>
+      <CardHeader sx={{ color: '#FBD15B' }} title="Recent Activity" />
       <Divider />
       <Box px={2} py={4} display="flex" alignItems="flex-start">
         <AvatarPrimary>
-          <ShoppingBagTwoToneIcon />
+          <ShoppingBagTwoToneIcon sx={{ color: '#FBD15B' }} />
         </AvatarPrimary>
         <Box pl={2} flex={1}>
-          <Typography variant="h3">Orders</Typography>
+          <Typography variant="h3" color={'#FBD15B'}>
+            Orders
+          </Typography>
 
           <Box pt={2} display="flex">
             <Box pr={8}>
               <Typography
                 gutterBottom
                 variant="caption"
-                sx={{ fontSize: `${theme.typography.pxToRem(16)}` }}
+                sx={{
+                  fontSize: `${theme.typography.pxToRem(16)}`,
+                  color: '#ffffff'
+                }}
               >
                 Total
               </Typography>
@@ -52,7 +55,10 @@ function RecentActivity() {
               <Typography
                 gutterBottom
                 variant="caption"
-                sx={{ fontSize: `${theme.typography.pxToRem(16)}` }}
+                sx={{
+                  fontSize: `${theme.typography.pxToRem(16)}`,
+                  color: '#ffffff'
+                }}
               >
                 Failed
               </Typography>
@@ -64,17 +70,22 @@ function RecentActivity() {
       <Divider />
       <Box px={2} py={4} display="flex" alignItems="flex-start">
         <AvatarPrimary>
-          <FavoriteTwoToneIcon />
+          <FavoriteTwoToneIcon sx={{ color: '#FBD15B' }} />
         </AvatarPrimary>
         <Box pl={2} flex={1}>
-          <Typography variant="h3">Favourites</Typography>
+          <Typography variant="h3" color={'#FBD15B'}>
+            Favourites
+          </Typography>
 
           <Box pt={2} display="flex">
             <Box pr={8}>
               <Typography
                 gutterBottom
                 variant="caption"
-                sx={{ fontSize: `${theme.typography.pxToRem(16)}` }}
+                sx={{
+                  fontSize: `${theme.typography.pxToRem(16)}`,
+                  color: '#ffffff'
+                }}
               >
                 Products
               </Typography>
@@ -84,7 +95,10 @@ function RecentActivity() {
               <Typography
                 gutterBottom
                 variant="caption"
-                sx={{ fontSize: `${theme.typography.pxToRem(16)}` }}
+                sx={{
+                  fontSize: `${theme.typography.pxToRem(16)}`,
+                  color: '#ffffff'
+                }}
               >
                 Lists
               </Typography>
@@ -96,17 +110,22 @@ function RecentActivity() {
       <Divider />
       <Box px={2} py={4} display="flex" alignItems="flex-start">
         <AvatarPrimary>
-          <StarTwoToneIcon />
+          <StarTwoToneIcon sx={{ color: '#FBD15B' }} />
         </AvatarPrimary>
         <Box pl={2} flex={1}>
-          <Typography variant="h3">Reviews</Typography>
+          <Typography variant="h3" color={'#FBD15B'}>
+            Reviews
+          </Typography>
 
           <Box pt={2} display="flex">
             <Box pr={8}>
               <Typography
                 gutterBottom
                 variant="caption"
-                sx={{ fontSize: `${theme.typography.pxToRem(16)}` }}
+                sx={{
+                  fontSize: `${theme.typography.pxToRem(16)}`,
+                  color: '#ffffff'
+                }}
               >
                 Total
               </Typography>
@@ -116,7 +135,10 @@ function RecentActivity() {
               <Typography
                 gutterBottom
                 variant="caption"
-                sx={{ fontSize: `${theme.typography.pxToRem(16)}` }}
+                sx={{
+                  fontSize: `${theme.typography.pxToRem(16)}`,
+                  color: '#ffffff'
+                }}
               >
                 Useful
               </Typography>

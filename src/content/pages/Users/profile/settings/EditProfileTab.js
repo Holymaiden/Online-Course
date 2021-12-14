@@ -14,12 +14,10 @@ import Text from 'src/components/Text';
 import Label from 'src/components/Label';
 
 function EditProfileTab() {
-
-
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <Card>
+        <Card sx={{ background: '#4A47A3', color: '#ffffff' }}>
           <Box
             p={3}
             display="flex"
@@ -30,11 +28,11 @@ function EditProfileTab() {
               <Typography variant="h4" gutterBottom>
                 Personal Details
               </Typography>
-              <Typography variant="subtitle2">
+              <Typography color="white" variant="subtitle2">
                 Manage informations related to your personal details
               </Typography>
             </Box>
-            <Button variant="text" startIcon={<EditTwoToneIcon />}>
+            <Button sx={{ color: '#FBD15B' }} startIcon={<EditTwoToneIcon />}>
               Edit
             </Button>
           </Box>
@@ -43,33 +41,33 @@ function EditProfileTab() {
             <Typography variant="subtitle2">
               <Grid container spacing={0}>
                 <Grid item xs={12} sm={4} md={3} textAlign={{ sm: 'right' }}>
-                  <Box pr={3} pb={2}>
+                  <Box pr={3} pb={2} color={'#ffffff'}>
                     Name:
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={8} md={9}>
-                  <Text color="black">
+                  <Text style={{ color: '#ffffff' }}>
                     <b>Craig Donin</b>
                   </Text>
                 </Grid>
                 <Grid item xs={12} sm={4} md={3} textAlign={{ sm: 'right' }}>
-                  <Box pr={3} pb={2}>
+                  <Box pr={3} pb={2} color={'#ffffff'}>
                     Date of birth:
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={8} md={9}>
-                  <Text color="black">
+                  <Text style={{ color: '#ffffff' }}>
                     <b>15 March 1977</b>
                   </Text>
                 </Grid>
                 <Grid item xs={12} sm={4} md={3} textAlign={{ sm: 'right' }}>
-                  <Box pr={3} pb={2}>
+                  <Box pr={3} pb={2} color={'#ffffff'}>
                     Address:
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={8} md={9}>
                   <Box sx={{ maxWidth: { xs: 'auto', sm: 300 } }}>
-                    <Text color="black">
+                    <Text style={{ color: '#ffffff' }}>
                       1749 High Meadow Lane, SEQUOIA NATIONAL PARK, California,
                       93262
                     </Text>
@@ -81,7 +79,7 @@ function EditProfileTab() {
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card>
+        <Card sx={{ background: '#4A47A3', color: '#ffffff' }}>
           <Box
             p={3}
             display="flex"
@@ -92,11 +90,11 @@ function EditProfileTab() {
               <Typography variant="h4" gutterBottom>
                 Account Settings
               </Typography>
-              <Typography variant="subtitle2">
+              <Typography color="white" variant="subtitle2">
                 Manage details related to your account
               </Typography>
             </Box>
-            <Button variant="text" startIcon={<EditTwoToneIcon />}>
+            <Button sx={{ color: '#FBD15B' }} startIcon={<EditTwoToneIcon />}>
               Edit
             </Button>
           </Box>
@@ -105,27 +103,27 @@ function EditProfileTab() {
             <Typography variant="subtitle2">
               <Grid container spacing={0}>
                 <Grid item xs={12} sm={4} md={3} textAlign={{ sm: 'right' }}>
-                  <Box pr={3} pb={2}>
+                  <Box pr={3} pb={2} color={'#ffffff'}>
                     Language:
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={8} md={9}>
-                  <Text color="black">
+                  <Text style={{ color: '#ffffff' }}>
                     <b>English (US)</b>
                   </Text>
                 </Grid>
                 <Grid item xs={12} sm={4} md={3} textAlign={{ sm: 'right' }}>
-                  <Box pr={3} pb={2}>
+                  <Box pr={3} pb={2} color={'#ffffff'}>
                     Timezone:
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={8} md={9}>
-                  <Text color="black">
+                  <Text style={{ color: '#ffffff' }}>
                     <b>GMT +2</b>
                   </Text>
                 </Grid>
                 <Grid item xs={12} sm={4} md={3} textAlign={{ sm: 'right' }}>
-                  <Box pr={3} pb={2}>
+                  <Box pr={3} pb={2} color={'#ffffff'}>
                     Account status:
                   </Box>
                 </Grid>
@@ -141,7 +139,7 @@ function EditProfileTab() {
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card>
+        <Card sx={{ background: '#4A47A3', color: '#ffffff' }}>
           <Box
             p={3}
             display="flex"
@@ -152,11 +150,11 @@ function EditProfileTab() {
               <Typography variant="h4" gutterBottom>
                 Email Addresses
               </Typography>
-              <Typography variant="subtitle2">
+              <Typography color="white" variant="subtitle2">
                 Manage details related to your associated email addresses
               </Typography>
             </Box>
-            <Button variant="text" startIcon={<EditTwoToneIcon />}>
+            <Button sx={{ color: '#FBD15B' }} startIcon={<EditTwoToneIcon />}>
               Edit
             </Button>
           </Box>
@@ -165,12 +163,12 @@ function EditProfileTab() {
             <Typography variant="subtitle2">
               <Grid container spacing={0}>
                 <Grid item xs={12} sm={4} md={3} textAlign={{ sm: 'right' }}>
-                  <Box pr={3} pb={2}>
+                  <Box pr={3} pb={2} color={'#ffffff'}>
                     Email ID:
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={8} md={9}>
-                  <Text color="black">
+                  <Text style={{ color: '#ffffff' }}>
                     <b>example@demo.com</b>
                   </Text>
                   <Box pl={1} component="span">
@@ -178,12 +176,12 @@ function EditProfileTab() {
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={4} md={3} textAlign={{ sm: 'right' }}>
-                  <Box pr={3} pb={2}>
+                  <Box pr={3} pb={2} color={'#ffffff'}>
                     Email ID:
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={8} md={9}>
-                  <Text color="black">
+                  <Text style={{ color: '#ffffff' }}>
                     <b>demo@example.com</b>
                   </Text>
                 </Grid>

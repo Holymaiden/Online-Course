@@ -20,11 +20,11 @@ function Footer() {
           justifyContent="space-between"
         >
           <Box>
-            <Typography variant="subtitle1">
-              &copy; 2021 - Online Course Maiden Admin Dashboard
+            <Typography color={'#FBD15B'}>
+              &copy; 2021 - Online Course Maiden
             </Typography>
           </Box>
-          <Typography sx={{ pt: { xs: 2, md: 0 } }} variant="subtitle1">
+          <Typography sx={{ pt: { xs: 2, md: 0 } }} color={'#FBD15B'}>
             Crafted by{' '}
             <Link
               href="https://bloomui.com"

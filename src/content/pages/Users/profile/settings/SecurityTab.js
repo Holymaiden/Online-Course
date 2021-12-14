@@ -57,22 +57,16 @@ const AvatarWrapper = styled(Avatar)(
 );
 
 function SecurityTab() {
-
   const theme = useTheme();
 
   const [page, setPage] = useState(2);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const handleChangePage = (
-    event: MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
+  const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -119,8 +113,10 @@ function SecurityTab() {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <Box pb={2}>
-          <Typography variant="h3">Social Accounts</Typography>
-          <Typography variant="subtitle2">
+          <Typography color="white" variant="h3">
+            Social Accounts
+          </Typography>
+          <Typography color="white" variant="subtitle2">
             Manage connected social accounts options
           </Typography>
         </Box>
@@ -137,7 +133,7 @@ function SecurityTab() {
                   lineHeight: 1
                 }}
                 primary="Google"
-                secondary="A Google account hasn’t been yet added to your account"
+                secondary="A Google account hasn't been yet added to your account"
               />
               <Button color="secondary" size="large" variant="contained">
                 Connect
@@ -193,8 +189,10 @@ function SecurityTab() {
       </Grid>
       <Grid item xs={12}>
         <Box pb={2}>
-          <Typography variant="h3">Security</Typography>
-          <Typography variant="subtitle2">
+          <Typography color="white" variant="h3">
+            Security
+          </Typography>
+          <Typography color="white" variant="subtitle2">
             Change your security preferences below
           </Typography>
         </Box>

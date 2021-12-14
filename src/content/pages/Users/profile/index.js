@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import Footer from 'src/components/Footer';
 
-import { Container, Grid } from '@mui/material';
+import { Container, Grid, styled, Box } from '@mui/material';
 
 import ProfileCover from './ProfileCover';
 import RecentActivity from './RecentActivity';
@@ -9,6 +9,18 @@ import Feed from './Feed';
 import PopularTags from './PopularTags';
 import MyCards from './MyCards';
 import Addresses from './Addresses';
+
+import ManagementUserSettings from './settings';
+
+const ProfileWrapper = styled(Box)(
+  () => `
+    overflow: auto;
+    flex: 1;
+    overflow-x: hidden;
+    align-items: center;
+    background: #5A47AB;
+`
+);
 
 function ManagementUserProfile() {
   const user = {
@@ -24,14 +36,13 @@ function ManagementUserProfile() {
   };
 
   return (
-    <>
+    <ProfileWrapper>
       <Helmet>
         <title>User Details - Management</title>
       </Helmet>
       <Container
         sx={{
           mt: 3,
-          background: '#8C7CF0',
           color: '#ffffff'
         }}
         maxWidth="lg"
@@ -49,22 +60,13 @@ function ManagementUserProfile() {
           <Grid item xs={12} md={4}>
             <RecentActivity />
           </Grid>
-          <Grid item xs={12} md={8}>
-            <Feed />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <PopularTags />
-          </Grid>
-          <Grid item xs={12} md={7}>
-            <MyCards />
-          </Grid>
-          <Grid item xs={12} md={5}>
-            <Addresses />
+          <Grid item xs={12}>
+            <ManagementUserSettings />
           </Grid>
         </Grid>
       </Container>
       <Footer />
-    </>
+    </ProfileWrapper>
   );
 }
 

@@ -12,7 +12,6 @@ import {
 } from '@mui/material';
 
 function NotificationsTab() {
-
   const [state, setState] = useState({
     checkedA: true,
     checkedB: false,
@@ -31,12 +30,14 @@ function NotificationsTab() {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <Box pb={2}>
-          <Typography variant="h3">Account</Typography>
-          <Typography variant="subtitle2">
+          <Typography color="white" variant="h3">
+            Account
+          </Typography>
+          <Typography color="white" variant="subtitle2">
             Choose what notifications you want to receive
           </Typography>
         </Box>
-        <Card>
+        <Card sx={{ background: '#4A47A3', color: '#ffffff' }}>
           <List>
             <ListItem sx={{ p: 3 }}>
               <ListItemText
@@ -78,12 +79,14 @@ function NotificationsTab() {
       </Grid>
       <Grid item xs={12}>
         <Box pb={2}>
-          <Typography variant="h3">Orders</Typography>
-          <Typography variant="subtitle2">
+          <Typography color="white" variant="h3">
+            Orders
+          </Typography>
+          <Typography color="white" variant="subtitle2">
             Receive email notifications related to your orders activity
           </Typography>
         </Box>
-        <Card>
+        <Card sx={{ background: '#4A47A3', color: '#ffffff' }}>
           <List>
             <ListItem sx={{ p: 3 }}>
               <ListItemText
@@ -114,7 +117,7 @@ function NotificationsTab() {
                 secondary="Whenever an order is updated, get a notification on your phone"
               />
               <Switch
-                color="primary"
+                color="warning"
                 checked={state.checkedD}
                 onChange={handleChange}
                 name="checkedD"

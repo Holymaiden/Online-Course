@@ -27,14 +27,12 @@ const CardActionsWrapper = styled(CardActions)(
 );
 
 function ActivityTab() {
-
-
   return (
-    <Card>
+    <Card sx={{ background: '#4A47A3', color: '#ffffff' }}>
       <CardHeader
         avatar={<Avatar src="/static/images/avatars/5.jpg" />}
         action={
-          <IconButton color="primary">
+          <IconButton sx={{ color: '#FBD15B' }}>
             <MoreHorizTwoToneIcon fontSize="medium" />
           </IconButton>
         }
@@ -43,8 +41,15 @@ function ActivityTab() {
         title="Allison Lipshutz"
         subheader={
           <>
-            Managing Partner, <Link href="#" underline="hover">#software</Link>,{' '}
-            <Link href="#" underline="hover">#managers</Link>, Google Inc.
+            Managing Partner,{' '}
+            <Link href="#" underline="hover">
+              #software
+            </Link>
+            ,{' '}
+            <Link href="#" underline="hover">
+              #managers
+            </Link>
+            , Google Inc.
           </>
         }
       />
@@ -63,7 +68,10 @@ function ActivityTab() {
           Organizing Your Remote Office for Maximum Productivity
         </Typography>
         <Typography variant="subtitle2">
-          <Link href="#" underline="hover">example.com</Link> • 4 mins read
+          <Link href="#" underline="hover">
+            example.com
+          </Link>{' '}
+          • 4 mins read
         </Typography>
       </Box>
       <Divider />

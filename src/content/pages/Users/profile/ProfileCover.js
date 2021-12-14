@@ -16,6 +16,8 @@ import ArrowForwardTwoToneIcon from '@mui/icons-material/ArrowForwardTwoTone';
 import UploadTwoToneIcon from '@mui/icons-material/UploadTwoTone';
 import MoreHorizTwoToneIcon from '@mui/icons-material/MoreHorizTwoTone';
 
+import { Link as RouterLink } from 'react-router-dom';
+
 const Input = styled('input')({
   display: 'none'
 });
@@ -78,22 +80,24 @@ const CardCoverAction = styled(Box)(
 `
 );
 
-
 const ProfileCover = ({ user }) => {
-
   return (
     <>
       <Box display="flex" mb={3}>
         <Tooltip arrow placement="top" title="Go back">
-          <IconButton color="primary" sx={{ p: 2, mr: 2 }}>
+          <IconButton
+            sx={{ p: 2, mr: 2, color: '#ffffff', background: '#FBD15B' }}
+            component={RouterLink}
+            to="/"
+          >
             <ArrowBackTwoToneIcon />
           </IconButton>
         </Tooltip>
         <Box>
-          <Typography variant="h3" component="h3" gutterBottom>
+          <Typography color="white" variant="h3" component="h3" gutterBottom>
             Profile for {user.name}
           </Typography>
-          <Typography variant="subtitle2">
+          <Typography color="white" variant="subtitle2">
             This is a profile page. Easy to modify, always blazing fast
           </Typography>
         </Box>
@@ -133,8 +137,10 @@ const ProfileCover = ({ user }) => {
         <Typography gutterBottom variant="h4">
           {user.name}
         </Typography>
-        <Typography variant="subtitle2">{user.description}</Typography>
-        <Typography sx={{ py: 2 }} variant="subtitle2" color="text.primary">
+        <Typography variant="subtitle2" color="white">
+          {user.description}
+        </Typography>
+        <Typography sx={{ py: 2 }} variant="subtitle2" color="white">
           {user.jobtitle} | {user.location} | {user.followers} followers
         </Typography>
         <Box
@@ -159,10 +165,7 @@ const ProfileCover = ({ user }) => {
             variant="text"
             endIcon={<ArrowForwardTwoToneIcon />}
           >
-            See all {' '}
-            {user.followers}
-            {' '}
-            connections
+            See all {user.followers} connections
           </Button>
         </Box>
       </Box>
