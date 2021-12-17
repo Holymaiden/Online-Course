@@ -86,7 +86,7 @@ const ProfileCover = ({ user }) => {
       <Box display="flex" mb={3}>
         <Tooltip arrow placement="top" title="Go back">
           <IconButton
-            sx={{ p: 2, mr: 2, color: '#ffffff', background: '#FBD15B' }}
+            sx={{ p: 2, mr: 2, color: '#ffffff', background: '#4A47A3' }}
             component={RouterLink}
             to="/"
           >
@@ -95,7 +95,7 @@ const ProfileCover = ({ user }) => {
         </Tooltip>
         <Box>
           <Typography color="white" variant="h3" component="h3" gutterBottom>
-            Profile for {user.name}
+            Profile for {user.username}
           </Typography>
           <Typography color="white" variant="subtitle2">
             This is a profile page. Easy to modify, always blazing fast
@@ -118,12 +118,12 @@ const ProfileCover = ({ user }) => {
         </CardCoverAction>
       </CardCover>
       <AvatarWrapper>
-        <Avatar variant="rounded" alt={user.name} src={user.avatar} />
+        <Avatar variant="rounded" alt={user.username} src={user.avatar} />
         <ButtonUploadWrapper>
           <Input
             accept="image/*"
             id="icon-button-file"
-            name="icon-button-file"
+            username="icon-button-file"
             type="file"
           />
           <label htmlFor="icon-button-file">
@@ -135,7 +135,7 @@ const ProfileCover = ({ user }) => {
       </AvatarWrapper>
       <Box py={2} pl={2} mb={3}>
         <Typography gutterBottom variant="h4">
-          {user.name}
+          {user.username}
         </Typography>
         <Typography variant="subtitle2" color="white">
           {user.description}

@@ -120,7 +120,7 @@ function SecurityTab() {
             Manage connected social accounts options
           </Typography>
         </Box>
-        <Card>
+        <Card sx={{ background: '#4A47A3', color: '#ffffff' }}>
           <List>
             <ListItem sx={{ p: 3 }}>
               <ListItemAvatar sx={{ pr: 2 }}>
@@ -135,7 +135,7 @@ function SecurityTab() {
                 primary="Google"
                 secondary="A Google account hasn't been yet added to your account"
               />
-              <Button color="secondary" size="large" variant="contained">
+              <Button color="warning" size="large" variant="contained">
                 Connect
               </Button>
             </ListItem>
@@ -143,7 +143,7 @@ function SecurityTab() {
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card>
+        <Card sx={{ background: '#4A47A3', color: '#ffffff' }}>
           <List>
             <ListItem sx={{ p: 3 }}>
               <ListItemAvatar sx={{ pr: 2 }}>
@@ -196,7 +196,7 @@ function SecurityTab() {
             Change your security preferences below
           </Typography>
         </Box>
-        <Card>
+        <Card sx={{ background: '#4A47A3', color: '#ffffff' }}>
           <List>
             <ListItem sx={{ p: 3 }}>
               <ListItemText
@@ -208,7 +208,7 @@ function SecurityTab() {
                 primary="Change Password"
                 secondary="You can change your password here"
               />
-              <Button size="large" variant="outlined">
+              <Button color="success" size="large" variant="outlined">
                 Change password
               </Button>
             </ListItem>
@@ -229,7 +229,7 @@ function SecurityTab() {
         </Card>
       </Grid>
       <Grid item xs={12}>
-        <Card>
+        <Card sx={{ background: '#4A47A3', color: '#ffffff' }}>
           <CardHeader
             subheaderTypographyProps={{}}
             titleTypographyProps={{}}

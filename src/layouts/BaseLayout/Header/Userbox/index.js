@@ -151,16 +151,6 @@ function HeaderUserbox() {
             <InboxTwoToneIcon fontSize="small" style={{ color: `#ffffff` }} />
             <ListItemText primary="Messenger" style={{ color: `#ffffff` }} />
           </ListItem>
-          <ListItem button to="/profile/settings" component={NavLink}>
-            <AccountTreeTwoToneIcon
-              fontSize="small"
-              style={{ color: `#ffffff` }}
-            />
-            <ListItemText
-              primary="Account Settings"
-              style={{ color: `#ffffff` }}
-            />
-          </ListItem>
         </List>
         <Divider style={{ background: `#8C7CF0` }} />
         <Box style={{ background: `#5A47AB` }}>

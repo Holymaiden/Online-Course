@@ -27,6 +27,7 @@ function Content() {
 
   useEffect(() => {
     getCourseBySlug(useMateri).then(function (result) {
+      console.log(result.data);
       setCourse(result.data);
     });
   }, [useMateri]);
@@ -81,7 +82,7 @@ function Content() {
                     }
                   }}
                 >
-                  Pemateri {course.description}
+              {course.category}
                 </Typography>
               </CardContent>
               <CardActions>
@@ -140,7 +141,7 @@ function Content() {
                 ml: 2
               }}
             >
-              {parse(new String(course.content).toString())}
+              {parse(new String(course.description).toString())}
             </Typography>
             <Belajar />
           </Grid>

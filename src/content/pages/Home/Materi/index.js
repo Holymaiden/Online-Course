@@ -26,7 +26,7 @@ function Materi() {
     getCourseBySlug(useMateri).then(function (result) {
       setCourse(result.data.title);
     });
-  }, []);
+  }, [useMateri]);
   return (
     <KursusWrapper>
       <Helmet>

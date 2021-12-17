@@ -169,7 +169,7 @@ function HeaderSearch() {
                     <ListItem
                       button
                       component={RouterLink}
-                      to={'/kursus/' + datas.slug}
+                      to={'/materi/' + datas.slug}
                     >
                       <Hidden smDown>
                         <ListItemAvatar>

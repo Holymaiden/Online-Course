@@ -64,6 +64,10 @@ const UserProfile = Loader(
   lazy(() => import('src/content/pages/Users/profile'))
 );
 
+const PaymentHome = Loader(
+  lazy(() => import('src/content/pages/Payment'))
+);
+
 // Managements
 
 const Users = Loader(lazy(() => import('src/content/pages/Management/Users')));
@@ -281,6 +285,10 @@ const routes = [
         element: <UserProfile />
       }
     ]
+  },
+  {
+    path: 'payment',
+    element: <PaymentHome/>,
   },
   {
     path: 'components',

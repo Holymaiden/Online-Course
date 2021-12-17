@@ -10,9 +10,10 @@ import { useEffect, useState } from 'react';
 
 import { getCourseBySlug } from '../../../../../Api/Course';
 
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 
 function Sidebar() {
+  const navigate = useNavigate();
   const { useMateri } = useParams();
   const [course, setCourse] = useState([]);
 
@@ -74,7 +75,7 @@ function Sidebar() {
               >
                 {course.username}
               </Typography>
-              <Button variant="contained" sx={{ mt: 5 }}>
+              <Button variant="contained" sx={{ mt: 5 }} onClick={()=> {navigate('/payment',{state:{slug:course.slug}})}}>
                 Pesan Sekarang
               </Button>
             </CardContent>

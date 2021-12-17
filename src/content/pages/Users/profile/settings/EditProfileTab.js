@@ -13,7 +13,16 @@ import DoneTwoToneIcon from '@mui/icons-material/DoneTwoTone';
 import Text from 'src/components/Text';
 import Label from 'src/components/Label';
 
+import {getCurrentUser} from  '../../../../../Api/Users'
+import { useEffect, useState } from 'react';
+
 function EditProfileTab() {
+  const [user, setUser] = useState('')
+  useEffect(() => {
+    getCurrentUser().then(function (result) {
+      setUser(result);
+    })
+  }, [])
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -47,7 +56,7 @@ function EditProfileTab() {
                 </Grid>
                 <Grid item xs={12} sm={8} md={9}>
                   <Text style={{ color: '#ffffff' }}>
-                    <b>Craig Donin</b>
+                    <b>{user.username}</b>
                   </Text>
                 </Grid>
                 <Grid item xs={12} sm={4} md={3} textAlign={{ sm: 'right' }}>
@@ -57,7 +66,7 @@ function EditProfileTab() {
                 </Grid>
                 <Grid item xs={12} sm={8} md={9}>
                   <Text style={{ color: '#ffffff' }}>
-                    <b>15 March 1977</b>
+                    <b>{new Date(user.birth).toLocaleDateString()}</b>
                   </Text>
                 </Grid>
                 <Grid item xs={12} sm={4} md={3} textAlign={{ sm: 'right' }}>
@@ -68,8 +77,7 @@ function EditProfileTab() {
                 <Grid item xs={12} sm={8} md={9}>
                   <Box sx={{ maxWidth: { xs: 'auto', sm: 300 } }}>
                     <Text style={{ color: '#ffffff' }}>
-                      1749 High Meadow Lane, SEQUOIA NATIONAL PARK, California,
-                      93262
+                      {user.address}
                     </Text>
                   </Box>
                 </Grid>
@@ -128,9 +136,9 @@ function EditProfileTab() {
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={8} md={9}>
-                  <Label color="success">
+                  <Label color={user.status==1 ? 'success' : 'error' }>
                     <DoneTwoToneIcon fontSize="small" />
-                    <b>Active</b>
+                    <b>{user.status==1 ? 'Active' : 'Not Active' }</b>
                   </Label>
                 </Grid>
               </Grid>
@@ -169,7 +177,7 @@ function EditProfileTab() {
                 </Grid>
                 <Grid item xs={12} sm={8} md={9}>
                   <Text style={{ color: '#ffffff' }}>
-                    <b>example@demo.com</b>
+                    <b>{user.email}</b>
                   </Text>
                   <Box pl={1} component="span">
                     <Label color="success">Primary</Label>
