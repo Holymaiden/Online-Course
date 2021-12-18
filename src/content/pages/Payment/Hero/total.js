@@ -9,8 +9,28 @@ import {
   TextField,
   Typography
 } from '@mui/material';
+import { useEffect, useState } from 'react';
+
+import { findDiscountByUser } from '../../../../Api/Discount';
 
 function Total({ course, discount }) {
+  const [dis, setDis] = useState(0);
+  const [kode, setKode] = useState(0);
+
+  useEffect(() => {
+    discount(kode);
+  }, [kode]);
+
+  const handleClick = () => {
+    findDiscountByUser(dis).then(function (result) {
+      if (result.code == 200) {
+        setKode(result.data);
+      } else {
+        setKode({ persentase: 0 });
+      }
+    });
+  };
+
   return (
     <Grid item sm={12} md={6} xs={12}>
       <Card
@@ -73,6 +93,7 @@ function Total({ course, discount }) {
               color="warning"
               label="Discount Code"
               variant="outlined"
+              onChange={(x) => setDis(x.target.value)}
             />
           </Grid>
           <Grid item xs={3}>
@@ -85,6 +106,7 @@ function Total({ course, discount }) {
                 opacity: '95%'
               }}
               variant="outlined"
+              onClick={handleClick}
             >
               Apply
             </Button>
@@ -97,7 +119,10 @@ function Total({ course, discount }) {
           </Stack>
           <Stack direction="row" justifyContent="space-between" spacing={2}>
             <Typography>Discount</Typography>
-            <Typography color="greenyellow">- Rp. {discount}</Typography>
+            <Typography color="greenyellow">
+              - Rp.
+              {kode.persentase ? course.price * (kode.persentase / 100) : 0}
+            </Typography>
           </Stack>
           <Divider sx={{ my: 3 }} />
           <Stack direction="row" justifyContent="space-between" spacing={2}>
@@ -105,7 +130,10 @@ function Total({ course, discount }) {
               Total Amount
             </Typography>
             <Typography variant="h4" color="white">
-              Rp. {course.price - discount}
+              Rp.
+              {kode.persentase
+                ? course.price - course.price * (kode.persentase / 100)
+                : course.price}
             </Typography>
           </Stack>
         </Box>

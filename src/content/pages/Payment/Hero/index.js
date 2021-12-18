@@ -53,7 +53,12 @@ function Hero() {
           setPay(childData);
         }}
       />
-      <Total course={course} discount={discount} />
+      <Total
+        course={course}
+        discount={(childData) => {
+          setDiscount(childData);
+        }}
+      />
       <Box width={'100%'} sx={{ ml: 3, mt: 5 }}>
         <Stack direction="row" justifyContent="space-between">
           <Button
@@ -65,7 +70,12 @@ function Hero() {
           >
             Previous
           </Button>
-          <Button variant="contained">Pay Rp. {course.price - discount}</Button>
+          <Button variant="contained">
+            Pay Rp.
+            {discount.persentase
+              ? course.price - course.price * (discount.persentase / 100)
+              : course.price}
+          </Button>
         </Stack>
       </Box>
     </Grid>
