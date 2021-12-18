@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 
-import { findDiscountByUser } from '../../../../Api/Discount';
+import { findDiscountByUser } from '../../../../../Api/Discount';
 
 function Total({ course, discount }) {
   const [dis, setDis] = useState(0);
@@ -115,13 +115,17 @@ function Total({ course, discount }) {
         <Box sx={{ my: 3, mx: 6 }}>
           <Stack direction="row" justifyContent="space-between" spacing={2}>
             <Typography>Materi Price</Typography>
-            <Typography color="white">Rp. {course.price}</Typography>
+            <Typography color="white">
+              Rp. {parseInt(course.price).toLocaleString()}
+            </Typography>
           </Stack>
           <Stack direction="row" justifyContent="space-between" spacing={2}>
             <Typography>Discount</Typography>
             <Typography color="greenyellow">
-              - Rp.
-              {kode.persentase ? course.price * (kode.persentase / 100) : 0}
+              - Rp.{' '}
+              {kode.persentase
+                ? (course.price * (kode.persentase / 100)).toLocaleString()
+                : 0}
             </Typography>
           </Stack>
           <Divider sx={{ my: 3 }} />
@@ -130,10 +134,13 @@ function Total({ course, discount }) {
               Total Amount
             </Typography>
             <Typography variant="h4" color="white">
-              Rp.
+              Rp.{' '}
               {kode.persentase
-                ? course.price - course.price * (kode.persentase / 100)
-                : course.price}
+                ? (
+                    course.price -
+                    course.price * (kode.persentase / 100)
+                  ).toLocaleString()
+                : parseInt(course.price).toLocaleString()}
             </Typography>
           </Stack>
         </Box>

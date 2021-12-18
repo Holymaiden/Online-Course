@@ -65,7 +65,7 @@ const UserProfile = Loader(
 );
 
 const PaymentHome = Loader(
-  lazy(() => import('src/content/pages/Payment'))
+  lazy(() => import('src/content/pages/Home/Payment'))
 );
 
 // Managements
@@ -133,7 +133,7 @@ const StatusMaintenance = Loader(
 
 const routes = [
   {
-    path: '*',
+    path: '/',
     element: <BaseLayout />,
     children: [
       {
@@ -176,12 +176,12 @@ const routes = [
             element: <StatusComingSoon />
           }
         ]
-      },
-      {
-        path: '*',
-        element: <Status404 />
       }
     ]
+  },
+  {
+    path: '*',
+    element: <Status404 />
   },
   {
     path: 'dashboards',
@@ -288,7 +288,7 @@ const routes = [
   },
   {
     path: 'payment',
-    element: <PaymentHome/>,
+    element: <PaymentHome />
   },
   {
     path: 'components',

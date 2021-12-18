@@ -1,13 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Card,
-  Divider,
-  Grid,
-  Stack,
-  Typography
-} from '@mui/material';
+import { Box, Button, Divider, Grid, Stack, Typography } from '@mui/material';
 
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -15,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Method from './method';
 import Total from './total';
 
-import { getCourseBySlug } from '../../../../Api/Course';
+import { getCourseBySlug } from '../../../../../Api/Course';
 
 function Hero() {
   const { state } = useLocation();
@@ -71,10 +62,13 @@ function Hero() {
             Previous
           </Button>
           <Button variant="contained">
-            Pay Rp.
+            Pay Rp.{' '}
             {discount.persentase
-              ? course.price - course.price * (discount.persentase / 100)
-              : course.price}
+              ? (
+                  course.price -
+                  course.price * (discount.persentase / 100)
+                ).toLocaleString()
+              : parseInt(course.price).toLocaleString()}
           </Button>
         </Stack>
       </Box>
