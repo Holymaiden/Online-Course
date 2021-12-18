@@ -16,7 +16,7 @@ import ArrowForwardTwoToneIcon from '@mui/icons-material/ArrowForwardTwoTone';
 import UploadTwoToneIcon from '@mui/icons-material/UploadTwoTone';
 import MoreHorizTwoToneIcon from '@mui/icons-material/MoreHorizTwoTone';
 
-import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Input = styled('input')({
   display: 'none'
@@ -81,14 +81,14 @@ const CardCoverAction = styled(Box)(
 );
 
 const ProfileCover = ({ user }) => {
+  const navigate = useNavigate();
   return (
     <>
       <Box display="flex" mb={3}>
         <Tooltip arrow placement="top" title="Go back">
           <IconButton
             sx={{ p: 2, mr: 2, color: '#ffffff', background: '#4A47A3' }}
-            component={RouterLink}
-            to="/"
+            onClick={() => navigate(-1)}
           >
             <ArrowBackTwoToneIcon />
           </IconButton>

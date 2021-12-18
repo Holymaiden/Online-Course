@@ -9,12 +9,8 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import { useEffect, useState } from 'react';
 
-function Total({ course }) {
-  const [discount, setDiscount] = useState(0);
-  useEffect(() => {}, []);
-
+function Total({ course, discount }) {
   return (
     <Grid item sm={12} md={6} xs={12}>
       <Card
@@ -32,11 +28,22 @@ function Total({ course }) {
               <Avatar
                 sx={{ bgcolor: 'gray', p: 5 }}
                 variant="rounded"
-                alt=""
-                src=""
+                alt="f"
+                src="ds"
               ></Avatar>
               <Box>
-                <Button variant="contained">{course.category}</Button>
+                <Button
+                  size="small"
+                  variant="contained"
+                  sx={{
+                    color: 'white',
+                    background: '#FBD15B',
+                    opacity: '95%',
+                    mb: 1
+                  }}
+                >
+                  {course.category}
+                </Button>
                 <Typography
                   sx={{
                     fontSize: {

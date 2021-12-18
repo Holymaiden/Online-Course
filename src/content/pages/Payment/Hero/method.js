@@ -10,12 +10,24 @@ import {
 
 import { useEffect, useState } from 'react';
 
-function Method(course) {
+function Method({ back }) {
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const [pay, setPay] = useState({
+    wa: '',
+    name: '',
+    number: '',
+    bank: ''
+  });
+
+  useEffect(() => {
+    back(pay);
+  }, [pay]);
+
   return (
     <Grid item sm={12} md={6} xs={{ pl: -20 }}>
       <Typography
@@ -46,8 +58,20 @@ function Method(course) {
               onChange={handleChange}
               aria-label="basic tabs example"
             >
-              <Tab label="Credit Card" {...a11yProps(0)} />
-              <Tab label="Phone" {...a11yProps(1)} />
+              <Tab
+                label="Credit Card"
+                {...a11yProps(0)}
+                onClick={() =>
+                  setPay({ wa: '', name: '', number: '', bank: '' })
+                }
+              />
+              <Tab
+                label="Phone"
+                {...a11yProps(1)}
+                onClick={() =>
+                  setPay({ wa: '', name: '', number: '', bank: '' })
+                }
+              />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
@@ -58,6 +82,7 @@ function Method(course) {
                   label="Nomor Rekening"
                   variant="outlined"
                   color="warning"
+                  onChange={(x) => setPay({ ...pay, number: x.target.value })}
                 />
               </Box>
               <Box sx={{ flexDirection: 'row' }}>
@@ -70,12 +95,14 @@ function Method(course) {
                   color="warning"
                   label="BANK"
                   variant="outlined"
+                  onChange={(x) => setPay({ ...pay, bank: x.target.value })}
                 />
                 <TextField
                   sx={{ width: { md: '47%', sm: '100%' } }}
                   color="warning"
                   label="Nama"
                   variant="outlined"
+                  onChange={(x) => setPay({ ...pay, name: x.target.value })}
                 />
               </Box>
             </Box>
@@ -86,6 +113,7 @@ function Method(course) {
               color="warning"
               label="Whatsapp"
               variant="outlined"
+              onChange={(x) => setPay({ ...pay, wa: x.target.value })}
             />
           </TabPanel>
         </Box>

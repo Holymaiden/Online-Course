@@ -24,15 +24,16 @@ function Payment() {
         <title> Checkout - Online Course Maiden</title>
       </Helmet>
       <Container maxWidth="lg">
-        <Grid container>
-          <Grid item xs={12}>
-            <Card
-              sx={{ p: 5, mt: 6, backgroundColor: `#5A47AB`, height: '100%' }}
-            >
-              <Hero />
-            </Card>
-          </Grid>
-        </Grid>
+        <Card
+          sx={{
+            p: 4,
+            my: 5,
+            backgroundColor: `#5A47AB`,
+            height: '100%'
+          }}
+        >
+          <Hero />
+        </Card>
       </Container>
     </PaymentWrapper>
   );

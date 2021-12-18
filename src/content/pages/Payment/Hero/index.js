@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import Method from './method';
 import Total from './total';
@@ -19,7 +19,10 @@ import { getCourseBySlug } from '../../../../Api/Course';
 
 function Hero() {
   const { state } = useLocation();
+  const navigate = useNavigate();
   const { slug } = state;
+  const [discount, setDiscount] = useState(0);
+  const [pay, setPay] = useState([]);
 
   const [course, setCourse] = useState('');
   useEffect(() => {
@@ -45,12 +48,24 @@ function Hero() {
       <Grid item sm={12}>
         <Divider />
       </Grid>
-      <Method course={course} />
-      <Total course={course} />
-      <Box width={'100%'} margin={3}>
+      <Method
+        back={(childData) => {
+          setPay(childData);
+        }}
+      />
+      <Total course={course} discount={discount} />
+      <Box width={'100%'} sx={{ ml: 3, mt: 5 }}>
         <Stack direction="row" justifyContent="space-between">
-          <Button variant="outlined">Previous</Button>
-          <Button variant="contained">Pay</Button>
+          <Button
+            variant="outlined"
+            sx={{ color: 'white' }}
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            Previous
+          </Button>
+          <Button variant="contained">Pay Rp. {course.price - discount}</Button>
         </Stack>
       </Box>
     </Grid>
