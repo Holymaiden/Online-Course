@@ -66,10 +66,30 @@ async function destroyTransaction(id) {
   return res.json();
 }
 
+async function createPaymentTransaction(pay, price, course) {
+  const res = await fetch(`${API_SERVER}/transaction/payment`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader()
+    },
+    body: JSON.stringify({
+      course_id: course,
+      price: price,
+      name: pay.name,
+      account_number: pay.number,
+      bank: pay.bank,
+      phone: pay.wa
+    })
+  });
+  return res.json();
+}
+
 export {
   getAllTransaction,
   getByIdTransaction,
   createTransaction,
   updateTransaction,
-  destroyTransaction
+  destroyTransaction,
+  createPaymentTransaction
 };

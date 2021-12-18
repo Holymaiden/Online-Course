@@ -7,6 +7,7 @@ import Method from './method';
 import Total from './total';
 
 import { getCourseBySlug } from '../../../../../Api/Course';
+import { createPaymentTransaction } from '../../../../../Api/Transaction';
 
 function Hero() {
   const { state } = useLocation();
@@ -21,6 +22,16 @@ function Hero() {
       setCourse(result.data);
     });
   }, [slug]);
+
+  const handlePayment = () => {
+    createPaymentTransaction(
+      pay,
+      discount.persentase
+        ? course.price - course.price * (discount.persentase / 100)
+        : course.price,
+      course.id
+    );
+  };
 
   return (
     <Grid spacing={{ xs: 3 }} container>
@@ -61,7 +72,7 @@ function Hero() {
           >
             Previous
           </Button>
-          <Button variant="contained">
+          <Button variant="contained" onClick={handlePayment}>
             Pay Rp.{' '}
             {discount.persentase
               ? (
