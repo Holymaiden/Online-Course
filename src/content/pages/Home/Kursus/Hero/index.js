@@ -1,30 +1,6 @@
-import {
-  Box,
-  Button,
-  CardMedia,
-  Container,
-  Grid,
-  InputAdornment,
-  TextField,
-  Typography
-} from '@mui/material';
-import { styled } from '@mui/styles';
-import { useState } from 'react';
-
-import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
-import { Link as RouterLink } from 'react-router-dom';
+import { Box, Container, Grid, Typography } from '@mui/material';
 
 import Search from '../Search';
-
-const SearchInputWrapper = styled(TextField)(
-  ({ theme }) => `
-    background: ${theme.colors.alpha.white[100]};
-
-    .MuiInputBase-input {
-        font-size: ${theme.typography.pxToRem(17)};
-    }
-`
-);
 
 function Hero() {
   return (
