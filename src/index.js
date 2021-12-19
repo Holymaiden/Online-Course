@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import 'nprogress/nprogress.css';
 import { SidebarProvider } from './contexts/SidebarContext';
 import { AuthProvider } from './contexts/auth.context';
+import { SnackbarProvider } from 'notistack';
 
 let user = localStorage.getItem('user');
 
@@ -16,7 +17,9 @@ ReactDOM.render(
     <AuthProvider userData={user}>
       <SidebarProvider>
         <BrowserRouter>
-          <App />
+          <SnackbarProvider>
+            <App />
+          </SnackbarProvider>
         </BrowserRouter>
       </SidebarProvider>
     </AuthProvider>

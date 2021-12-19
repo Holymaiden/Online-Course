@@ -5,15 +5,20 @@ import {
   Card,
   Divider,
   Grid,
+  IconButton,
   Stack,
   TextField,
   Typography
 } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { useSnackbar } from 'notistack';
+
+import CloseIcon from '@mui/icons-material/Close';
 
 import { findDiscountByUser } from '../../../../../Api/Discount';
 
 function Total({ course, discount }) {
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [dis, setDis] = useState(0);
   const [kode, setKode] = useState(0);
 
@@ -25,8 +30,34 @@ function Total({ course, discount }) {
     findDiscountByUser(dis).then(function (result) {
       if (result.code == 200) {
         setKode(result.data);
+        enqueueSnackbar('Diskon Terpasang', {
+          variant: 'success',
+          action: (key) => (
+            <IconButton size="small" onClick={() => closeSnackbar(key)}>
+              <CloseIcon />
+            </IconButton>
+          )
+        });
+      } else if (result.code == 300) {
+        setKode({ persentase: 0 });
+        enqueueSnackbar('Diskon Tidak Ditemukan', {
+          variant: 'error',
+          action: (key) => (
+            <IconButton size="small" onClick={() => closeSnackbar(key)}>
+              <CloseIcon />
+            </IconButton>
+          )
+        });
       } else {
         setKode({ persentase: 0 });
+        enqueueSnackbar('Diskon Sudah Terpakai', {
+          variant: 'warning',
+          action: (key) => (
+            <IconButton size="small" onClick={() => closeSnackbar(key)}>
+              <CloseIcon />
+            </IconButton>
+          )
+        });
       }
     });
   };

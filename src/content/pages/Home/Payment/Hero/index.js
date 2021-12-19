@@ -1,7 +1,17 @@
-import { Box, Button, Divider, Grid, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Divider,
+  Grid,
+  IconButton,
+  Stack,
+  Typography
+} from '@mui/material';
 
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
+import CloseIcon from '@mui/icons-material/Close';
 
 import Method from './method';
 import Total from './total';
@@ -12,6 +22,7 @@ import { createPaymentTransaction } from '../../../../../Api/Transaction';
 function Hero() {
   const { state } = useLocation();
   const navigate = useNavigate();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const { slug } = state;
   const [discount, setDiscount] = useState(0);
   const [pay, setPay] = useState([]);
@@ -30,7 +41,27 @@ function Hero() {
         ? course.price - course.price * (discount.persentase / 100)
         : course.price,
       course.id
-    );
+    ).then(function (result) {
+      if (result.code == 200) {
+        enqueueSnackbar('Transaction success', {
+          variant: 'success',
+          action: (key) => (
+            <IconButton size="small" onClick={() => closeSnackbar(key)}>
+              <CloseIcon />
+            </IconButton>
+          )
+        });
+      } else {
+        enqueueSnackbar('Transaction Failed', {
+          variant: 'error',
+          action: (key) => (
+            <IconButton size="small" onClick={() => closeSnackbar(key)}>
+              <CloseIcon />
+            </IconButton>
+          )
+        });
+      }
+    });
   };
 
   return (
