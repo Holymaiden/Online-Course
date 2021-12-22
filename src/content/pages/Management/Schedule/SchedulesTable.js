@@ -72,7 +72,6 @@ function Update(props) {
 
   function onUpdate(data) {
     updateSchedule(data).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }
@@ -255,7 +254,6 @@ const SchedulesTable = ({ datas }) => {
 
   function onDelete(id) {
     destroySchedule(id).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }

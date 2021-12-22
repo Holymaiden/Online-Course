@@ -66,7 +66,7 @@ async function destroyTransaction(id) {
   return res.json();
 }
 
-async function createPaymentTransaction(pay, price, course) {
+async function createPaymentTransaction(pay, price, course, discount) {
   const res = await fetch(`${API_SERVER}/transaction/payment`, {
     method: 'POST',
     headers: {
@@ -79,7 +79,8 @@ async function createPaymentTransaction(pay, price, course) {
       name: pay.name,
       account_number: pay.number,
       bank: pay.bank,
-      phone: pay.wa
+      phone: pay.wa,
+      discount: discount
     })
   });
   return res.json();

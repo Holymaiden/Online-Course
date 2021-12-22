@@ -59,7 +59,6 @@ function Create(props) {
 
   function onCreate(data) {
     createTransaction(data).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }

@@ -96,7 +96,6 @@ function Update(props) {
 
   function onUpdate(data) {
     updateTransaction(data).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }
@@ -333,7 +332,6 @@ const TransactionsTable = ({ datas }) => {
 
   function onDelete(id) {
     destroyTransaction(id).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }

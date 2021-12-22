@@ -46,7 +46,7 @@ async function updateUserCourse(id) {
 }
 
 async function destroyUserCourse(id) {
-  const res = await fetch(`${API_SERVER}/admin/course/destroy/` + id, {
+  const res = await fetch(`${API_SERVER}/admin/userCourse/destroy/` + id, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

@@ -24,7 +24,7 @@ function Hero() {
   const navigate = useNavigate();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const { slug } = state;
-  const [discount, setDiscount] = useState(0);
+  const [discount, setDiscount] = useState('');
   const [pay, setPay] = useState([]);
 
   const [course, setCourse] = useState('');
@@ -40,7 +40,8 @@ function Hero() {
       discount.persentase
         ? course.price - course.price * (discount.persentase / 100)
         : course.price,
-      course.id
+      course.id,
+      discount.id
     ).then(function (result) {
       if (result.code == 200) {
         enqueueSnackbar('Transaction success', {
@@ -51,6 +52,7 @@ function Hero() {
             </IconButton>
           )
         });
+        window.location.reload();
       } else {
         enqueueSnackbar('Transaction Failed', {
           variant: 'error',

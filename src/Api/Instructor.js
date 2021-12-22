@@ -24,7 +24,6 @@ async function getByIdInstructor(id) {
 }
 
 async function createInstructor(data) {
-  console.log(data);
   const res = await fetch(`${API_SERVER}/admin/instructor`, {
     method: 'POST',
     headers: {
@@ -40,7 +39,6 @@ async function createInstructor(data) {
 }
 
 async function updateInstructor(data) {
-  console.log(data);
   const res = await fetch(`${API_SERVER}/admin/instructor/` + data.id, {
     method: 'PUT',
     headers: {

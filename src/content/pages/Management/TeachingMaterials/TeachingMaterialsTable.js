@@ -99,7 +99,6 @@ function Update(props) {
 
   function onUpdate(data) {
     updateTeachingMaterial(data).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }
@@ -354,7 +353,6 @@ const TeachingMaterialsTable = ({ datas }) => {
 
   function onDelete(id) {
     destroyTeachingMaterial(id).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }

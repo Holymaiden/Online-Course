@@ -63,7 +63,6 @@ function Update(props) {
 
   function onUpdate(data) {
     updatePayment(data).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }
@@ -248,7 +247,6 @@ const PaymentsTable = ({ datas }) => {
 
   function onDelete(id) {
     destroyPayment(id).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }

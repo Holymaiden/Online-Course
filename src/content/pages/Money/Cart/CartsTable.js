@@ -78,7 +78,6 @@ function Update(props) {
 
   function onUpdate(data) {
     updateCart(data).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }
@@ -292,7 +291,6 @@ const CartsTable = ({ datas }) => {
 
   function onDelete(id) {
     destroyCart(id).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }

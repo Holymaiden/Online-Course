@@ -9,17 +9,24 @@ import {
 import { useEffect, useState } from 'react';
 
 import { getCourseBySlug } from '../../../../../Api/Course';
+import { getExistCourse } from '../../../../../Api/TeachingMaterial';
 
-import { useParams,useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function Sidebar() {
   const navigate = useNavigate();
   const { useMateri } = useParams();
   const [course, setCourse] = useState([]);
+  const [exist, setExist] = useState(0);
 
   useEffect(() => {
     getCourseBySlug(useMateri).then(function (result) {
       setCourse(result.data);
+    });
+    getExistCourse(useMateri).then(function (result) {
+      console.log(result.data);
+      if (result.code == 200) setExist(1);
+      else setExist(0);
     });
   }, [useMateri]);
 
@@ -75,8 +82,16 @@ function Sidebar() {
               >
                 {course.username}
               </Typography>
-              <Button variant="contained" sx={{ mt: 5 }} onClick={()=> {navigate('/payment',{state:{slug:course.slug}})}}>
-                Pesan Sekarang
+              <Button
+                variant="contained"
+                sx={{ mt: 5 }}
+                onClick={() => {
+                  navigate('/payment', { state: { slug: course.slug } });
+                }}
+                disabled={exist == 1 ? 1 : 0}
+                color="success"
+              >
+                {exist == 1 ? 'Sudah Dipesan' : 'Pesan Sekarang'}
               </Button>
             </CardContent>
           </Card>

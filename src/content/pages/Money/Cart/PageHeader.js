@@ -48,7 +48,6 @@ function Create(props) {
 
   function onCreate(data) {
     createCart(data).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }

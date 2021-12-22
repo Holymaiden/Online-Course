@@ -27,7 +27,6 @@ function Content() {
 
   useEffect(() => {
     getCourseBySlug(useMateri).then(function (result) {
-      console.log(result.data);
       setCourse(result.data);
     });
   }, [useMateri]);
@@ -82,7 +81,7 @@ function Content() {
                     }
                   }}
                 >
-              {course.category}
+                  {course.category}
                 </Typography>
               </CardContent>
               <CardActions>

@@ -31,7 +31,8 @@ function Belajar() {
   const [teaching, setTeaching] = useState([]);
   useEffect(() => {
     getBySlugTeachingMaterial(useMateri).then(function (result) {
-      setTeaching(result.data);
+      if (result.code == 200) setTeaching(result.data);
+      else setTeaching([]);
     });
   }, [useMateri]);
   return (

@@ -83,11 +83,23 @@ async function destroyTeachingMaterial(id) {
   return res.json();
 }
 
+async function getExistCourse(slug) {
+  const res = await fetch(`${API_SERVER}/teachingMaterial/have/` + slug, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader()
+    }
+  });
+  return res.json();
+}
+
 export {
   getAllTeachingMaterial,
   createTeachingMaterial,
   getByIdTeachingMaterial,
   destroyTeachingMaterial,
   updateTeachingMaterial,
-  getBySlugTeachingMaterial
+  getBySlugTeachingMaterial,
+  getExistCourse
 };

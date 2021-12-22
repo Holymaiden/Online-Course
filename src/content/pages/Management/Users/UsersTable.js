@@ -65,7 +65,6 @@ function Update(props) {
 
   function onUpdate(data) {
     updateUser(data).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }
@@ -268,7 +267,6 @@ const UsersTable = ({ datas }) => {
 
   function onDelete(id) {
     destroyUser({ id }).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }

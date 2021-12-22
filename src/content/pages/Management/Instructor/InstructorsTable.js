@@ -85,7 +85,6 @@ function Update(props) {
 
   function onUpdate(data) {
     updateInstructor(data).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }
@@ -304,7 +303,6 @@ const InstructorsTable = ({ datas }) => {
 
   function onDelete(id) {
     destroyInstructor(id).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }

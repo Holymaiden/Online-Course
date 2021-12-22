@@ -95,7 +95,6 @@ function Update(props) {
 
   function onUpdate(data) {
     updateCourse(data).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }
@@ -342,7 +341,6 @@ const CoursesTable = ({ datas }) => {
 
   function onDelete(id) {
     destroyCourse(id).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }

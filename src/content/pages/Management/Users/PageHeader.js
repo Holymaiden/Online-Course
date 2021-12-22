@@ -32,7 +32,6 @@ function Create(props) {
 
   function onCreate({ username, password, email, avatar }) {
     createUser({ username, password, email, avatar }).then(function (result) {
-      console.log(result.data);
       window.location.reload();
     });
   }

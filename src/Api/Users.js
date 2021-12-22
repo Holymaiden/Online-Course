@@ -66,7 +66,6 @@ async function updateUser(data) {
 }
 
 async function destroyUser({ id }) {
-  console.log(id);
   const res = await fetch(`${API_SERVER}/admin/user/destroy/` + id, {
     method: 'PUT',
     headers: {
