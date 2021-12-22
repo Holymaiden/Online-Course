@@ -1,13 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { Box, Button, Hidden, IconButton, Tooltip } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
-import { SidebarContext } from 'src/contexts/SidebarContext';
-import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
 import { Link as RouterLink } from 'react-router-dom';
 
-import HeaderMenu from './Menu';
 import HeaderUserbox from './Userbox';
 import Logo from 'src/components/Logo';
 
@@ -32,8 +28,6 @@ const HeaderWrapper = styled(Box)(
 );
 
 function Header() {
-  const { sidebarToggle, toggleSidebar } = useContext(SidebarContext);
-
   const [user, setUsers] = useState([]);
   useEffect(() => {
     getCurrentUser().then((data) => setUsers(data));
@@ -43,9 +37,9 @@ function Header() {
     <HeaderWrapper display="flex" alignItems="center">
       <Logo />
 
-      <Hidden mdDown>
+      {/* <Hidden mdDown>
         <HeaderMenu />
-      </Hidden>
+      </Hidden> */}
       <Box display="flex" alignItems="center">
         {user ? (
           <HeaderUserbox />
@@ -64,13 +58,6 @@ function Header() {
             Login
           </Button>
         )}
-        <Hidden lgUp>
-          <Tooltip arrow title="Toggle Menu">
-            <IconButton color="primary" onClick={toggleSidebar}>
-              {!sidebarToggle ? <MenuTwoToneIcon /> : <CloseTwoToneIcon />}
-            </IconButton>
-          </Tooltip>
-        </Hidden>
       </Box>
     </HeaderWrapper>
   );

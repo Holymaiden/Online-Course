@@ -1,4 +1,4 @@
-import { useState, MouseEvent, ChangeEvent } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Typography,
@@ -135,7 +135,7 @@ function SecurityTab() {
                 primary="Google"
                 secondary="A Google account hasn't been yet added to your account"
               />
-              <Button color="warning" size="large" variant="contained">
+              <Button color="success" size="large" variant="contained">
                 Connect
               </Button>
             </ListItem>

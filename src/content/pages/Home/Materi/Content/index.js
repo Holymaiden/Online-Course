@@ -137,7 +137,8 @@ function Content() {
                   sm: 8,
                   color: `#796F6F`
                 },
-                ml: 2
+                mb: 2,
+                mt: 2
               }}
             >
               {parse(new String(course.description).toString())}
