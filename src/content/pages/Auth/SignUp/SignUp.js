@@ -106,22 +106,6 @@ export default function SignUp() {
 
           <RegisterForm />
 
-          <Typography
-            variant="body2"
-            align="center"
-            sx={{ color: '#ffffff', mt: 3 }}
-          >
-            By registering, I agree to Minimal&nbsp;
-            <Link underline="always" sx={{ color: 'text.primary' }}>
-              Terms of Service
-            </Link>
-            &nbsp;and&nbsp;
-            <Link underline="always" sx={{ color: 'text.primary' }}>
-              Privacy Policy
-            </Link>
-            .
-          </Typography>
-
           <MHidden width="smUp">
             <Typography variant="subtitle2" sx={{ mt: 3, textAlign: 'center' }}>
               Already have an account?&nbsp;

@@ -1,5 +1,6 @@
-import { Button, CardMedia, Container, Grid, Typography } from '@mui/material';
+import { CardMedia, Container, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
+import parse from 'html-react-parser';
 
 import { getPopularCourse } from '../../../../../Api/Course';
 
@@ -86,8 +87,7 @@ function Popular() {
                             sm: 10,
                             color: `#5A47AB`
                           },
-                          fontWeight: 'bold',
-                          mb: 1
+                          fontWeight: 'bold'
                         }}
                       >
                         {datas.title}
@@ -102,7 +102,11 @@ function Popular() {
                           }
                         }}
                       >
-                        {datas.description}
+                        {parse(
+                          new String(
+                            datas.description.substring(0, 50)
+                          ).toString()
+                        )}
                       </Typography>
                     </Grid>
                   </Grid>

@@ -9,7 +9,7 @@ import RecentActivity from './RecentActivity';
 
 import ManagementUserSettings from './settings';
 
-import {getCurrentUser} from '../../../../Api/Users'
+import { getCurrentUser } from '../../../../Api/Users';
 
 const ProfileWrapper = styled(Box)(
   () => `
@@ -22,20 +22,19 @@ const ProfileWrapper = styled(Box)(
 );
 
 function ManagementUserProfile() {
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState('');
 
   useEffect(() => {
     getCurrentUser().then(function (result) {
-      result.coverImg= '/static/images/placeholders/covers/5.jpg';
-      result.avatar= '/static/images/avatars/4.jpg';
-      result.description=
+      result.coverImg = '/static/images/placeholders/covers/5.jpg';
+      result.description =
         "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage";
-        result.jobtitle= 'Web Developer';
-        result.location= 'Barcelona, Spain';
-        result.followers= '465';
+      result.jobtitle = 'Web Developer';
+      result.location = 'Barcelona, Spain';
+      result.followers = '465';
       setUser(result);
-    })
-  }, [])
+    });
+  }, []);
 
   // const user = {
   //   savedCards: 7,
