@@ -27,6 +27,9 @@ import {
   Button,
   Slide
 } from '@mui/material';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.bubble.css';
 
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
@@ -65,6 +68,44 @@ function Update(props) {
     category: '',
     status: ''
   });
+
+  const modules = {
+    toolbar: [
+      [{ header: '1' }, { header: '2' }, { font: [] }],
+      [{ size: [] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [
+        { list: 'ordered' },
+        { list: 'bullet' },
+        { indent: '-1' },
+        { indent: '+1' }
+      ],
+      ['link', 'image', 'video'],
+      ['clean']
+    ],
+    clipboard: {
+      // toggle to add extra line breaks when pasting HTML:
+      matchVisual: false
+    }
+  };
+
+  const formats = [
+    'header',
+    'font',
+    'size',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'bullet',
+    'indent',
+    'link',
+    'image',
+    'video'
+  ];
+
   useEffect(
     () =>
       setData({
@@ -111,42 +152,31 @@ function Update(props) {
     <Dialog
       onClose={handleClose}
       open={open}
-      maxWidth="sm"
+      maxWidth="md"
       fullWidth={true}
       TransitionComponent={Transition}
       sx={{
-        '& .MuiTextField-root': { m: 2, width: '25ch' },
-        '& .MuiButton-root': { width: '10ch' }
+        '& .MuiTextField-root': { m: 2 },
+        '& .MuiButton-root': { width: '10ch' },
+        'text-align': '-webkit-center'
       }}
     >
       <DialogTitle>Update Course</DialogTitle>
-      <div style={{ marginLeft: 45 }}>
+      <div>
         <TextField
           required
           id="outlined-title"
           label="Title"
-          style={{ width: 470 }}
+          style={{ width: '95%' }}
           onChange={(e) => setData({ ...data, title: e.target.value })}
           helperText="Please add your title"
           defaultValue={selectedValue.title}
         />
-        <div>
-          <TextField
-            id="outlined-multiline-flexible"
-            label="Description"
-            multiline
-            maxRows={5}
-            style={{ width: 470 }}
-            helperText="Please add your description"
-            onChange={(e) => setData({ ...data, description: e.target.value })}
-            defaultValue={selectedValue.description}
-          />
-        </div>
         <TextField
           required
           id="outlined-price-input"
           label="Price"
-          style={{ width: 470 }}
+          style={{ width: '95%' }}
           autoComplete="current-price"
           helperText="Please add your price"
           onChange={(e) => setData({ ...data, price: e.target.value })}
@@ -157,6 +187,7 @@ function Update(props) {
             id="outlined-select-category"
             select
             label="Category"
+            style={{ width: '46%' }}
             value={data.category}
             onChange={handleChange}
             helperText="Please select your category"
@@ -172,6 +203,7 @@ function Update(props) {
             id="outlined-select-status"
             select
             label="Status"
+            style={{ width: '46%' }}
             value={data.status}
             onChange={handleChange2}
             helperText="Please select your status"
@@ -183,6 +215,18 @@ function Update(props) {
               </MenuItem>
             ))}
           </TextField>
+        </div>
+        <div>
+          <ReactQuill
+            theme="snow"
+            modules={modules}
+            formats={formats}
+            onChange={(content, delta, source, editor) =>
+              setData({ ...data, description: editor.getHTML() })
+            }
+            value={data.description}
+            style={{ marginLeft: 25, marginRight: 25, marginBottom: 10 }}
+          />
         </div>
       </div>
       <Box mt={2} mb={2}>

@@ -13,6 +13,9 @@ import {
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
 import { forwardRef, useEffect, useState } from 'react';
 import { Box } from '@mui/system';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.bubble.css';
 
 import { getCurrentUser } from '../../../../Api/Users';
 import { createCourse } from '../../../../Api/Course';
@@ -28,6 +31,43 @@ function Create(props) {
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState(1);
   const { onClose, open } = props;
+
+  const modules = {
+    toolbar: [
+      [{ header: '1' }, { header: '2' }, { font: [] }],
+      [{ size: [] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [
+        { list: 'ordered' },
+        { list: 'bullet' },
+        { indent: '-1' },
+        { indent: '+1' }
+      ],
+      ['link', 'image', 'video'],
+      ['clean']
+    ],
+    clipboard: {
+      // toggle to add extra line breaks when pasting HTML:
+      matchVisual: false
+    }
+  };
+
+  const formats = [
+    'header',
+    'font',
+    'size',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'bullet',
+    'indent',
+    'link',
+    'image',
+    'video'
+  ];
 
   const [rows, setRows] = useState([]);
   useEffect(() => {
@@ -61,40 +101,31 @@ function Create(props) {
     <Dialog
       onClose={handleClose}
       open={open}
-      maxWidth="sm"
+      maxWidth="md"
       fullWidth={true}
       TransitionComponent={Transition}
       sx={{
-        '& .MuiTextField-root': { m: 2, width: '25ch' },
+        '& .MuiTextField-root': { m: 2 },
+        'text-align': '-webkit-center',
         '& .MuiButton-root': { width: '10ch' }
       }}
     >
       <DialogTitle>Add New Course</DialogTitle>
-      <div style={{ marginLeft: 45 }}>
+      <div>
         <TextField
           required
           id="outlined-title"
           label="Title"
-          style={{ width: 470 }}
+          style={{ width: '95%' }}
           onChange={(e) => setTitle(e.target.value)}
           helperText="Please add your title"
         />
         <div>
           <TextField
-            id="outlined-multiline-flexible"
-            label="Description"
-            multiline
-            maxRows={5}
-            style={{ width: 470 }}
-            helperText="Please add your description"
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
-        <div>
-          <TextField
             id="outlined-select-category"
             select
             label="Category"
+            style={{ width: '46%' }}
             value={category}
             onChange={handleChange}
             helperText="Please select your category"
@@ -109,9 +140,22 @@ function Create(props) {
             required
             id="outlined-price-input"
             label="Price"
+            style={{ width: '46%' }}
             autoComplete="current-price"
             helperText="Please add your price"
             onChange={(e) => setPrice(e.target.value)}
+          />
+        </div>
+        <div>
+          <ReactQuill
+            theme="snow"
+            modules={modules}
+            formats={formats}
+            onChange={(content, delta, source, editor) =>
+              setDescription(editor.getHTML())
+            }
+            value={description}
+            style={{ marginLeft: 25, marginRight: 25, marginBottom: 10 }}
           />
         </div>
       </div>
