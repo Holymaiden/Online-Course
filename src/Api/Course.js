@@ -64,19 +64,21 @@ async function getPopularCourse(limit) {
   return res.json();
 }
 
-async function createCourse({ title, description, price, category }) {
+async function createCourse({ title, description, price, category, image }) {
+  var formdata = new FormData();
+  formdata.append('title', title);
+  formdata.append('description', description);
+  formdata.append('price', price);
+  formdata.append('category', category);
+  formdata.append('image', image);
+
   const res = await fetch(`${API_SERVER}/admin/course`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      Accept: 'application/json',
       Authorization: authHeader()
     },
-    body: JSON.stringify({
-      category_id: category,
-      title: title,
-      description: description,
-      price: price
-    })
+    body: formdata
   });
   return res.json();
 }

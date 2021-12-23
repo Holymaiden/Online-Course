@@ -74,7 +74,7 @@ function Popular() {
                       <CardMedia
                         sx={{ width: 1 / 2, display: 'inline' }}
                         component="img"
-                        image="/static/images/overview/contoh.svg"
+                        image={datas.image}
                         alt="camp"
                       />
                     </Grid>

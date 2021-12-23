@@ -80,6 +80,7 @@ function Course() {
                     >
                       <CardMedia
                         component="img"
+                        sx={{ maxWidth: 255, maxHeight: 146 }}
                         image={
                           datas.image
                             ? datas.image

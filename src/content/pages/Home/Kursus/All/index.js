@@ -63,7 +63,7 @@ function All() {
     setPage(value);
   };
 
-  const paginatedCarts = applyPagination(course, page - 1, 10);
+  const paginatedCarts = applyPagination(course, page - 1, 9);
 
   let navigate = useNavigate();
 
@@ -215,7 +215,12 @@ function All() {
                     >
                       <CardMedia
                         component="img"
-                        image="/static/images/overview/anu.svg"
+                        sx={{ maxWidth: 360, maxHeight: 204 }}
+                        image={
+                          datas.image
+                            ? datas.image
+                            : '/static/images/overview/anu.svg'
+                        }
                         alt="camp"
                       />
                       <CardContent>
@@ -342,7 +347,8 @@ function All() {
           </Grid>
         </Grid>
         <Pagination
-          count={Math.ceil(course.length / 10)}
+          count={Math.ceil(course.length / 9)}
+          sx={{ mt: 2 }}
           onChange={handlePageChange}
           page={page}
           color="primary"

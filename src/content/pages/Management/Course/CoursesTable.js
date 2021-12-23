@@ -25,7 +25,8 @@ import {
   DialogTitle,
   TextField,
   Button,
-  Slide
+  Slide,
+  Avatar
 } from '@mui/material';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -434,6 +435,7 @@ const CoursesTable = ({ datas }) => {
                   onChange={handleSelectAllDatas}
                 />
               </TableCell>
+              <TableCell>Image</TableCell>
               <TableCell>Title</TableCell>
               <TableCell>Category</TableCell>
               <TableCell>Description</TableCell>
@@ -453,6 +455,13 @@ const CoursesTable = ({ datas }) => {
                       checked={isCoursesSelected}
                       onChange={(event) => handleSelectOneData(event, datas.id)}
                       value={isCoursesSelected}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <Avatar
+                      variant="rounded"
+                      alt={datas.title}
+                      src={datas.image}
                     />
                   </TableCell>
                   <TableCell>

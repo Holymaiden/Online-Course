@@ -16,6 +16,7 @@ function TableDatas() {
     slug: course.slug,
     category_id: course.category_id,
     category: course.category,
+    image: course.image,
     description: course.description,
     price: course.price,
     status: course.status

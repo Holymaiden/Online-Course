@@ -54,7 +54,12 @@ function Content() {
             >
               <CardMedia
                 component="img"
-                image="/static/images/overview/anu.svg"
+                sx={{ maxWidth: 775, maxHeight: 441 }}
+                image={
+                  course.image
+                    ? course.image
+                    : '/static/images/overview/anu.svg'
+                }
                 alt="camp"
               />
               <CardContent>

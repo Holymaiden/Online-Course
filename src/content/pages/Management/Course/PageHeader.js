@@ -30,6 +30,7 @@ function Create(props) {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState(1);
+  const [image, setImage] = useState([]);
   const { onClose, open } = props;
 
   const modules = {
@@ -85,10 +86,11 @@ function Create(props) {
     onClose('');
   };
 
-  function onCreate({ title, description, price, category }) {
-    createCourse({ title, description, price, category }).then(function (
+  function onCreate({ title, description, price, category, image }) {
+    createCourse({ title, description, price, category, image }).then(function (
       result
     ) {
+      console.log(result);
       window.location.reload();
     });
   }
@@ -146,6 +148,33 @@ function Create(props) {
             onChange={(e) => setPrice(e.target.value)}
           />
         </div>
+        <label htmlFor="btn-upload">
+          <input
+            id="btn-upload"
+            name="avatar"
+            style={{
+              display: 'none',
+              marginBottom: '2ch',
+              width: 215,
+              height: 50
+            }}
+            type="file"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
+          <Button
+            style={{
+              marginBottom: '2ch',
+              width: 215,
+              height: 50,
+              marginLeft: '2ch'
+            }}
+            className="btn-choose"
+            variant="outlined"
+            component="span"
+          >
+            Choose Files
+          </Button>
+        </label>
         <div>
           <ReactQuill
             theme="snow"
@@ -163,7 +192,9 @@ function Create(props) {
         <Button
           variant="contained"
           style={{ margin: '0 auto', display: 'flex', marginBottom: 2 }}
-          onClick={() => onCreate({ title, description, price, category })}
+          onClick={() =>
+            onCreate({ title, description, price, category, image })
+          }
         >
           Create
         </Button>
