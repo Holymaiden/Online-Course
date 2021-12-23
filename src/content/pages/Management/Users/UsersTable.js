@@ -215,12 +215,6 @@ const UsersTable = ({ datas }) => {
     }
   ];
 
-  const user = {
-    name: 'Catherine Pike',
-    avatar: '/static/images/avatars/1.jpg',
-    jobtitle: 'Project Manager'
-  };
-
   const handleStatusChange = (e) => {
     let value = null;
 
@@ -337,8 +331,8 @@ const UsersTable = ({ datas }) => {
                   <TableCell>
                     <Avatar
                       variant="rounded"
-                      alt={user.username}
-                      src={user.avatar}
+                      alt={datas.username}
+                      src={datas.avatar}
                     />
                   </TableCell>
                   <TableCell>

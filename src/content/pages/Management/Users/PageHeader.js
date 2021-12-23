@@ -44,7 +44,8 @@ function Create(props) {
       TransitionComponent={Transition}
       sx={{
         '& .MuiTextField-root': { m: 2, width: '25ch' },
-        '& .MuiButton-root': { width: '10ch' }
+        '& .MuiButton-root': { width: '10ch' },
+        'text-align': '-webkit-center'
       }}
     >
       <DialogTitle>Add New User</DialogTitle>
@@ -78,8 +79,7 @@ function Create(props) {
               display: 'none',
               marginTop: '2ch',
               width: 215,
-              height: 50,
-              marginLeft: '2ch'
+              height: 50
             }}
             type="file"
             onChange={(e) => setAvatar(e.target.files[0])}

@@ -30,6 +30,7 @@ import {
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
+import parse from 'html-react-parser';
 
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
@@ -484,7 +485,11 @@ const CoursesTable = ({ datas }) => {
                       gutterBottom
                       noWrap
                     >
-                      {datas.description}
+                      {parse(
+                        new String(
+                          datas.description.substring(0, 50)
+                        ).toString()
+                      )}
                     </Typography>
                   </TableCell>
                   <TableCell>

@@ -66,7 +66,6 @@ function HeaderUserbox() {
   useEffect(() => {
     getCurrentUser().then((data) => setUsers(data));
   }, []);
-  user.avatar = '/static/images/avatars/1.jpg';
 
   const ref = useRef(null);
   const [isOpen, setOpen] = useState(false);
