@@ -67,6 +67,7 @@ function Update(props) {
     title: '',
     description: '',
     price: '',
+    image: '',
     category: '',
     status: ''
   });
@@ -115,6 +116,7 @@ function Update(props) {
         title: selectedValue.title,
         description: selectedValue.description,
         price: selectedValue.price,
+        image: selectedValue.image,
         category: selectedValue.category,
         status: selectedValue.status
       }),
@@ -174,16 +176,45 @@ function Update(props) {
           helperText="Please add your title"
           defaultValue={selectedValue.title}
         />
-        <TextField
-          required
-          id="outlined-price-input"
-          label="Price"
-          style={{ width: '95%' }}
-          autoComplete="current-price"
-          helperText="Please add your price"
-          onChange={(e) => setData({ ...data, price: e.target.value })}
-          defaultValue={selectedValue.price}
-        />
+        <div>
+          <TextField
+            required
+            id="outlined-price-input"
+            label="Price"
+            style={{ width: '67%' }}
+            autoComplete="current-price"
+            helperText="Please add your price"
+            onChange={(e) => setData({ ...data, price: e.target.value })}
+            defaultValue={selectedValue.price}
+          />
+          <label htmlFor="btn-upload">
+            <input
+              id="btn-upload"
+              name="avatar"
+              style={{
+                display: 'none',
+                marginTop: '2ch',
+                width: 215,
+                height: 50
+              }}
+              type="file"
+              onChange={(e) => setData({ ...data, image: e.target.files[0] })}
+            />
+            <Button
+              style={{
+                marginTop: '2ch',
+                width: 215,
+                height: 50,
+                marginLeft: '2ch'
+              }}
+              className="btn-choose"
+              variant="outlined"
+              component="span"
+            >
+              Choose Files
+            </Button>
+          </label>
+        </div>
         <div>
           <TextField
             id="outlined-select-category"

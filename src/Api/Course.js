@@ -84,19 +84,20 @@ async function createCourse({ title, description, price, category, image }) {
 }
 
 async function updateCourse(data) {
+  var formdata = new FormData();
+  formdata.append('title', data.title);
+  formdata.append('description', data.description);
+  formdata.append('price', data.price);
+  formdata.append('category', data.category);
+  formdata.append('image', data.image);
+  formdata.append('status', data.status);
   const res = await fetch(`${API_SERVER}/admin/course/` + data.id, {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json',
+      Accept: 'application/json',
       Authorization: authHeader()
     },
-    body: JSON.stringify({
-      category_id: data.category,
-      title: data.title,
-      description: data.description,
-      price: data.price,
-      status: data.status
-    })
+    body: formdata
   });
   return res.json();
 }

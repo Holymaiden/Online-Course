@@ -5,14 +5,12 @@ import {
   Box,
   Button,
   Divider,
-  IconButton,
   InputAdornment,
   lighten,
   List,
   ListItem,
   ListItemAvatar,
   TextField,
-  Tooltip,
   Typography,
   Dialog,
   DialogContent,
@@ -21,8 +19,8 @@ import {
   Hidden
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import parse from 'html-react-parser';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
-import FindInPageTwoToneIcon from '@mui/icons-material/FindInPageTwoTone';
 import ChevronRightTwoToneIcon from '@mui/icons-material/ChevronRightTwoTone';
 
 import { getAllCoursePaging } from '../../../../../Api/Course';
@@ -174,13 +172,12 @@ function HeaderSearch() {
                       <Hidden smDown>
                         <ListItemAvatar>
                           <Avatar
+                            src={datas.image}
                             sx={{
                               background: (theme) =>
                                 theme.palette.secondary.main
                             }}
-                          >
-                            <FindInPageTwoToneIcon />
-                          </Avatar>
+                          ></Avatar>
                         </ListItemAvatar>
                       </Hidden>
                       <Box flex="1">
@@ -202,7 +199,11 @@ function HeaderSearch() {
                               lighten(theme.palette.secondary.main, 0.5)
                           }}
                         >
-                          {datas.description}
+                          {parse(
+                            new String(
+                              datas.description.substring(3, 50)
+                            ).toString()
+                          )}
                         </Typography>
                       </Box>
                       <ChevronRightTwoToneIcon />

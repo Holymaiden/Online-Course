@@ -13,16 +13,16 @@ import DoneTwoToneIcon from '@mui/icons-material/DoneTwoTone';
 import Text from 'src/components/Text';
 import Label from 'src/components/Label';
 
-import {getCurrentUser} from  '../../../../../Api/Users'
+import { getCurrentUser } from '../../../../../Api/Users';
 import { useEffect, useState } from 'react';
 
 function EditProfileTab() {
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState('');
   useEffect(() => {
     getCurrentUser().then(function (result) {
       setUser(result);
-    })
-  }, [])
+    });
+  }, []);
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -76,9 +76,7 @@ function EditProfileTab() {
                 </Grid>
                 <Grid item xs={12} sm={8} md={9}>
                   <Box sx={{ maxWidth: { xs: 'auto', sm: 300 } }}>
-                    <Text style={{ color: '#ffffff' }}>
-                      {user.address}
-                    </Text>
+                    <Text style={{ color: '#ffffff' }}>{user.address}</Text>
                   </Box>
                 </Grid>
               </Grid>
@@ -136,9 +134,9 @@ function EditProfileTab() {
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={8} md={9}>
-                  <Label color={user.status==1 ? 'success' : 'error' }>
+                  <Label color={user.status == 1 ? 'success' : 'error'}>
                     <DoneTwoToneIcon fontSize="small" />
-                    <b>{user.status==1 ? 'Active' : 'Not Active' }</b>
+                    <b>{user.status == 1 ? 'Active' : 'Not Active'}</b>
                   </Label>
                 </Grid>
               </Grid>

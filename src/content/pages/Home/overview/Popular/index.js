@@ -104,9 +104,9 @@ function Popular() {
                       >
                         {parse(
                           new String(
-                            datas.description.substring(0, 50)
+                            datas.description.substring(3, 35)
                           ).toString()
-                        )}
+                        ) + '-'}
                       </Typography>
                     </Grid>
                   </Grid>
