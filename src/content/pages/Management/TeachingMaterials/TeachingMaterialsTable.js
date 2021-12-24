@@ -67,7 +67,6 @@ function Update(props) {
     course_id: '',
     title: '',
     content: '',
-    description: '',
     status: ''
   });
   useEffect(
@@ -77,7 +76,6 @@ function Update(props) {
         course_id: selectedValue.course_id,
         title: selectedValue.title,
         content: selectedValue.content,
-        description: selectedValue.description,
         status: selectedValue.status
       }),
     [open]
@@ -146,16 +144,6 @@ function Update(props) {
             defaultValue={selectedValue.title}
           />
         </div>
-        <TextField
-          id="outlined-multiline-flexible"
-          label="Description"
-          multiline
-          maxRows={5}
-          style={{ width: 470 }}
-          helperText="Please add your description"
-          onChange={(e) => setData({ ...data, description: e.target.value })}
-          defaultValue={selectedValue.description}
-        />
         <TextField
           id="outlined-select-status"
           select

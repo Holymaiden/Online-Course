@@ -29,7 +29,6 @@ function Create(props) {
     course_id: '',
     title: '',
     content: '',
-    description: '',
     status: ''
   });
 
@@ -118,15 +117,6 @@ function Create(props) {
             Choose Files
           </Button>
         </label>
-        <TextField
-          id="outlined-multiline-flexible"
-          label="Description"
-          multiline
-          maxRows={5}
-          style={{ width: 470 }}
-          helperText="Please add your description"
-          onChange={(e) => setData({ ...data, description: e.target.value })}
-        />
       </div>
       <Box mt={2} mb={2}>
         <Button

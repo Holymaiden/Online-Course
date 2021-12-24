@@ -38,7 +38,6 @@ async function createTeachingMaterial(data) {
   var formdata = new FormData();
   formdata.append('course_id', data.course_id);
   formdata.append('title', data.title);
-  formdata.append('description', data.description);
   formdata.append('video', data.content);
 
   const res = await fetch(`${API_SERVER}/admin/teachingMaterial`, {
@@ -56,7 +55,6 @@ async function updateTeachingMaterial(data) {
   var formdata = new FormData();
   formdata.append('course_id', data.course_id);
   formdata.append('title', data.title);
-  formdata.append('description', data.description);
   formdata.append('video', data.content);
   formdata.append('status', data.status);
 
