@@ -59,11 +59,12 @@ function Create(props) {
       TransitionComponent={Transition}
       sx={{
         '& .MuiTextField-root': { m: 2, width: '25ch' },
-        '& .MuiButton-root': { width: '10ch' }
+        '& .MuiButton-root': { width: '10ch' },
+        'text-align': '-webkit-center'
       }}
     >
       <DialogTitle>Create Teaching Material</DialogTitle>
-      <div style={{ marginLeft: 45 }}>
+      <div>
         <div>
           <TextField
             id="outlined-select-course"
@@ -89,15 +90,34 @@ function Create(props) {
             helperText="Please add your title"
           />
         </div>
-        <TextField
-          id="outlined-multiline-flexible"
-          label="Content"
-          multiline
-          maxRows={5}
-          style={{ width: 470 }}
-          helperText="Please add your content"
-          onChange={(e) => setData({ ...data, content: e.target.value })}
-        />
+
+        <label htmlFor="btn-upload">
+          <input
+            id="btn-upload"
+            name="content"
+            style={{
+              display: 'none',
+              marginBottom: '2ch',
+              width: 215,
+              height: 50
+            }}
+            type="file"
+            onChange={(e) => setData({ ...data, content: e.target.files[0] })}
+          />
+          <Button
+            style={{
+              marginBottom: '2ch',
+              width: 215,
+              height: 50,
+              marginLeft: '2ch'
+            }}
+            className="btn-choose"
+            variant="outlined"
+            component="span"
+          >
+            Choose Files
+          </Button>
+        </label>
         <TextField
           id="outlined-multiline-flexible"
           label="Description"

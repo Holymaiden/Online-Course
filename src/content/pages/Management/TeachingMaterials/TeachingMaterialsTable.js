@@ -26,7 +26,8 @@ import {
   TextField,
   Button,
   Slide,
-  Avatar
+  Avatar,
+  CardMedia
 } from '@mui/material';
 
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
@@ -112,11 +113,12 @@ function Update(props) {
       TransitionComponent={Transition}
       sx={{
         '& .MuiTextField-root': { m: 2, width: '25ch' },
-        '& .MuiButton-root': { width: '10ch' }
+        '& .MuiButton-root': { width: '10ch' },
+        'text-align': '-webkit-center'
       }}
     >
       <DialogTitle>Update Teaching Material</DialogTitle>
-      <div style={{ marginLeft: 45 }}>
+      <div>
         <div>
           <TextField
             id="outlined-select-course"
@@ -146,16 +148,6 @@ function Update(props) {
         </div>
         <TextField
           id="outlined-multiline-flexible"
-          label="Content"
-          multiline
-          maxRows={5}
-          style={{ width: 470 }}
-          helperText="Please add your content"
-          onChange={(e) => setData({ ...data, content: e.target.value })}
-          defaultValue={selectedValue.content}
-        />
-        <TextField
-          id="outlined-multiline-flexible"
           label="Description"
           multiline
           maxRows={5}
@@ -180,6 +172,32 @@ function Update(props) {
             </MenuItem>
           ))}
         </TextField>
+        <label htmlFor="btn-upload">
+          <input
+            id="btn-upload"
+            name="content"
+            style={{
+              display: 'none',
+              marginBottom: '2ch',
+              width: 215,
+              height: 50
+            }}
+            type="file"
+            onChange={(e) => setData({ ...data, content: e.target.files[0] })}
+          />
+          <Button
+            style={{
+              marginBottom: '2ch',
+              width: 215,
+              height: 50
+            }}
+            className="btn-choose"
+            variant="outlined"
+            component="span"
+          >
+            Choose Files
+          </Button>
+        </label>
       </div>
       <Box mt={2} mb={2}>
         <Button
@@ -401,10 +419,10 @@ const TeachingMaterialsTable = ({ datas }) => {
                   onChange={handleSelectAllDatas}
                 />
               </TableCell>
+              <TableCell>Content</TableCell>
               <TableCell>Course</TableCell>
               <TableCell>Category</TableCell>
               <TableCell>Title</TableCell>
-              <TableCell>Content</TableCell>
               <TableCell>description</TableCell>
               <TableCell align="right">Status</TableCell>
               <TableCell align="right">Actions</TableCell>
@@ -426,6 +444,15 @@ const TeachingMaterialsTable = ({ datas }) => {
                       checked={isTeachingMaterialsSelected}
                       onChange={(event) => handleSelectOneData(event, datas.id)}
                       value={isTeachingMaterialsSelected}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <CardMedia
+                      sx={{ width: 5 / 6, display: 'inline' }}
+                      component="video"
+                      controls
+                      src={datas.content}
+                      alt="camp"
                     />
                   </TableCell>
                   <TableCell>
@@ -459,17 +486,6 @@ const TeachingMaterialsTable = ({ datas }) => {
                       noWrap
                     >
                       {datas.title}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      variant="body1"
-                      fontWeight="bold"
-                      color="text.primary"
-                      gutterBottom
-                      noWrap
-                    >
-                      {datas.content}
                     </Typography>
                   </TableCell>
                   <TableCell>

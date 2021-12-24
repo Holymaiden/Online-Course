@@ -35,36 +35,38 @@ async function getBySlugTeachingMaterial(slug) {
 }
 
 async function createTeachingMaterial(data) {
+  var formdata = new FormData();
+  formdata.append('course_id', data.course_id);
+  formdata.append('title', data.title);
+  formdata.append('description', data.description);
+  formdata.append('video', data.content);
+
   const res = await fetch(`${API_SERVER}/admin/teachingMaterial`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      Accept: 'application/json',
       Authorization: authHeader()
     },
-    body: JSON.stringify({
-      course_id: data.course_id,
-      title: data.title,
-      content: data.content,
-      description: data.description
-    })
+    body: formdata
   });
   return res.json();
 }
 
 async function updateTeachingMaterial(data) {
+  var formdata = new FormData();
+  formdata.append('course_id', data.course_id);
+  formdata.append('title', data.title);
+  formdata.append('description', data.description);
+  formdata.append('video', data.content);
+  formdata.append('status', data.status);
+
   const res = await fetch(`${API_SERVER}/admin/teachingMaterial/` + data.id, {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json',
+      Accept: 'application/json',
       Authorization: authHeader()
     },
-    body: JSON.stringify({
-      course_id: data.course_id,
-      title: data.title,
-      content: data.content,
-      description: data.description,
-      status: data.status
-    })
+    body: formdata
   });
   return res.json();
 }
