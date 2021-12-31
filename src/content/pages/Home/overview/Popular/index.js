@@ -4,10 +4,11 @@ import parse from 'html-react-parser';
 
 import { getPopularCourse } from '../../../../../Api/Course';
 
-import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Popular() {
   const [popular, SetPopular] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPopularCourse(9).then(function (result) {
@@ -76,6 +77,7 @@ function Popular() {
                         component="img"
                         image={datas.image}
                         alt="camp"
+                        onClick={() => navigate('materi/' + datas.slug)}
                       />
                     </Grid>
                     <Grid xs={6} item>

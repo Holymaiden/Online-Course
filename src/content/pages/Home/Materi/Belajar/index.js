@@ -40,7 +40,7 @@ function Belajar() {
       component={Paper}
       sx={{ backgroundColor: '#ffffff', borderRadius: 2 }}
     >
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ maxWidth: 775 }} aria-label="simple table">
         <TableBody>
           {teaching.map((datas, index) => (
             <TableRow
