@@ -74,7 +74,7 @@ function ManagementUserProfile() {
             <RecentActivity />
           </Grid>
           <Grid item xs={12}>
-            <ManagementUserSettings />
+            <ManagementUserSettings user={user} />
           </Grid>
         </Grid>
       </Container>

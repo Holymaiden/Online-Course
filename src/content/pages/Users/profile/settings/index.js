@@ -14,7 +14,7 @@ const TabsWrapper = styled(Tabs)(
 `
 );
 
-function ManagementUserSettings() {
+function ManagementUserSettings({ user }) {
   const [currentTab, setCurrentTab] = useState('edit_profile');
 
   const tabs = [
@@ -43,7 +43,6 @@ function ManagementUserSettings() {
           scrollButtons="auto"
           textColor={'#FBD15B'}
           indicatorColor="primary"
-          
         >
           {tabs.map((tab) => (
             <Tab key={tab.value} label={tab.label} value={tab.value} />
@@ -51,7 +50,7 @@ function ManagementUserSettings() {
         </TabsWrapper>
       </Grid>
       <Grid item xs={12}>
-      {currentTab === 'edit_profile' && <EditProfileTab />}
+        {currentTab === 'edit_profile' && <EditProfileTab user={user} />}
         {currentTab === 'notifications' && <NotificationsTab />}
         {currentTab === 'security' && <SecurityTab />}
       </Grid>

@@ -5,24 +5,56 @@ import {
   Card,
   Box,
   Divider,
-  Button
+  Button,
+  Grow,
+  Container,
+  Modal,
+  Stack,
+  TextField
 } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DoneTwoToneIcon from '@mui/icons-material/DoneTwoTone';
 import Text from 'src/components/Text';
 import Label from 'src/components/Label';
 
-import { getCurrentUser } from '../../../../../Api/Users';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-function EditProfileTab() {
-  const [user, setUser] = useState('');
-  useEffect(() => {
-    getCurrentUser().then(function (result) {
-      setUser(result);
-    });
-  }, []);
+import * as Yup from 'yup';
+import { useFormik, Form, FormikProvider } from 'formik';
+
+function EditProfileTab({ user }) {
+  const [open, setOpen] = useState(false);
+
+  const PersonalSchema = Yup.object().shape({
+    username: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Username is required'),
+    birth: Yup.string().required('Birth is required'),
+    address: Yup.string().required('Address is required')
+  });
+
+  const formikPersonal = useFormik({
+    initialValues: {
+      username: '',
+      birth: '',
+      address: ''
+    },
+    validationSchema: PersonalSchema,
+    onSubmit: function (data) {
+      // createPeserta(data).then(function (result) {
+      //   navigate('/login', { replace: true });
+      // });
+    }
+  });
+
+  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } =
+    formikPersonal;
+
+  const classes = styles();
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -41,7 +73,11 @@ function EditProfileTab() {
                 Manage informations related to your personal details
               </Typography>
             </Box>
-            <Button sx={{ color: '#FBD15B' }} startIcon={<EditTwoToneIcon />}>
+            <Button
+              onClick={() => setOpen(true)}
+              sx={{ color: '#FBD15B' }}
+              startIcon={<EditTwoToneIcon />}
+            >
               Edit
             </Button>
           </Box>
@@ -196,8 +232,98 @@ function EditProfileTab() {
           </CardContent>
         </Card>
       </Grid>
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        closeAfterTransition
+        BackdropProps={{
+          timeout: 500
+        }}
+        fixed
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <Grow in={open}>
+          <Container maxWidth="lg">
+            <Box sx={style}>
+              <FormikProvider value={formikPersonal}>
+                <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+                  <Stack spacing={3}>
+                    <TextField
+                      fullWidth
+                      label="Username"
+                      sx={{
+                        input: { color: 'white' }
+                      }}
+                      className={classes.root}
+                      {...getFieldProps('username')}
+                      error={Boolean(touched.username && errors.username)}
+                      helperText={touched.username && errors.username}
+                    />
+
+                    <TextField
+                      fullWidth
+                      label="Birth"
+                      sx={{
+                        input: { color: 'white' }
+                      }}
+                      className={classes.root}
+                      {...getFieldProps('birth')}
+                      error={Boolean(touched.birth && errors.birth)}
+                      helperText={touched.birth && errors.birth}
+                    />
+                    <TextField
+                      fullWidth
+                      label="Address"
+                      sx={{
+                        input: { color: 'white' }
+                      }}
+                      className={classes.root}
+                      {...getFieldProps('address')}
+                      error={Boolean(touched.address && errors.address)}
+                      helperText={touched.address && errors.address}
+                    />
+                  </Stack>
+                </Form>
+              </FormikProvider>
+            </Box>
+          </Container>
+        </Grow>
+      </Modal>
     </Grid>
   );
 }
+
+const style = {
+  bgcolor: 'background.paper',
+  textAlign: 'center',
+  width: '100%',
+  height: '100%',
+  margin: 'auto',
+  borderRadius: 3,
+  p: 5
+};
+
+const styles = makeStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: 'white'
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white'
+      },
+      '&:hover fieldset': {
+        borderColor: 'white'
+      }
+    },
+    '& .MuiFormLabel-root': {
+      color: 'white'
+    }
+  }
+});
 
 export default EditProfileTab;
