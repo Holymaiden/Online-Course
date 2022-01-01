@@ -26,7 +26,6 @@ import {
   TextField,
   Button,
   Slide,
-  Avatar,
   CardMedia
 } from '@mui/material';
 
