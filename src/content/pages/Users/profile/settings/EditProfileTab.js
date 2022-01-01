@@ -13,6 +13,8 @@ import {
   TextField
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import MobileDatePicker from '@mui/lab/MobileDatePicker';
+import { LoadingButton } from '@mui/lab';
 
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DoneTwoToneIcon from '@mui/icons-material/DoneTwoTone';
@@ -22,9 +24,19 @@ import Label from 'src/components/Label';
 import { useState } from 'react';
 
 import * as Yup from 'yup';
-import { useFormik, Form, FormikProvider } from 'formik';
+import {
+  useFormik,
+  Form,
+  FormikProvider,
+  useFormikContext,
+  useField
+} from 'formik';
+
+import { updateUserProfile } from '../../../../../Api/Users';
+import { useAuth } from '../../../../../contexts/auth.context';
 
 function EditProfileTab({ user }) {
+  const { setUser } = useAuth();
   const [open, setOpen] = useState(false);
 
   const PersonalSchema = Yup.object().shape({
@@ -38,19 +50,27 @@ function EditProfileTab({ user }) {
 
   const formikPersonal = useFormik({
     initialValues: {
-      username: '',
-      birth: '',
-      address: ''
+      username: user.username,
+      birth: user.birth,
+      address: user.address
     },
     validationSchema: PersonalSchema,
     onSubmit: function (data) {
-      // createPeserta(data).then(function (result) {
-      //   navigate('/login', { replace: true });
-      // });
+      updateUserProfile(data).then(function (result) {
+        setProfile(result);
+      });
     }
   });
 
-  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } =
+  const setProfile = async (response) => {
+    let data = { ...response };
+    data = response.data;
+    setUser(data);
+    localStorage.setItem('user', data);
+    window.location.reload();
+  };
+
+  const { errors, touched, handleSubmit, isSubmitting, getFieldProps, values } =
     formikPersonal;
 
   const classes = styles();
@@ -258,23 +278,14 @@ function EditProfileTab({ user }) {
                       sx={{
                         input: { color: 'white' }
                       }}
+                      defaultValue={user.username}
                       className={classes.root}
                       {...getFieldProps('username')}
                       error={Boolean(touched.username && errors.username)}
                       helperText={touched.username && errors.username}
                     />
 
-                    <TextField
-                      fullWidth
-                      label="Birth"
-                      sx={{
-                        input: { color: 'white' }
-                      }}
-                      className={classes.root}
-                      {...getFieldProps('birth')}
-                      error={Boolean(touched.birth && errors.birth)}
-                      helperText={touched.birth && errors.birth}
-                    />
+                    <DatePickerField name="birth" className={classes.root} />
                     <TextField
                       fullWidth
                       label="Address"
@@ -282,10 +293,20 @@ function EditProfileTab({ user }) {
                         input: { color: 'white' }
                       }}
                       className={classes.root}
+                      defaultValue={user.address}
                       {...getFieldProps('address')}
                       error={Boolean(touched.address && errors.address)}
                       helperText={touched.address && errors.address}
                     />
+                    <LoadingButton
+                      fullWidth
+                      size="large"
+                      type="submit"
+                      variant="contained"
+                      loading={isSubmitting}
+                    >
+                      Update
+                    </LoadingButton>
                   </Stack>
                 </Form>
               </FormikProvider>
@@ -296,6 +317,22 @@ function EditProfileTab({ user }) {
     </Grid>
   );
 }
+
+const DatePickerField = ({ ...props }) => {
+  const { setFieldValue } = useFormikContext();
+  const [field] = useField(props);
+  return (
+    <MobileDatePicker
+      {...field}
+      {...props}
+      selected={(field.value && new Date(field.value)) || null}
+      onChange={(val) => {
+        setFieldValue(field.name, val);
+      }}
+      renderInput={(params) => <TextField {...params} />}
+    />
+  );
+};
 
 const style = {
   bgcolor: 'background.paper',
