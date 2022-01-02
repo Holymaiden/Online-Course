@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import PageHeader from './PageHeader';
 import Footer from 'src/components/Footer';
@@ -13,9 +13,22 @@ import Checklist from './Checklist';
 import Profile from './Profile';
 import TaskSearch from './TaskSearch';
 
+import { getCurrentUser } from '../../../Api/Users';
+import {
+  getTeachingMaterialCom,
+  getTeachingMaterialPen
+} from '../../../Api/TeachingMaterial';
 
 function DashboardTasks() {
+  const [user, setUser] = useState([]);
+  const [com, setCom] = useState(0);
+  const [pen, setPen] = useState(0);
 
+  useEffect(() => {
+    getCurrentUser().then((result) => setUser(result));
+    getTeachingMaterialCom().then((result) => setCom(result.data.count));
+    getTeachingMaterialPen().then((result) => setPen(result.data.count));
+  }, []);
 
   const [currentTab, setCurrentTab] = useState('analytics');
 
@@ -34,7 +47,7 @@ function DashboardTasks() {
         <title>Tasks Dashboard</title>
       </Helmet>
       <PageTitleWrapper>
-        <PageHeader />
+        <PageHeader user={user} />
       </PageTitleWrapper>
       <Container maxWidth="lg">
         <Grid
@@ -67,7 +80,7 @@ function DashboardTasks() {
                 <TasksAnalytics />
               </Grid>
               <Grid item xs={12} sm={6} md={4}>
-                <Performance />
+                <Performance teach={{ pen: pen, com: com }} />
               </Grid>
               <Grid item xs={12}>
                 <Projects />

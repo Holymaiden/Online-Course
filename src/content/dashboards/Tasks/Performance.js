@@ -64,9 +64,7 @@ const LinearProgressWrapper = styled(LinearProgress)(
 `
 );
 
-function Performance() {
-  
-
+function Performance({ teach }) {
   return (
     <RootWrapper sx={{ p: 1 }}>
       <CardHeader
@@ -79,9 +77,9 @@ function Performance() {
             <AssignmentTurnedInTwoToneIcon fontSize="large" />
           </AvatarSuccess>
           <Box>
-            <Typography variant="h1">23</Typography>
+            <Typography variant="h1">{teach.com}</Typography>
             <TypographySecondary variant="subtitle2" noWrap>
-              tasks created
+              tasks completed
             </TypographySecondary>
           </Box>
         </Box>
@@ -90,9 +88,9 @@ function Performance() {
             <CancelPresentationTwoToneIcon fontSize="large" />
           </AvatarError>
           <Box>
-            <Typography variant="h1">5</Typography>
+            <Typography variant="h1">{teach.pen}</Typography>
             <TypographySecondary variant="subtitle2" noWrap>
-              tasks closed
+              tasks pending
             </TypographySecondary>
           </Box>
         </Box>

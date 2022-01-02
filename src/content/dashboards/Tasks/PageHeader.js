@@ -1,14 +1,7 @@
 import { Typography, Avatar, Grid } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { useEffect, useState } from 'react';
-import { getCurrentUser } from '../../../Api/Users';
 
-function PageHeader() {
-  const [user, setUser] = useState([]);
-  useEffect(() => {
-    getCurrentUser().then((data) => setUser(data));
-  }, []);
-  user.avatar = '/static/images/avatars/1.jpg';
+function PageHeader({ user }) {
   const theme = useTheme();
 
   return (

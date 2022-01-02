@@ -94,6 +94,28 @@ async function getExistCourse(slug) {
   return res.json();
 }
 
+async function getTeachingMaterialCom() {
+  const res = await fetch(`${API_SERVER}/teachingMaterial/number/com`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader()
+    }
+  });
+  return res.json();
+}
+
+async function getTeachingMaterialPen() {
+  const res = await fetch(`${API_SERVER}/teachingMaterial/number/pen`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader()
+    }
+  });
+  return res.json();
+}
+
 export {
   getAllTeachingMaterial,
   createTeachingMaterial,
@@ -101,5 +123,7 @@ export {
   destroyTeachingMaterial,
   updateTeachingMaterial,
   getBySlugTeachingMaterial,
-  getExistCourse
+  getExistCourse,
+  getTeachingMaterialCom,
+  getTeachingMaterialPen
 };
