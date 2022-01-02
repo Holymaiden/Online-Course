@@ -22,13 +22,32 @@ import {
   TablePagination,
   TableRow,
   TableContainer,
-  useTheme
+  useTheme,
+  Grow,
+  Container,
+  Modal,
+  Stack,
+  TextField
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
+import { LoadingButton } from '@mui/lab';
+import Snack from '../../../Components/SnackBar';
 
 import DoneTwoToneIcon from '@mui/icons-material/DoneTwoTone';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import { format, subHours, subWeeks, subDays } from 'date-fns';
+
+import * as Yup from 'yup';
+import {
+  useFormik,
+  Form,
+  FormikProvider,
+  useFormikContext,
+  useField
+} from 'formik';
+
+import { updateUserPassword } from '../../../../../Api/Users';
 
 const ButtonError = styled(Button)(
   ({ theme }) => `
@@ -56,11 +75,12 @@ const AvatarWrapper = styled(Avatar)(
 `
 );
 
-function SecurityTab() {
+function SecurityTab({ user }) {
   const theme = useTheme();
 
   const [page, setPage] = useState(2);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [open, setOpen] = useState(false);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -70,6 +90,37 @@ function SecurityTab() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  const PasswordSchema = Yup.object().shape({
+    password: Yup.string()
+      .min(4, 'Too Short!')
+      .required('Password is required'),
+    passwordConfirmation: Yup.string().oneOf(
+      [Yup.ref('password'), null],
+      'Passwords must match'
+    )
+  });
+
+  const formikPassword = useFormik({
+    initialValues: {
+      password: '',
+      passwordConfirmation: ''
+    },
+    validationSchema: PasswordSchema,
+    onSubmit: function (data) {
+      updateUserPassword(data).then(function (result) {
+        if (result.code == 200) {
+          Snack.success('Berhasil Di Update');
+          window.location.reload();
+        } else {
+          Snack.error('Gagal Di Update');
+        }
+      });
+    }
+  });
+
+  const { errors, touched, handleSubmit, isSubmitting, getFieldProps, values } =
+    formikPassword;
 
   const logs = [
     {
@@ -108,6 +159,8 @@ function SecurityTab() {
       date: subWeeks(new Date(), 3).getTime()
     }
   ];
+
+  const classes = styles();
 
   return (
     <Grid container spacing={3}>
@@ -208,7 +261,12 @@ function SecurityTab() {
                 primary="Change Password"
                 secondary="You can change your password here"
               />
-              <Button color="success" size="large" variant="outlined">
+              <Button
+                onClick={() => setOpen(true)}
+                color="success"
+                size="large"
+                variant="outlined"
+              >
                 Change password
               </Button>
             </ListItem>
@@ -290,8 +348,101 @@ function SecurityTab() {
           </Box>
         </Card>
       </Grid>
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        closeAfterTransition
+        BackdropProps={{
+          timeout: 500
+        }}
+        fixed
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <Grow in={open}>
+          <Container maxWidth="lg">
+            <Box sx={style}>
+              <FormikProvider value={formikPassword}>
+                <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+                  <Stack spacing={3}>
+                    <TextField
+                      fullWidth
+                      label="Password"
+                      sx={{
+                        input: { color: 'white' }
+                      }}
+                      className={classes.root}
+                      {...getFieldProps('password')}
+                      error={Boolean(touched.password && errors.password)}
+                      helperText={touched.password && errors.password}
+                    />
+                    <TextField
+                      fullWidth
+                      label="Password Confirmation"
+                      sx={{
+                        input: { color: 'white' }
+                      }}
+                      className={classes.root}
+                      {...getFieldProps('passwordConfirmation')}
+                      error={Boolean(
+                        touched.passwordConfirmation &&
+                          errors.passwordConfirmation
+                      )}
+                      helperText={
+                        touched.passwordConfirmation &&
+                        errors.passwordConfirmation
+                      }
+                    />
+                    <LoadingButton
+                      fullWidth
+                      size="large"
+                      type="submit"
+                      variant="contained"
+                      loading={isSubmitting}
+                    >
+                      Update
+                    </LoadingButton>
+                  </Stack>
+                </Form>
+              </FormikProvider>
+            </Box>
+          </Container>
+        </Grow>
+      </Modal>
     </Grid>
   );
 }
+
+const style = {
+  bgcolor: 'background.paper',
+  textAlign: 'center',
+  width: '100%',
+  height: '100%',
+  margin: 'auto',
+  borderRadius: 3,
+  p: 5
+};
+
+const styles = makeStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: 'white'
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white'
+      },
+      '&:hover fieldset': {
+        borderColor: 'white'
+      }
+    },
+    '& .MuiFormLabel-root': {
+      color: 'white'
+    }
+  }
+});
 
 export default SecurityTab;

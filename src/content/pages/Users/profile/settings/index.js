@@ -52,7 +52,7 @@ function ManagementUserSettings({ user }) {
       <Grid item xs={12}>
         {currentTab === 'edit_profile' && <EditProfileTab user={user} />}
         {currentTab === 'notifications' && <NotificationsTab />}
-        {currentTab === 'security' && <SecurityTab />}
+        {currentTab === 'security' && <SecurityTab user={user} />}
       </Grid>
     </Grid>
   );
