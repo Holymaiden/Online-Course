@@ -67,7 +67,7 @@ async function updateUser(data) {
 
 async function updateUserProfile(data) {
   const res = await fetch(`${API_SERVER}/users`, {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader()
@@ -83,13 +83,27 @@ async function updateUserProfile(data) {
 
 async function updateUserEmail(data) {
   const res = await fetch(`${API_SERVER}/users/email`, {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authHeader()
     },
     body: JSON.stringify({
       email: data.email
+    })
+  });
+  return res.json();
+}
+
+async function updateUserPassword(data) {
+  const res = await fetch(`${API_SERVER}/users/password`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader()
+    },
+    body: JSON.stringify({
+      password: data.password
     })
   });
   return res.json();
@@ -123,5 +137,6 @@ export {
   getCurrentUser,
   createPeserta,
   updateUserProfile,
-  updateUserEmail
+  updateUserEmail,
+  updateUserPassword
 };
