@@ -15,6 +15,7 @@ import {
 import { makeStyles } from '@mui/styles';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import { LoadingButton } from '@mui/lab';
+import Snack from '../../../Components/SnackBar';
 
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DoneTwoToneIcon from '@mui/icons-material/DoneTwoTone';
@@ -57,7 +58,12 @@ function EditProfileTab({ user }) {
     validationSchema: PersonalSchema,
     onSubmit: function (data) {
       updateUserProfile(data).then(function (result) {
-        setProfile(result);
+        if (result.code == 200) {
+          Snack.success('Berhasil Di Update');
+          setProfile(result);
+        } else {
+          Snack.error('Gagal Di Update');
+        }
       });
     }
   });
