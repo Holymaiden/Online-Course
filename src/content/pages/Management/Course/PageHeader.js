@@ -21,6 +21,8 @@ import { getCurrentUser } from '../../../../Api/Users';
 import { createCourse } from '../../../../Api/Course';
 import { getAllCategory } from '../../../../Api/Category';
 
+import Snack from '../../Components/SnackBar';
+
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -90,8 +92,14 @@ function Create(props) {
     createCourse({ title, description, price, category, image }).then(function (
       result
     ) {
-      console.log(result);
-      window.location.reload();
+      if (result.code == 200) {
+        Snack.success('Berhasil DiBuat!');
+        window.location.reload();
+      } else if (result.code == 300) {
+        Snack.error('Gagal DiBuat!');
+      } else {
+        Snack.warning('Ada Yang Bermasalah!');
+      }
     });
   }
 

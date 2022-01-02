@@ -36,6 +36,8 @@ import DateTimePicker from '@mui/lab/DateTimePicker';
 import { updateSchedule, destroySchedule } from '../../../../Api/Schedule';
 import { getAllCourse } from '../../../../Api/Course';
 
+import Snack from '../../Components/SnackBar';
+
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -72,7 +74,14 @@ function Update(props) {
 
   function onUpdate(data) {
     updateSchedule(data).then(function (result) {
-      window.location.reload();
+      if (result.code == 200) {
+        Snack.success('Berhasil DiUpdate!');
+        window.location.reload();
+      } else if (result.code == 300) {
+        Snack.error('Gagal DiUpdate!');
+      } else {
+        Snack.warning('Ada Yang Bermasalah!');
+      }
     });
   }
 
@@ -254,7 +263,14 @@ const SchedulesTable = ({ datas }) => {
 
   function onDelete(id) {
     destroySchedule(id).then(function (result) {
-      window.location.reload();
+      if (result.code == 200) {
+        Snack.success('Berhasil DiHapus!');
+        window.location.reload();
+      } else if (result.code == 300) {
+        Snack.error('Gagal DiHapus!');
+      } else {
+        Snack.warning('Ada Yang Bermasalah!');
+      }
     });
   }
 

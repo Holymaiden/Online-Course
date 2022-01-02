@@ -35,6 +35,8 @@ import BulkActions from './BulkActions';
 
 import { updateUser, destroyUser } from '../../../../Api/Users';
 
+import Snack from '../../Components/SnackBar';
+
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -65,7 +67,14 @@ function Update(props) {
 
   function onUpdate(data) {
     updateUser(data).then(function (result) {
-      window.location.reload();
+      if (result.code == 200) {
+        Snack.success('Berhasil Di Update!');
+        window.location.reload();
+      } else if (result.code == 300) {
+        Snack.error('Gagal Di Update!');
+      } else {
+        Snack.warning('Ada Yang Bermasalah!');
+      }
     });
   }
 

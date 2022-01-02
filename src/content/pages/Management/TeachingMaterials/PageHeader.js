@@ -18,6 +18,8 @@ import { getCurrentUser } from '../../../../Api/Users';
 import { createTeachingMaterial } from '../../../../Api/TeachingMaterial';
 import { getAllCourse } from '../../../../Api/Course';
 
+import Snack from '../../Components/SnackBar';
+
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -45,7 +47,14 @@ function Create(props) {
 
   function onCreate(data) {
     createTeachingMaterial(data).then(function (result) {
-      window.location.reload();
+      if (result.code == 200) {
+        Snack.success('Berhasil Dibuat!');
+        window.location.reload();
+      } else if (result.code == 300) {
+        Snack.error('Gagal Dibuat!');
+      } else {
+        Snack.warning('Ada Yang Bermasalah!');
+      }
     });
   }
 

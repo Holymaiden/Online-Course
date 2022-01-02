@@ -14,6 +14,7 @@ import { forwardRef, useEffect, useState } from 'react';
 import { Box } from '@mui/system';
 
 import { createUser, getCurrentUser } from '../../../../Api/Users';
+import Snack from '../../Components/SnackBar';
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -32,7 +33,14 @@ function Create(props) {
 
   function onCreate({ username, password, email, avatar }) {
     createUser({ username, password, email, avatar }).then(function (result) {
-      window.location.reload();
+      if (result.code == 200) {
+        Snack.success('Berhasil Di Update!');
+        window.location.reload();
+      } else if (result.code == 300) {
+        Snack.error('Gagal Di Update!');
+      } else {
+        Snack.warning('Ada Yang Bermasalah!');
+      }
     });
   }
   return (

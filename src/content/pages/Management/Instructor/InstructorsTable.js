@@ -41,6 +41,8 @@ import { getAllUser } from '../../../../Api/Users';
 import { getAllCourse } from '../../../../Api/Course';
 import Label from 'src/components/Label';
 
+import Snack from '../../Components/SnackBar';
+
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -85,7 +87,14 @@ function Update(props) {
 
   function onUpdate(data) {
     updateInstructor(data).then(function (result) {
-      window.location.reload();
+      if (result.code == 200) {
+        Snack.success('Berhasil DiUpdate!');
+        window.location.reload();
+      } else if (result.code == 300) {
+        Snack.error('Gagal DiUpdate!');
+      } else {
+        Snack.warning('Ada Yang Bermasalah!');
+      }
     });
   }
 
@@ -303,7 +312,14 @@ const InstructorsTable = ({ datas }) => {
 
   function onDelete(id) {
     destroyInstructor(id).then(function (result) {
-      window.location.reload();
+      if (result.code == 200) {
+        Snack.success('Berhasil DiHapus!');
+        window.location.reload();
+      } else if (result.code == 300) {
+        Snack.error('Gagal DiHapus!');
+      } else {
+        Snack.warning('Ada Yang Bermasalah!');
+      }
     });
   }
 

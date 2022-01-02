@@ -41,6 +41,8 @@ import { updateCourse, destroyCourse } from '../../../../Api/Course';
 import { getAllCategory } from '../../../../Api/Category';
 import Label from 'src/components/Label';
 
+import Snack from '../../Components/SnackBar';
+
 const statuss = [
   {
     id: 1,
@@ -140,7 +142,14 @@ function Update(props) {
 
   function onUpdate(data) {
     updateCourse(data).then(function (result) {
-      window.location.reload();
+      if (result.code == 200) {
+        Snack.success('Berhasil DiUpdate!');
+        window.location.reload();
+      } else if (result.code == 300) {
+        Snack.error('Gagal DiUpdate!');
+      } else {
+        Snack.warning('Ada Yang Bermasalah!');
+      }
     });
   }
 
@@ -418,7 +427,14 @@ const CoursesTable = ({ datas }) => {
 
   function onDelete(id) {
     destroyCourse(id).then(function (result) {
-      window.location.reload();
+      if (result.code == 200) {
+        Snack.success('Berhasil Dihapus!');
+        window.location.reload();
+      } else if (result.code == 300) {
+        Snack.error('Gagal Dihapus!');
+      } else {
+        Snack.warning('Ada Yang Bermasalah!');
+      }
     });
   }
 
