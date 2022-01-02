@@ -34,10 +34,10 @@ function Create(props) {
   function onCreate({ username, password, email, avatar }) {
     createUser({ username, password, email, avatar }).then(function (result) {
       if (result.code == 200) {
-        Snack.success('Berhasil Di Update!');
+        Snack.success('Berhasil Dibuat!');
         window.location.reload();
       } else if (result.code == 300) {
-        Snack.error('Gagal Di Update!');
+        Snack.error('Gagal Dibuat!');
       } else {
         Snack.warning('Ada Yang Bermasalah!');
       }

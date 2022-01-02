@@ -270,7 +270,14 @@ const UsersTable = ({ datas }) => {
 
   function onDelete(id) {
     destroyUser({ id }).then(function (result) {
-      window.location.reload();
+      if (result.code == 200) {
+        Snack.success('Berhasil dihapus!');
+        window.location.reload();
+      } else if (result.code == 300) {
+        Snack.error('Gagal dihapus!');
+      } else {
+        Snack.warning('Ada Yang Bermasalah!');
+      }
     });
   }
 

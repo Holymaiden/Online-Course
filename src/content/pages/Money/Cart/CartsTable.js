@@ -38,6 +38,8 @@ import { getAllCourse } from '../../../../Api/Course';
 import { getAllUser } from '../../../../Api/Users';
 import Label from 'src/components/Label';
 
+import Snack from '../../Components/SnackBar';
+
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -78,7 +80,14 @@ function Update(props) {
 
   function onUpdate(data) {
     updateCart(data).then(function (result) {
-      window.location.reload();
+      if (result.code == 200) {
+        Snack.success('Berhasil Di Update!');
+        window.location.reload();
+      } else if (result.code == 300) {
+        Snack.error('Gagal Di Update!');
+      } else {
+        Snack.warning('Ada Yang Bermasalah!');
+      }
     });
   }
 
@@ -291,7 +300,14 @@ const CartsTable = ({ datas }) => {
 
   function onDelete(id) {
     destroyCart(id).then(function (result) {
-      window.location.reload();
+      if (result.code == 200) {
+        Snack.success('Berhasil Dihapus!');
+        window.location.reload();
+      } else if (result.code == 300) {
+        Snack.error('Gagal Dihapus!');
+      } else {
+        Snack.warning('Ada Yang Bermasalah!');
+      }
     });
   }
 
