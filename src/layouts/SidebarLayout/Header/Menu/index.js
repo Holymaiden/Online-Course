@@ -78,7 +78,7 @@ function HeaderMenu() {
     <>
       <ListWrapper>
         <List disablePadding component={Box} display="flex">
-          <ListItem
+          {/* <ListItem
             classes={{ root: 'MuiListItem-indicators' }}
             button
             component={NavLink}
@@ -87,17 +87,6 @@ function HeaderMenu() {
             <ListItemText
               primaryTypographyProps={{ noWrap: true }}
               primary="Buttons"
-            />
-          </ListItem>
-          <ListItem
-            classes={{ root: 'MuiListItem-indicators' }}
-            button
-            component={NavLink}
-            to="/components/forms"
-          >
-            <ListItemText
-              primaryTypographyProps={{ noWrap: true }}
-              primary="Forms"
             />
           </ListItem>
           <ListItem
@@ -117,44 +106,13 @@ function HeaderMenu() {
                 </Box>
               }
             />
-          </ListItem>
+          </ListItem> */}
         </List>
       </ListWrapper>
       <Menu anchorEl={ref.current} onClose={handleClose} open={isOpen}>
-        <MenuItem sx={{ px: 3 }} component={NavLink} to="/overview">
+        {/* <MenuItem sx={{ px: 3 }} component={NavLink} to="/overview">
           Overview
-        </MenuItem>
-        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/tabs">
-          Tabs
-        </MenuItem>
-        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/cards">
-          Cards
-        </MenuItem>
-        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/modals">
-          Modals
-        </MenuItem>
-        <MenuItem
-          sx={{ px: 3 }}
-          component={NavLink}
-          to="/components/accordions"
-        >
-          Accordions
-        </MenuItem>
-        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/tabs">
-          Tabs
-        </MenuItem>
-        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/badges">
-          Badges
-        </MenuItem>
-        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/tooltips">
-          Tooltips
-        </MenuItem>
-        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/avatars">
-          Avatars
-        </MenuItem>
-        <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/cards">
-          Cards
-        </MenuItem>
+        </MenuItem> */}
       </Menu>
     </>
   );
