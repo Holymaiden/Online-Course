@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import 'nprogress/nprogress.css';
 import { SidebarProvider } from './contexts/SidebarContext';
+import { SnackbarUtilsConfigurator } from 'src/content/pages/Components/SnackBar';
 import { AuthProvider } from './contexts/auth.context';
 import { SnackbarProvider } from 'notistack';
 
@@ -18,6 +19,7 @@ ReactDOM.render(
       <SidebarProvider>
         <BrowserRouter>
           <SnackbarProvider>
+            <SnackbarUtilsConfigurator />
             <App />
           </SnackbarProvider>
         </BrowserRouter>
