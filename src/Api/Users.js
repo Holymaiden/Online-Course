@@ -81,6 +81,20 @@ async function updateUserProfile(data) {
   return res.json();
 }
 
+async function updateUserEmail(data) {
+  const res = await fetch(`${API_SERVER}/users/email`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader()
+    },
+    body: JSON.stringify({
+      email: data.email
+    })
+  });
+  return res.json();
+}
+
 async function destroyUser({ id }) {
   const res = await fetch(`${API_SERVER}/admin/user/destroy/` + id, {
     method: 'PUT',
@@ -108,5 +122,6 @@ export {
   updateUser,
   getCurrentUser,
   createPeserta,
-  updateUserProfile
+  updateUserProfile,
+  updateUserEmail
 };

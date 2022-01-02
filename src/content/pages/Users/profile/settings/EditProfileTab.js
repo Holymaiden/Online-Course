@@ -33,12 +33,13 @@ import {
   useField
 } from 'formik';
 
-import { updateUserProfile } from '../../../../../Api/Users';
+import { updateUserProfile, updateUserEmail } from '../../../../../Api/Users';
 import { useAuth } from '../../../../../contexts/auth.context';
 
 function EditProfileTab({ user }) {
   const { setUser } = useAuth();
   const [open, setOpen] = useState(false);
+  const [open1, setOpen1] = useState(false);
 
   const PersonalSchema = Yup.object().shape({
     username: Yup.string()
@@ -47,6 +48,10 @@ function EditProfileTab({ user }) {
       .required('Username is required'),
     birth: Yup.string().required('Birth is required'),
     address: Yup.string().required('Address is required')
+  });
+
+  const EmailSchema = Yup.object().shape({
+    email: Yup.string().email().required('Email is required')
   });
 
   const formikPersonal = useFormik({
@@ -58,6 +63,23 @@ function EditProfileTab({ user }) {
     validationSchema: PersonalSchema,
     onSubmit: function (data) {
       updateUserProfile(data).then(function (result) {
+        if (result.code == 200) {
+          Snack.success('Berhasil Di Update');
+          setProfile(result);
+        } else {
+          Snack.error('Gagal Di Update');
+        }
+      });
+    }
+  });
+
+  const formikEmail = useFormik({
+    initialValues: {
+      email: user.email
+    },
+    validationSchema: EmailSchema,
+    onSubmit: function (data) {
+      updateUserEmail(data).then(function (result) {
         if (result.code == 200) {
           Snack.success('Berhasil Di Update');
           setProfile(result);
@@ -222,7 +244,11 @@ function EditProfileTab({ user }) {
                 Manage details related to your associated email addresses
               </Typography>
             </Box>
-            <Button sx={{ color: '#FBD15B' }} startIcon={<EditTwoToneIcon />}>
+            <Button
+              onClick={() => setOpen1(true)}
+              sx={{ color: '#FBD15B' }}
+              startIcon={<EditTwoToneIcon />}
+            >
               Edit
             </Button>
           </Box>
@@ -310,6 +336,62 @@ function EditProfileTab({ user }) {
                       type="submit"
                       variant="contained"
                       loading={isSubmitting}
+                    >
+                      Update
+                    </LoadingButton>
+                  </Stack>
+                </Form>
+              </FormikProvider>
+            </Box>
+          </Container>
+        </Grow>
+      </Modal>
+      <Modal
+        open={open1}
+        onClose={() => setOpen(false)}
+        closeAfterTransition
+        BackdropProps={{
+          timeout: 500
+        }}
+        fixed
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <Grow in={open1}>
+          <Container maxWidth="lg">
+            <Box sx={style}>
+              <FormikProvider value={formikEmail}>
+                <Form
+                  autoComplete="off"
+                  noValidate
+                  onSubmit={formikEmail.handleSubmit}
+                >
+                  <Stack spacing={3}>
+                    <TextField
+                      fullWidth
+                      label="Email"
+                      sx={{
+                        input: { color: 'white' }
+                      }}
+                      defaultValue={user.email}
+                      className={classes.root}
+                      {...formikEmail.getFieldProps('email')}
+                      error={Boolean(
+                        formikEmail.touched.email && formikEmail.errors.email
+                      )}
+                      helperText={
+                        formikEmail.touched.email && formikEmail.errors.email
+                      }
+                    />
+                    <LoadingButton
+                      fullWidth
+                      size="large"
+                      type="submit"
+                      variant="contained"
+                      loading={formikEmail.isSubmitting}
                     >
                       Update
                     </LoadingButton>
