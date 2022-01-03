@@ -21,12 +21,7 @@ import Belajar from '../Belajar';
 import { useNavigate, useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 
-import {
-  varFadeInUp,
-  varFadeInDown,
-  varFadeInLeft,
-  MotionInView
-} from '../../../../../components/animate';
+import { varFadeInLeft, MotionInView } from '../../../../../components/animate';
 
 function Content() {
   const { useMateri } = useParams();

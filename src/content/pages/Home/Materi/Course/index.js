@@ -21,6 +21,12 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import { useEffect, useState } from 'react';
 import { Box } from '@mui/system';
 
+import {
+  varFadeInUp,
+  varFadeInDown,
+  MotionInView
+} from '../../../../../components/animate';
+
 function Course() {
   const navigate = useNavigate();
   const [popular, SetPopular] = useState([]);
@@ -44,183 +50,189 @@ function Course() {
         container
       >
         <Grid item xs={12}>
-          <Typography
-            fontWeight="medium"
-            textAlign="center"
-            sx={{
-              fontSize: {
-                lg: 45,
-                md: 40,
-                sm: 35,
-                xs: 30,
-                color: `#5A47AB`
-              }
-            }}
-          >
-            Kursus Lainnya
-          </Typography>
+          <MotionInView variants={varFadeInDown}>
+            <Typography
+              fontWeight="medium"
+              textAlign="center"
+              sx={{
+                fontSize: {
+                  lg: 45,
+                  md: 40,
+                  sm: 35,
+                  xs: 30,
+                  color: `#5A47AB`
+                }
+              }}
+            >
+              Kursus Lainnya
+            </Typography>
+          </MotionInView>
         </Grid>
         <Grid item xs={12}>
-          <Grid container>
-            {popular
-              ? popular.map((datas) => (
-                  <Grid
-                    xs={12}
-                    lg={2.6}
-                    mt={5}
-                    mx={2}
-                    item
-                    border={1}
-                    borderColor="#F2F2F2"
-                  >
-                    <CardActionArea
-                      onClick={() => {
-                        navigate('/materi/' + datas.slug);
-                      }}
+          <MotionInView variants={varFadeInUp}>
+            <Grid container>
+              {popular
+                ? popular.map((datas) => (
+                    <Grid
+                      xs={12}
+                      lg={2.6}
+                      mt={5}
+                      mx={2}
+                      item
+                      border={1}
+                      borderColor="#F2F2F2"
                     >
-                      <CardMedia
-                        component="img"
-                        sx={{ maxWidth: 255, maxHeight: 146 }}
-                        image={
-                          datas.image
-                            ? datas.image
-                            : '/static/images/overview/anu.svg'
-                        }
-                        alt="camp"
-                      />
-                      <CardContent>
-                        <Typography
-                          textAlign="left"
-                          sx={{
-                            fontSize: {
-                              lg: 12,
-                              sm: 8,
-                              color: `#796F6F`
-                            },
-                            mb: 1
-                          }}
-                        >
-                          {datas.category_title}
-                        </Typography>
-                        <Typography
-                          textAlign="left"
-                          sx={{
-                            fontSize: {
-                              lg: 15,
-                              sm: 10,
-                              color: `#5A47AB`
-                            },
-                            fontWeight: 'bold'
-                          }}
-                        >
-                          {datas.title} - HTML
-                        </Typography>
-                        <Typography
-                          textAlign="left"
-                          sx={{
-                            fontSize: {
-                              lg: 15,
-                              sm: 8,
-                              color: `#796F6F`
-                            }
-                          }}
-                        >
-                          {datas.username}
-                        </Typography>
-                      </CardContent>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          pl: 1.7
+                      <CardActionArea
+                        onClick={() => {
+                          navigate('/materi/' + datas.slug);
                         }}
                       >
-                        <PaymentIcon
-                          style={{
-                            color: '#5A47AB'
-                          }}
+                        <CardMedia
+                          component="img"
+                          sx={{ maxWidth: 255, maxHeight: 146 }}
+                          image={
+                            datas.image
+                              ? datas.image
+                              : '/static/images/overview/anu.svg'
+                          }
+                          alt="camp"
                         />
-                        <Typography
-                          sx={{
-                            fontSize: {
-                              lg: 12,
-                              sm: 8,
-                              color: `#5A47AB`
-                            },
-                            pl: 0.5
-                          }}
-                        >
-                          Rp. {datas.price.toLocaleString()}
-                        </Typography>
-                      </Box>
-                      <CardActions sx={{ justifyContent: 'space-between' }}>
+                        <CardContent>
+                          <Typography
+                            textAlign="left"
+                            sx={{
+                              fontSize: {
+                                lg: 12,
+                                sm: 8,
+                                color: `#796F6F`
+                              },
+                              mb: 1
+                            }}
+                          >
+                            {datas.category_title}
+                          </Typography>
+                          <Typography
+                            textAlign="left"
+                            sx={{
+                              fontSize: {
+                                lg: 15,
+                                sm: 10,
+                                color: `#5A47AB`
+                              },
+                              fontWeight: 'bold'
+                            }}
+                          >
+                            {datas.title} - HTML
+                          </Typography>
+                          <Typography
+                            textAlign="left"
+                            sx={{
+                              fontSize: {
+                                lg: 15,
+                                sm: 8,
+                                color: `#796F6F`
+                              }
+                            }}
+                          >
+                            {datas.username}
+                          </Typography>
+                        </CardContent>
                         <Box
                           sx={{
                             display: 'flex',
                             alignItems: 'center',
-                            pl: 0.7
+                            pl: 1.7
                           }}
                         >
-                          <AccessTimeIcon style={{ color: '#796F6F' }} />
+                          <PaymentIcon
+                            style={{
+                              color: '#5A47AB'
+                            }}
+                          />
                           <Typography
                             sx={{
                               fontSize: {
                                 lg: 12,
                                 sm: 8,
-                                color: '#796F6F'
+                                color: `#5A47AB`
                               },
                               pl: 0.5
                             }}
                           >
-                            3 hr
+                            Rp. {datas.price.toLocaleString()}
                           </Typography>
                         </Box>
-                        <Box
-                          sx={{
-                            display: 'flex',
-                            alignItems: 'center'
-                          }}
-                        >
-                          <LocalActivityIcon style={{ color: '#23BA29' }} />
-                          <Typography
+                        <CardActions sx={{ justifyContent: 'space-between' }}>
+                          <Box
                             sx={{
-                              fontSize: {
-                                lg: 12,
-                                sm: 8,
-                                color: `#23BA29`
-                              },
-                              pl: 0.5
+                              display: 'flex',
+                              alignItems: 'center',
+                              pl: 0.7
                             }}
                           >
-                            4.5
-                          </Typography>
-                          <Typography
+                            <AccessTimeIcon style={{ color: '#796F6F' }} />
+                            <Typography
+                              sx={{
+                                fontSize: {
+                                  lg: 12,
+                                  sm: 8,
+                                  color: '#796F6F'
+                                },
+                                pl: 0.5
+                              }}
+                            >
+                              3 hr
+                            </Typography>
+                          </Box>
+                          <Box
                             sx={{
-                              fontSize: {
-                                lg: 12,
-                                sm: 8,
-                                color: '#796F6F'
-                              },
-                              pl: 0.5
+                              display: 'flex',
+                              alignItems: 'center'
                             }}
                           >
-                            (300)
-                          </Typography>
-                        </Box>
-                      </CardActions>
-                    </CardActionArea>
-                  </Grid>
-                ))
-              : null}
-          </Grid>
+                            <LocalActivityIcon style={{ color: '#23BA29' }} />
+                            <Typography
+                              sx={{
+                                fontSize: {
+                                  lg: 12,
+                                  sm: 8,
+                                  color: `#23BA29`
+                                },
+                                pl: 0.5
+                              }}
+                            >
+                              4.5
+                            </Typography>
+                            <Typography
+                              sx={{
+                                fontSize: {
+                                  lg: 12,
+                                  sm: 8,
+                                  color: '#796F6F'
+                                },
+                                pl: 0.5
+                              }}
+                            >
+                              (300)
+                            </Typography>
+                          </Box>
+                        </CardActions>
+                      </CardActionArea>
+                    </Grid>
+                  ))
+                : null}
+            </Grid>
+          </MotionInView>
         </Grid>
-        <Button
-          variant="contained"
-          sx={{ mt: 5 }}
-          onClick={() => navigate('/kursus')}
-        >
-          Selengkapnya
-        </Button>
+        <MotionInView variants={varFadeInUp}>
+          <Button
+            variant="contained"
+            sx={{ mt: 5 }}
+            onClick={() => navigate('/kursus')}
+          >
+            Selengkapnya
+          </Button>
+        </MotionInView>
       </Grid>
     </Container>
   );
