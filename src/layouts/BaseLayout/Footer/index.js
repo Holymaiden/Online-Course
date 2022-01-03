@@ -1,5 +1,6 @@
 import { Box, Container, IconButton, Link, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { motion } from 'framer-motion';
 
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -9,6 +10,13 @@ import GoogleIcon from '@mui/icons-material/Google';
 
 import { getPopularCategory } from '../../../Api/Category';
 import { useEffect, useState } from 'react';
+
+import {
+  varFadeInRight,
+  varFadeInLeft,
+  varFadeInUp,
+  MotionInView
+} from '../../../components/animate';
 
 const FooterWrapper = styled(Box)(
   ({ theme }) => `
@@ -29,9 +37,16 @@ function Footer() {
     <FooterWrapper sx={{ p: 2, borderTop: 2, paddingTop: 5 }}>
       <Container maxWidth="lg">
         <Box>
-          <Typography color="#5A47AB" variant="h1" component="div" gutterBottom>
-            Online Course Maiden
-          </Typography>
+          <MotionInView variants={varFadeInLeft}>
+            <Typography
+              color="#5A47AB"
+              variant="h1"
+              component="div"
+              gutterBottom
+            >
+              Online Course Maiden
+            </Typography>
+          </MotionInView>
         </Box>
         <Box
           py={3}
@@ -41,69 +56,75 @@ function Footer() {
           justifyContent="space-between"
         >
           <Box>
-            <Typography variant="subtitle1" color="#796F6F">
-              Ini Merupakan Web Kursus Online Teknologi Modern
-              <br />
-              Terdapat Beberapa Materi Seperti Desain Grafis, Jaringan, <br />
-              Web, Mobile, dan Lain Sebagainya
-            </Typography>
+            <MotionInView variants={varFadeInLeft}>
+              <Typography variant="subtitle1" color="#796F6F">
+                Ini Merupakan Web Kursus Online Teknologi Modern
+                <br />
+                Terdapat Beberapa Materi Seperti Desain Grafis, Jaringan, <br />
+                Web, Mobile, dan Lain Sebagainya
+              </Typography>
+            </MotionInView>
           </Box>
-          <Box display={{ xs: 'block', md: 'flex' }}>
-            <Box>
-              <Typography
-                sx={{ pt: { xs: 2, md: 0 }, mb: 1, mr: 10 }}
-                variant="subtitle1"
-                color="#5A47AB"
-              >
-                Page 1
-              </Typography>
-              <Typography>Page 2</Typography>
-              <Typography>Page 2</Typography>
-              <Typography>Page 2</Typography>
+          <MotionInView variants={varFadeInUp}>
+            <Box display={{ xs: 'block', md: 'flex' }}>
+              <Box>
+                <Typography
+                  sx={{ pt: { xs: 2, md: 0 }, mb: 1, mr: 10 }}
+                  variant="subtitle1"
+                  color="#5A47AB"
+                >
+                  Page 1
+                </Typography>
+                <Typography>Page 2</Typography>
+                <Typography>Page 2</Typography>
+                <Typography>Page 2</Typography>
+              </Box>
+              <Box>
+                <Typography
+                  sx={{ pt: { xs: 2, md: 0 }, mb: 1, mr: 10 }}
+                  variant="subtitle1"
+                  color="#5A47AB"
+                >
+                  Category
+                </Typography>
+                {Popular
+                  ? Popular.map((datas) => (
+                      <Typography>{datas.category}</Typography>
+                    ))
+                  : null}
+              </Box>
+              <Box>
+                <Typography
+                  sx={{ pt: { xs: 2, md: 0 }, mb: 1, mr: 10 }}
+                  variant="subtitle1"
+                  color="#5A47AB"
+                >
+                  Page 1
+                </Typography>
+                <Typography>Page 2</Typography>
+                <Typography>Page 2</Typography>
+                <Typography>Page 2</Typography>
+              </Box>
             </Box>
-            <Box>
-              <Typography
-                sx={{ pt: { xs: 2, md: 0 }, mb: 1, mr: 10 }}
-                variant="subtitle1"
-                color="#5A47AB"
-              >
-                Category
-              </Typography>
-              {Popular
-                ? Popular.map((datas) => (
-                    <Typography>{datas.category}</Typography>
-                  ))
-                : null}
-            </Box>
-            <Box>
-              <Typography
-                sx={{ pt: { xs: 2, md: 0 }, mb: 1, mr: 10 }}
-                variant="subtitle1"
-                color="#5A47AB"
-              >
-                Page 1
-              </Typography>
-              <Typography>Page 2</Typography>
-              <Typography>Page 2</Typography>
-              <Typography>Page 2</Typography>
-            </Box>
-          </Box>
+          </MotionInView>
         </Box>
-        <IconButton aria-label="LinkedIn" size="large" color="primary">
-          <LinkedInIcon />
-        </IconButton>
-        <IconButton aria-label="Twitter" size="large" color="primary">
-          <TwitterIcon />
-        </IconButton>
-        <IconButton aria-label="Facebook" size="large" color="primary">
-          <FacebookIcon />
-        </IconButton>
-        <IconButton aria-label="Instagram" size="large" color="primary">
-          <InstagramIcon />
-        </IconButton>
-        <IconButton aria-label="Google" size="large" color="primary">
-          <GoogleIcon />
-        </IconButton>
+        <MotionInView variants={varFadeInRight}>
+          <IconButton aria-label="LinkedIn" size="large" color="primary">
+            <LinkedInIcon />
+          </IconButton>
+          <IconButton aria-label="Twitter" size="large" color="primary">
+            <TwitterIcon />
+          </IconButton>
+          <IconButton aria-label="Facebook" size="large" color="primary">
+            <FacebookIcon />
+          </IconButton>
+          <IconButton aria-label="Instagram" size="large" color="primary">
+            <InstagramIcon />
+          </IconButton>
+          <IconButton aria-label="Google" size="large" color="primary">
+            <GoogleIcon />
+          </IconButton>
+        </MotionInView>
       </Container>
     </FooterWrapper>
   );
