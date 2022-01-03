@@ -1,5 +1,4 @@
 import {
-  IconButton,
   CardMedia,
   Card,
   Container,
@@ -13,7 +12,6 @@ import {
   MenuItem,
   InputLabel,
   Pagination,
-  TablePagination,
   CardActionArea
 } from '@mui/material';
 import { useEffect, useState } from 'react';

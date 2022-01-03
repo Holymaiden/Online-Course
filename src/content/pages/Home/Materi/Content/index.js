@@ -21,6 +21,13 @@ import Belajar from '../Belajar';
 import { useNavigate, useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 
+import {
+  varFadeInUp,
+  varFadeInDown,
+  varFadeInLeft,
+  MotionInView
+} from '../../../../../components/animate';
+
 function Content() {
   const { useMateri } = useParams();
   const [course, setCourse] = useState([]);
@@ -52,16 +59,18 @@ function Content() {
                 navigate('/materi/' + course.slug);
               }}
             >
-              <CardMedia
-                component="img"
-                sx={{ maxWidth: 775, maxHeight: 441 }}
-                image={
-                  course.image
-                    ? course.image
-                    : '/static/images/overview/anu.svg'
-                }
-                alt="camp"
-              />
+              <MotionInView variants={varFadeInLeft}>
+                <CardMedia
+                  component="img"
+                  sx={{ maxWidth: 775, maxHeight: 441 }}
+                  image={
+                    course.image
+                      ? course.image
+                      : '/static/images/overview/anu.svg'
+                  }
+                  alt="camp"
+                />
+              </MotionInView>
               <CardContent>
                 <Typography
                   textAlign="left"
