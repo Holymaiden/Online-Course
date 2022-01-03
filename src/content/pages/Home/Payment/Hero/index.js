@@ -19,6 +19,12 @@ import Total from './total';
 import { getCourseBySlug } from '../../../../../Api/Course';
 import { createPaymentTransaction } from '../../../../../Api/Transaction';
 
+import {
+  varFadeInLeft,
+  varFadeInRight,
+  MotionInView
+} from '../../../../../components/animate';
+
 function Hero() {
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -69,16 +75,18 @@ function Hero() {
   return (
     <Grid spacing={{ xs: 3 }} container>
       <Grid item sm={12}>
-        <Typography
-          sx={{
-            fontSize: {
-              lg: 30
-            },
-            color: `#FBD15B`
-          }}
-        >
-          Materi {course.title}
-        </Typography>
+        <MotionInView variants={varFadeInLeft}>
+          <Typography
+            sx={{
+              fontSize: {
+                lg: 30
+              },
+              color: `#FBD15B`
+            }}
+          >
+            Materi {course.title}
+          </Typography>
+        </MotionInView>
       </Grid>
       <Grid item sm={12}>
         <Divider />
@@ -96,24 +104,28 @@ function Hero() {
       />
       <Box width={'100%'} sx={{ ml: 3, mt: 5 }}>
         <Stack direction="row" justifyContent="space-between">
-          <Button
-            variant="outlined"
-            sx={{ color: 'white' }}
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            Previous
-          </Button>
-          <Button variant="contained" onClick={handlePayment}>
-            Pay Rp.{' '}
-            {discount.persentase
-              ? (
-                  course.price -
-                  course.price * (discount.persentase / 100)
-                ).toLocaleString()
-              : parseInt(course.price).toLocaleString()}
-          </Button>
+          <MotionInView variants={varFadeInLeft}>
+            <Button
+              variant="outlined"
+              sx={{ color: 'white' }}
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              Previous
+            </Button>
+          </MotionInView>
+          <MotionInView variants={varFadeInRight}>
+            <Button variant="contained" onClick={handlePayment}>
+              Pay Rp.{' '}
+              {discount.persentase
+                ? (
+                    course.price -
+                    course.price * (discount.persentase / 100)
+                  ).toLocaleString()
+                : parseInt(course.price).toLocaleString()}
+            </Button>
+          </MotionInView>
         </Stack>
       </Box>
     </Grid>

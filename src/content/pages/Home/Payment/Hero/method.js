@@ -10,6 +10,8 @@ import {
 
 import { useEffect, useState } from 'react';
 
+import { varFadeInLeft, MotionInView } from '../../../../../components/animate';
+
 function Method({ back }) {
   const [value, setValue] = useState(0);
 
@@ -30,94 +32,95 @@ function Method({ back }) {
 
   return (
     <Grid item sm={12} md={6} xs={{ pl: -20 }}>
-      <Typography
-        sx={{
-          fontSize: {
-            lg: 30
-          },
-          color: `#FBD15B`
-        }}
-      >
-        Payment
-      </Typography>
-      <Typography
-        sx={{
-          fontSize: {
-            lg: 15
-          }
-        }}
-      >
-        You'll be able to schedule this lesson after payment.
-      </Typography>
-
-      <Card sx={{ background: '#8572D7', mt: 4 }}>
-        <Box sx={{ m: 3 }}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              aria-label="basic tabs example"
-            >
-              <Tab
-                label="Credit Card"
-                {...a11yProps(0)}
-                onClick={() =>
-                  setPay({ wa: '', name: '', number: '', bank: '' })
-                }
-              />
-              <Tab
-                label="Phone"
-                {...a11yProps(1)}
-                onClick={() =>
-                  setPay({ wa: '', name: '', number: '', bank: '' })
-                }
-              />
-            </Tabs>
-          </Box>
-          <TabPanel value={value} index={0}>
-            <Box>
-              <Box marginBottom={2}>
-                <TextField
-                  sx={{ width: '100%' }}
-                  label="Nomor Rekening"
-                  variant="outlined"
-                  color="warning"
-                  onChange={(x) => setPay({ ...pay, number: x.target.value })}
+      <MotionInView variants={varFadeInLeft}>
+        <Typography
+          sx={{
+            fontSize: {
+              lg: 30
+            },
+            color: `#FBD15B`
+          }}
+        >
+          Payment
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: {
+              lg: 15
+            }
+          }}
+        >
+          You'll be able to schedule this lesson after payment.
+        </Typography>
+        <Card sx={{ background: '#8572D7', mt: 4 }}>
+          <Box sx={{ m: 3 }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="basic tabs example"
+              >
+                <Tab
+                  label="Credit Card"
+                  {...a11yProps(0)}
+                  onClick={() =>
+                    setPay({ wa: '', name: '', number: '', bank: '' })
+                  }
                 />
-              </Box>
-              <Box sx={{ flexDirection: 'row' }}>
-                <TextField
-                  sx={{
-                    width: { md: '47%', sm: '100%' },
-                    mr: { md: 3 },
-                    mb: 2
-                  }}
-                  color="warning"
-                  label="BANK"
-                  variant="outlined"
-                  onChange={(x) => setPay({ ...pay, bank: x.target.value })}
+                <Tab
+                  label="Phone"
+                  {...a11yProps(1)}
+                  onClick={() =>
+                    setPay({ wa: '', name: '', number: '', bank: '' })
+                  }
                 />
-                <TextField
-                  sx={{ width: { md: '47%', sm: '100%' } }}
-                  color="warning"
-                  label="Nama"
-                  variant="outlined"
-                  onChange={(x) => setPay({ ...pay, name: x.target.value })}
-                />
-              </Box>
+              </Tabs>
             </Box>
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <TextField
-              sx={{ width: '100%' }}
-              color="warning"
-              label="Whatsapp"
-              variant="outlined"
-              onChange={(x) => setPay({ ...pay, wa: x.target.value })}
-            />
-          </TabPanel>
-        </Box>
-      </Card>
+            <TabPanel value={value} index={0}>
+              <Box>
+                <Box marginBottom={2}>
+                  <TextField
+                    sx={{ width: '100%' }}
+                    label="Nomor Rekening"
+                    variant="outlined"
+                    color="warning"
+                    onChange={(x) => setPay({ ...pay, number: x.target.value })}
+                  />
+                </Box>
+                <Box sx={{ flexDirection: 'row' }}>
+                  <TextField
+                    sx={{
+                      width: { md: '47%', sm: '100%' },
+                      mr: { md: 3 },
+                      mb: 2
+                    }}
+                    color="warning"
+                    label="BANK"
+                    variant="outlined"
+                    onChange={(x) => setPay({ ...pay, bank: x.target.value })}
+                  />
+                  <TextField
+                    sx={{ width: { md: '47%', sm: '100%' } }}
+                    color="warning"
+                    label="Nama"
+                    variant="outlined"
+                    onChange={(x) => setPay({ ...pay, name: x.target.value })}
+                  />
+                </Box>
+              </Box>
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <TextField
+                sx={{ width: '100%' }}
+                color="warning"
+                label="Whatsapp"
+                variant="outlined"
+                onChange={(x) => setPay({ ...pay, wa: x.target.value })}
+              />
+            </TabPanel>
+          </Box>
+        </Card>
+      </MotionInView>
     </Grid>
   );
 }
