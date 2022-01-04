@@ -18,10 +18,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { findDiscountByUser } from '../../../../../Api/Discount';
 
 import {
-  varFadeInDown,
-  varFadeInUp,
   varFadeInRight,
-  varFadeInLeft,
   MotionInView
 } from '../../../../../components/animate';
 
@@ -86,10 +83,10 @@ function Total({ course, discount }) {
             <Card sx={{ p: 2 }}>
               <Stack direction="row" spacing={2}>
                 <Avatar
-                  sx={{ bgcolor: 'gray', p: 5 }}
+                  sx={{ m: 2 }}
                   variant="rounded"
-                  alt="f"
-                  src="ds"
+                  alt={course.title}
+                  src={course.image}
                 ></Avatar>
                 <Box>
                   <Button
