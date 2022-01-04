@@ -27,10 +27,15 @@ function LoginRoute({ children }) {
   let { user } = useAuth();
   let auth = false;
   if (user) {
-    return (auth = true);
+    let decoded = jwt.decode(user, { complete: true });
+    decoded.payload.data.role.forEach((element) => {
+      if (element.role_name === 'user') {
+        return (auth = true);
+      }
+    });
   }
 
-  return auth ? children : <Navigate to="/" replace />;
+  return auth ? children : <Navigate to="/login" replace />;
 }
 
 const Loader = (Component) => (props) =>
@@ -264,7 +269,11 @@ const routes = [
   },
   {
     path: 'payment',
-    element: <PaymentHome />
+    element: [
+      <LoginRoute>
+        <PaymentHome />
+      </LoginRoute>
+    ]
   }
 ];
 

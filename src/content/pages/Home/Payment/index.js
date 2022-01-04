@@ -1,4 +1,4 @@
-import { Card, Grid, Box, Container } from '@mui/material';
+import { Card, Box, Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import { Helmet } from 'react-helmet-async';
