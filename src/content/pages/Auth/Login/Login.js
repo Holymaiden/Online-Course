@@ -68,7 +68,7 @@ export default function Login() {
       </AuthLayout>
 
       <MHidden width="mdDown">
-        <SectionStyle sx={{ background: '#9585DA' }}>
+        <SectionStyle sx={{ background: '#8254e3' }}>
           <Typography
             variant="h3"
             sx={{ px: 5, mt: 10, mb: 5, color: '#ffffff' }}
