@@ -7,7 +7,7 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-
+import { makeStyles } from '@mui/styles';
 import { useEffect, useState } from 'react';
 
 import { varFadeInLeft, MotionInView } from '../../../../../components/animate';
@@ -30,6 +30,8 @@ function Method({ back }) {
     back(pay);
   }, [pay]);
 
+  const classes = styles();
+
   return (
     <Grid item sm={12} md={6} xs={{ pl: -20 }}>
       <MotionInView variants={varFadeInLeft}>
@@ -46,15 +48,21 @@ function Method({ back }) {
         <Typography
           sx={{
             fontSize: {
-              lg: 15
+              lg: 15,
+              color: 'white'
             }
           }}
         >
           You'll be able to schedule this lesson after payment.
         </Typography>
-        <Card sx={{ background: '#8572D7', mt: 4 }}>
+        <Card sx={{ background: '#634acc', mt: 4, borderRadius: 5 }}>
           <Box sx={{ m: 3 }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Box
+              sx={{
+                borderBottom: 1,
+                borderColor: 'divider'
+              }}
+            >
               <Tabs
                 value={value}
                 onChange={handleChange}
@@ -84,6 +92,7 @@ function Method({ back }) {
                     label="Nomor Rekening"
                     variant="outlined"
                     color="warning"
+                    className={classes.root}
                     onChange={(x) => setPay({ ...pay, number: x.target.value })}
                   />
                 </Box>
@@ -97,6 +106,7 @@ function Method({ back }) {
                     color="warning"
                     label="BANK"
                     variant="outlined"
+                    className={classes.root}
                     onChange={(x) => setPay({ ...pay, bank: x.target.value })}
                   />
                   <TextField
@@ -104,6 +114,7 @@ function Method({ back }) {
                     color="warning"
                     label="Nama"
                     variant="outlined"
+                    className={classes.root}
                     onChange={(x) => setPay({ ...pay, name: x.target.value })}
                   />
                 </Box>
@@ -115,6 +126,7 @@ function Method({ back }) {
                 color="warning"
                 label="Whatsapp"
                 variant="outlined"
+                className={classes.root}
                 onChange={(x) => setPay({ ...pay, wa: x.target.value })}
               />
             </TabPanel>
@@ -151,5 +163,25 @@ function a11yProps(index) {
     'aria-controls': `simple-tabpanel-${index}`
   };
 }
+
+const styles = makeStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: 'white'
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
+        borderRadius: 12
+      },
+      '&:hover fieldset': {
+        borderColor: 'white'
+      }
+    },
+    '& .MuiFormLabel-root': {
+      color: 'white'
+    }
+  }
+});
 
 export default Method;

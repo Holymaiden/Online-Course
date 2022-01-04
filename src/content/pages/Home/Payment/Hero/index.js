@@ -107,7 +107,7 @@ function Hero() {
           <MotionInView variants={varFadeInLeft}>
             <Button
               variant="outlined"
-              sx={{ color: 'white' }}
+              sx={{ color: 'white', borderRadius: 2, borderColor: 'white' }}
               onClick={() => {
                 navigate(-1);
               }}
@@ -116,7 +116,11 @@ function Hero() {
             </Button>
           </MotionInView>
           <MotionInView variants={varFadeInRight}>
-            <Button variant="contained" onClick={handlePayment}>
+            <Button
+              variant="contained"
+              sx={{ borderRadius: 2, background: '#FBD15B' }}
+              onClick={handlePayment}
+            >
               Pay Rp.{' '}
               {discount.persentase
                 ? (

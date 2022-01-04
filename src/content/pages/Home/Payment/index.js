@@ -28,8 +28,9 @@ function Payment() {
           sx={{
             p: 4,
             my: 5,
-            backgroundColor: `#5A47AB`,
-            height: '100%'
+            backgroundColor: `#8757e7`,
+            height: '100%',
+            borderRadius: 5
           }}
         >
           <Hero />
