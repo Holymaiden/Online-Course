@@ -58,7 +58,7 @@ function Hero() {
             </IconButton>
           )
         });
-        window.location.reload();
+        navigate(-1);
       } else {
         enqueueSnackbar('Transaction Failed', {
           variant: 'error',

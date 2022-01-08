@@ -199,8 +199,10 @@ Update.propTypes = {
 };
 
 const getStatusLabel = (Status) => {
-  if (!Status) {
+  if (!Status || Status == null) {
     Status = 2;
+  } else {
+    Status = 1;
   }
   const map = {
     1: {
