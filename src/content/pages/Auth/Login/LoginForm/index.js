@@ -19,6 +19,8 @@ import { makeStyles } from '@mui/styles';
 import { loginUser } from '../../../../../Api/auth';
 import { useAuth } from '../../../../../contexts/auth.context';
 
+import Snack from '../../../Components/SnackBar';
+
 // ----------------------------------------------------------------------
 
 const styles = makeStyles({
@@ -67,7 +69,8 @@ export default function LoginForm() {
     onSubmit: (data) => {
       loginUser(data).then(function (result) {
         if (result.error) {
-          return console.log(result.error);
+          Snack.error('Gagal Login!');
+          window.location.reload();
         } else {
           setProfile(result);
         }
