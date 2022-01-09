@@ -13,7 +13,9 @@ function TableDatas() {
   const datas = rows.map((data) => ({
     id: data.id,
     name: data.name,
-    account_number: data.account_number
+    account_number: data.account_number,
+    bank: data.bank,
+    phone: data.phone
   }));
 
   return (

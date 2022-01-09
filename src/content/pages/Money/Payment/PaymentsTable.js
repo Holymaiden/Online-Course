@@ -313,6 +313,7 @@ const PaymentsTable = ({ datas }) => {
               </TableCell>
               <TableCell>Name</TableCell>
               <TableCell align="center">Account Number</TableCell>
+              <TableCell align="center">Phone</TableCell>
               <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -349,6 +350,17 @@ const PaymentsTable = ({ datas }) => {
                       noWrap
                     >
                       {datas.account_number}
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Typography
+                      variant="body1"
+                      fontWeight="bold"
+                      color="text.primary"
+                      gutterBottom
+                      noWrap
+                    >
+                      {datas.phone}
                     </Typography>
                   </TableCell>
                   <TableCell align="right">
