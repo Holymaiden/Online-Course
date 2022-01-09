@@ -17,7 +17,8 @@ function TableDatas() {
     course_id: transaction.course_id,
     course: transaction.course,
     payment_id: transaction.payment_id,
-    payment: transaction.payment
+    payment: transaction.payment,
+    status: transaction.status
   }));
 
   return (

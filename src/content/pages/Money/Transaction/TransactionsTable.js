@@ -38,7 +38,7 @@ import {
   destroyTransaction
 } from '../../../../Api/Transaction';
 import { getAllUser } from '../../../../Api/Users';
-import { getAllUserCourse } from '../../../../Api/UserCourse';
+import { getAllCourse } from '../../../../Api/Course';
 import { getAllPayment } from '../../../../Api/Payment';
 
 import Label from 'src/components/Label';
@@ -58,7 +58,8 @@ function Update(props) {
     course_id: '',
     course: '',
     payment_id: '',
-    payment: ''
+    payment: '',
+    status: ''
   });
   useEffect(
     () =>
@@ -69,7 +70,8 @@ function Update(props) {
         course_id: selectedValue.course_id,
         course: selectedValue.course,
         payment_id: selectedValue.payment_id,
-        payment: selectedValue.payment
+        payment: selectedValue.payment,
+        status: selectedValue.status
       }),
     [open]
   );
@@ -87,7 +89,7 @@ function Update(props) {
   }, []);
 
   useEffect(() => {
-    getAllUserCourse().then(function (result) {
+    getAllCourse().then(function (result) {
       setCourses(result.data);
     });
   }, [data.user_id]);
@@ -152,13 +154,11 @@ function Update(props) {
             helperText="Please select your course"
             defaultValue={selectedValue.course_id}
           >
-            {courses.map((option) =>
-              option.user_id == data.user_id ? (
-                <MenuItem key={option.course_id} value={option.course_id}>
-                  {option.course}
-                </MenuItem>
-              ) : null
-            )}
+            {courses.map((option) => (
+              <MenuItem key={option.id} value={option.id}>
+                {option.title}
+              </MenuItem>
+            ))}
           </TextField>
           <TextField
             id="outlined-select-payment"
@@ -173,9 +173,30 @@ function Update(props) {
           >
             {payments.map((option) => (
               <MenuItem key={option.id} value={option.id}>
-                {option.account_number}
+                {option.name}
               </MenuItem>
             ))}
+          </TextField>
+          <TextField
+            id="outlined-select-status"
+            select
+            label="Status"
+            value={data.status}
+            onChange={(event) =>
+              setData({ ...data, status: event.target.value })
+            }
+            helperText="Please select your status"
+            defaultValue={selectedValue.status}
+          >
+            <MenuItem key="Payed" value="Payed">
+              Payed
+            </MenuItem>
+            <MenuItem key="Pending" value="Pending">
+              Pending
+            </MenuItem>
+            <MenuItem key="Failed" value="Failed">
+              Failed
+            </MenuItem>
           </TextField>
         </div>
       </div>
@@ -199,19 +220,18 @@ Update.propTypes = {
 };
 
 const getStatusLabel = (Status) => {
-  if (!Status || Status == null) {
-    Status = 2;
-  } else {
-    Status = 1;
-  }
   const map = {
-    1: {
+    Payed: {
       text: 'Completed',
       color: 'success'
     },
-    2: {
+    Pending: {
       text: 'Pending',
       color: 'warning'
+    },
+    Failed: {
+      text: 'Failed',
+      color: 'error'
     }
   };
 
@@ -245,7 +265,8 @@ const TransactionsTable = ({ datas }) => {
     course_id: '',
     course: '',
     payment_id: '',
-    payment: ''
+    payment: '',
+    status: ''
   });
   const selectedBulkActions = selectedTransactions.length > 0;
   const [page, setPage] = useState(0);
@@ -263,7 +284,8 @@ const TransactionsTable = ({ datas }) => {
     course_id,
     course,
     payment_id,
-    payment
+    payment,
+    status
   ) => {
     setData({
       id: id,
@@ -272,7 +294,8 @@ const TransactionsTable = ({ datas }) => {
       course_id: course_id,
       course: course,
       payment_id: payment_id,
-      payment: payment
+      payment: payment,
+      status: status
     });
     setOpen(true);
   };
@@ -458,7 +481,7 @@ const TransactionsTable = ({ datas }) => {
                     </Typography>
                   </TableCell>
                   <TableCell align="right">
-                    {getStatusLabel(datas.payment_id)}
+                    {getStatusLabel(datas.status)}
                   </TableCell>
                   <TableCell align="right">
                     <Tooltip title="Edit Order" arrow>
@@ -479,7 +502,8 @@ const TransactionsTable = ({ datas }) => {
                             datas.course_id,
                             datas.course,
                             datas.payment_id,
-                            datas.payment
+                            datas.payment,
+                            datas.status
                           );
                         }}
                       >

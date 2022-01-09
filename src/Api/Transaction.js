@@ -33,7 +33,8 @@ async function createTransaction() {
     body: JSON.stringify({
       user_id: data.user_id,
       course_id: data.course_id,
-      payment_id: data.payment_id
+      payment_id: data.payment_id,
+      status: data.status
     })
   });
   return res.json();
@@ -49,7 +50,8 @@ async function updateTransaction(data) {
     body: JSON.stringify({
       user_id: data.user_id,
       course_id: data.course_id,
-      payment_id: data.payment_id
+      payment_id: data.payment_id,
+      status: data.status
     })
   });
   return res.json();
