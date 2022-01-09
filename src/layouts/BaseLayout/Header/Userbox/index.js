@@ -61,6 +61,15 @@ const UserBoxDescription = styled(Typography)(
 `
 );
 
+const Dashboard = () => {
+  return (
+    <ListItem button to="/dashboards/tasks" component={NavLink}>
+      <InboxTwoToneIcon fontSize="small" style={{ color: `#ffffff` }} />
+      <ListItemText primary="Dashboard" style={{ color: `#ffffff` }} />
+    </ListItem>
+  );
+};
+
 function HeaderUserbox() {
   const navigate = useNavigate();
   const [user, setUsers] = useState([]);
@@ -146,10 +155,19 @@ function HeaderUserbox() {
             />
             <ListItemText primary="My Profile" style={{ color: `#ffffff` }} />
           </ListItem>
-          <ListItem button to="/dashboards/messenger" component={NavLink}>
-            <InboxTwoToneIcon fontSize="small" style={{ color: `#ffffff` }} />
-            <ListItemText primary="Messenger" style={{ color: `#ffffff` }} />
-          </ListItem>
+          {user ? (
+            user.role ? (
+              user.role[0].role_name == 'admin' ? (
+                <Dashboard />
+              ) : (
+                ''
+              )
+            ) : (
+              ''
+            )
+          ) : (
+            ''
+          )}
         </List>
         <Divider style={{ background: `#8C7CF0` }} />
         <Box style={{ background: `#5A47AB` }}>
