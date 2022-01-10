@@ -257,7 +257,7 @@ function All() {
                               fontWeight: 'bold'
                             }}
                           >
-                            {datas.title} - HTML
+                            {datas.title}
                           </Typography>
                           <Typography
                             textAlign="left"
