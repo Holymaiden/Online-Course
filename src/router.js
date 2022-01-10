@@ -62,10 +62,6 @@ const Tasks = Loader(lazy(() => import('src/content/dashboards/Tasks')));
 
 // Applications
 
-const Messenger = Loader(
-  lazy(() => import('src/content/applications/Messenger'))
-);
-
 const UserProfile = Loader(
   lazy(() => import('src/content/pages/Users/profile'))
 );
@@ -180,10 +176,6 @@ const routes = [
       {
         path: 'tasks',
         element: <Tasks />
-      },
-      {
-        path: 'messenger',
-        element: <Messenger />
       }
     ]
   },

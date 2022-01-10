@@ -29,11 +29,6 @@ const menuItems = [
         name: 'Tasks',
         link: '/dashboards/tasks',
         icon: BrightnessLowTwoToneIcon
-      },
-      {
-        name: 'Messenger',
-        icon: MmsTwoToneIcon,
-        link: '/dashboards/messenger'
       }
     ]
   },
