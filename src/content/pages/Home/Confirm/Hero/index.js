@@ -27,49 +27,7 @@ import {
 function Hero() {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const { slug } = state;
-  const [discount, setDiscount] = useState('');
-  const [pay, setPay] = useState([]);
-
-  const [course, setCourse] = useState('');
-  useEffect(() => {
-    getCourseBySlug(slug).then(function (result) {
-      setCourse(result.data);
-    });
-  }, [slug]);
-
-  const handlePayment = () => {
-    createPaymentTransaction(
-      pay,
-      discount.persentase
-        ? course.price - course.price * (discount.persentase / 100)
-        : course.price,
-      course.id,
-      discount.id
-    ).then(function (result) {
-      if (result.code == 200) {
-        enqueueSnackbar('Transaction success', {
-          variant: 'success',
-          action: (key) => (
-            <IconButton size="small" onClick={() => closeSnackbar(key)}>
-              <CloseIcon />
-            </IconButton>
-          )
-        });
-        navigate(-1);
-      } else {
-        enqueueSnackbar('Transaction Failed', {
-          variant: 'error',
-          action: (key) => (
-            <IconButton size="small" onClick={() => closeSnackbar(key)}>
-              <CloseIcon />
-            </IconButton>
-          )
-        });
-      }
-    });
-  };
 
   return (
     <Grid spacing={{ xs: 3 }} container>
@@ -79,7 +37,7 @@ function Hero() {
             textAlign="center"
             sx={{
               fontSize: {
-                lg: 30
+                lg: 50
               },
               color: `#FBD15B`
             }}
@@ -91,11 +49,7 @@ function Hero() {
       <Grid item sm={12}>
         <Divider />
       </Grid>
-      <Method
-        back={(childData) => {
-          setPay(childData);
-        }}
-      />
+      <Method />
       <Box width={'100%'} sx={{ ml: 3, mt: 5 }}>
         <Stack direction="row" justifyContent="space-between">
           <MotionInView variants={varFadeInLeft}>
@@ -112,16 +66,12 @@ function Hero() {
           <MotionInView variants={varFadeInRight}>
             <Button
               variant="contained"
-              sx={{ borderRadius: 2, background: '#FBD15B' }}
-              onClick={handlePayment}
+              sx={{ borderRadius: 2, background: '#4BB543' }}
+              onClick={() => {
+                navigate('/');
+              }}
             >
-              Pay Rp.{' '}
-              {discount.persentase
-                ? (
-                    course.price -
-                    course.price * (discount.persentase / 100)
-                  ).toLocaleString()
-                : parseInt(course.price).toLocaleString()}
+              Terima Kasih
             </Button>
           </MotionInView>
         </Stack>
