@@ -50,6 +50,7 @@ const Loader = (Component) => (props) =>
 const Overview = Loader(lazy(() => import('src/content/pages/Home/overview')));
 const Kursus = Loader(lazy(() => import('src/content/pages/Home/Kursus')));
 const Materi = Loader(lazy(() => import('src/content/pages/Home/Materi')));
+const Confirm = Loader(lazy(() => import('src/content/pages/Home/Confirm')));
 const Login = Loader(lazy(() => import('src/content/pages/Auth/Login/Login')));
 const SignUp = Loader(
   lazy(() => import('src/content/pages/Auth/SignUp/SignUp'))
@@ -272,6 +273,14 @@ const routes = [
     element: [
       <LoginRoute>
         <PaymentHome />
+      </LoginRoute>
+    ]
+  },
+  {
+    path: 'confirm',
+    element: [
+      <LoginRoute>
+        <Confirm />
       </LoginRoute>
     ]
   }

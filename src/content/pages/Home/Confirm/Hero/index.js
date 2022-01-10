@@ -14,7 +14,6 @@ import { useSnackbar } from 'notistack';
 import CloseIcon from '@mui/icons-material/Close';
 
 import Method from './method';
-import Total from './total';
 
 import { getCourseBySlug } from '../../../../../Api/Course';
 import { createPaymentTransaction } from '../../../../../Api/Transaction';
@@ -58,8 +57,7 @@ function Hero() {
             </IconButton>
           )
         });
-        navigate('/confirm', { state: { slug: slug } });
-        // navigate(-1);
+        navigate(-1);
       } else {
         enqueueSnackbar('Transaction Failed', {
           variant: 'error',
@@ -78,6 +76,7 @@ function Hero() {
       <Grid item sm={12}>
         <MotionInView variants={varFadeInLeft}>
           <Typography
+            textAlign="center"
             sx={{
               fontSize: {
                 lg: 30
@@ -85,7 +84,7 @@ function Hero() {
               color: `#FBD15B`
             }}
           >
-            Materi {course.title}
+            Terima Kasih Atas Pembelian Anda
           </Typography>
         </MotionInView>
       </Grid>
@@ -97,12 +96,6 @@ function Hero() {
           setPay(childData);
         }}
       />
-      <Total
-        course={course}
-        discount={(childData) => {
-          setDiscount(childData);
-        }}
-      />
       <Box width={'100%'} sx={{ ml: 3, mt: 5 }}>
         <Stack direction="row" justifyContent="space-between">
           <MotionInView variants={varFadeInLeft}>
@@ -110,7 +103,7 @@ function Hero() {
               variant="outlined"
               sx={{ color: 'white', borderRadius: 2, borderColor: 'white' }}
               onClick={() => {
-                navigate(-1);
+                navigate(-1, { state: { slug: slug } });
               }}
             >
               Previous
