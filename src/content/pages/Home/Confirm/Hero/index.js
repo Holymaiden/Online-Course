@@ -68,7 +68,7 @@ function Hero() {
               variant="contained"
               sx={{ borderRadius: 2, background: '#4BB543' }}
               onClick={() => {
-                navigate('/');
+                navigate('/materi/' + slug);
               }}
             >
               Terima Kasih

@@ -1,6 +1,5 @@
 import { Box, Grid, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { useEffect, useState } from 'react';
 
 import { varFadeInLeft, MotionInView } from '../../../../../components/animate';
 
