@@ -42,9 +42,7 @@ function Sidebar() {
               }
               alt="camp"
               style={{
-                margin: 0,
-                marginBottom: 20,
-                marginTop: 20
+                margin: 0
               }}
             />
             <Divider sx={{ height: 2, background: '#C5D2D3' }} />
