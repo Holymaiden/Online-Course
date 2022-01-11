@@ -70,9 +70,9 @@ function DashboardTasks() {
           </Grid>
           {currentTab === 'analytics' && (
             <>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <TeamOverview />
-              </Grid>
+              </Grid> */}
               <Grid item xs={12} sm={6} md={8}>
                 <TasksAnalytics />
               </Grid>
