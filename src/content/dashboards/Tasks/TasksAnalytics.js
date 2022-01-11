@@ -45,16 +45,15 @@ const DotPrimary = styled('span')(
 );
 
 function TasksAnalytics() {
-  const [transaction, setTransaction] = useState([]);
+  const [transaction, setTransaction] = useState();
   useEffect(() => {
     getTransactionMonth().then((result) => {
       if (result.code == 200) setTransaction(result);
-      console.log(result);
     });
   }, []);
   const transactions = {
-    income: [transaction.meta ? transaction.meta.count : 0],
-    expenses: [transaction.data ? transaction.data.count : 0]
+    income: transaction ? transaction.meta : 0,
+    expenses: transaction ? transaction.data : 0
   };
 
   const generic = {
