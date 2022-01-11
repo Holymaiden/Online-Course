@@ -4,7 +4,8 @@ import {
   Typography,
   CardContent,
   Card,
-  Button
+  Button,
+  Divider
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 
@@ -24,7 +25,6 @@ function Sidebar() {
       setCourse(result.data);
     });
     getExistCourse(useMateri).then(function (result) {
-      console.log(result.data);
       if (result.code == 200) setExist(1);
       else setExist(0);
     });
@@ -33,16 +33,21 @@ function Sidebar() {
   return (
     <Grid item lg={3} md={12} sx={{ mr: 1, alignSelf: 'start' }}>
       <Grid container>
-        <Grid item border={1} borderColor="#F2F2F2">
+        <Grid item border={1} borderColor="#ffffff">
           <Card sx={{ backgroundColor: '#ffffff' }}>
             <CardMedia
               component="img"
-              image="/static/images/overview/anu.svg"
+              image={
+                course.image ? course.image : '/static/images/overview/anu.svg'
+              }
               alt="camp"
               style={{
-                margin: 0
+                margin: 0,
+                marginBottom: 20,
+                marginTop: 20
               }}
             />
+            <Divider sx={{ height: 2, background: '#C5D2D3' }} />
             <CardContent>
               <Typography
                 textAlign="left"
