@@ -2,17 +2,13 @@ import PropTypes from 'prop-types';
 import { Bar } from 'react-chartjs-2';
 import { useTheme } from '@mui/material';
 
-const TasksAnalyticsChart = ({
-  data: dataProp,
-  labels,
-  ...rest
-}) => {
+const TasksAnalyticsChart = ({ data: dataProp, labels, ...rest }) => {
   const theme = useTheme();
 
   const data = {
     datasets: [
       {
-        label: 'Tasks Created',
+        label: 'Transaction Payed',
         backgroundColor: theme.colors.primary.main,
         data: dataProp.expenses,
         barThickness: 12,
@@ -21,7 +17,7 @@ const TasksAnalyticsChart = ({
         categoryPercentage: 0.5
       },
       {
-        label: 'Tasks Completed',
+        label: 'Transaction Pending and Failed',
         backgroundColor: theme.colors.primary.lighter,
         data: dataProp.income,
         barThickness: 12,
@@ -37,7 +33,7 @@ const TasksAnalyticsChart = ({
     responsive: true,
     maintainAspectRatio: false,
     cornerRadius: 6,
-        legend: {
+    legend: {
       display: false
     },
     layout: {

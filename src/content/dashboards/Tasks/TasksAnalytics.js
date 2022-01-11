@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import {
   Button,
   Card,
@@ -13,6 +13,8 @@ import {
 import { styled } from '@mui/material/styles';
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 import TasksAnalyticsChart from './TasksAnalyticsChart';
+
+import { getTransactionMonth } from '../../../Api/Transaction';
 
 const TasksAnalyticsChartWrapper = styled(TasksAnalyticsChart)(
   ({ theme }) => `
@@ -43,9 +45,16 @@ const DotPrimary = styled('span')(
 );
 
 function TasksAnalytics() {
+  const [transaction, setTransaction] = useState([]);
+  useEffect(() => {
+    getTransactionMonth().then((result) => {
+      if (result.code == 200) setTransaction(result);
+      console.log(result);
+    });
+  }, []);
   const transactions = {
-    income: [28, 47, 41, 34, 69, 91, 49, 82, 52, 72, 32, 99],
-    expenses: [38, 85, 64, 40, 97, 82, 58, 42, 55, 46, 57, 70]
+    income: [transaction.meta ? transaction.meta.count : 0],
+    expenses: [transaction.data ? transaction.data.count : 0]
   };
 
   const generic = {
@@ -132,7 +141,7 @@ function TasksAnalytics() {
             </Menu>
           </>
         }
-        title="Tasks Analytics"
+        title="Transaction Analytics"
       />
       <CardContent sx={{ pt: 0 }}>
         <Box display="flex" alignItems="center" pl={1} pb={3}>
@@ -142,7 +151,7 @@ function TasksAnalytics() {
             sx={{ display: 'flex', alignItems: 'center', mr: 2 }}
           >
             <DotPrimary />
-            tasks created
+            transaction payed
           </Typography>
           <Typography
             variant="body2"
@@ -150,7 +159,7 @@ function TasksAnalytics() {
             sx={{ display: 'flex', alignItems: 'center' }}
           >
             <DotPrimaryLight />
-            tasks completed
+            transaction pending and failed
           </Typography>
         </Box>
         <Box height={200}>

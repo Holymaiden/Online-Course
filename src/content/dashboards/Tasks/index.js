@@ -8,9 +8,6 @@ import PageTitleWrapper from 'src/components/PageTitleWrapper';
 import TeamOverview from './TeamOverview';
 import TasksAnalytics from './TasksAnalytics';
 import Performance from './Performance';
-import Projects from './Projects';
-import Checklist from './Checklist';
-import Profile from './Profile';
 import TaskSearch from './TaskSearch';
 
 import { getCurrentUser } from '../../../Api/Users';
@@ -81,15 +78,6 @@ function DashboardTasks() {
               </Grid>
               <Grid item xs={12} sm={6} md={4}>
                 <Performance teach={{ pen: pen, com: com }} />
-              </Grid>
-              <Grid item xs={12}>
-                <Projects />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Checklist />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Profile />
               </Grid>
             </>
           )}

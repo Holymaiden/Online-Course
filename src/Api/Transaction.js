@@ -12,6 +12,17 @@ async function getAllTransaction() {
   return res.json();
 }
 
+async function getTransactionMonth() {
+  const res = await fetch(`${API_SERVER}/transaction/permonth`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authHeader()
+    }
+  });
+  return res.json();
+}
+
 async function getByIdTransaction(id) {
   const res = await fetch(`${API_SERVER}/admin/transaction/` + id, {
     method: 'GET',
@@ -94,5 +105,6 @@ export {
   createTransaction,
   updateTransaction,
   destroyTransaction,
-  createPaymentTransaction
+  createPaymentTransaction,
+  getTransactionMonth
 };
