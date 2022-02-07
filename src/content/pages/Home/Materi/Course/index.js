@@ -32,7 +32,8 @@ function Course() {
   const [popular, SetPopular] = useState([]);
 
   useEffect(() => {
-    getPopularCourse(6).then(function (result) {
+    getPopularCourse(8).then(function (result) {
+      result.data = result.data.sort(() => Math.random() - 0.8);
       SetPopular(result.data);
     });
   }, [navigate]);

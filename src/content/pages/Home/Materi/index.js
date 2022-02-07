@@ -26,6 +26,7 @@ function Materi() {
     getCourseBySlug(useMateri).then(function (result) {
       setCourse(result.data.title);
     });
+    window.scrollTo(0, 0);
   }, [useMateri]);
   return (
     <KursusWrapper>

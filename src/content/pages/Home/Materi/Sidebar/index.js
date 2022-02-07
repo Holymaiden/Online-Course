@@ -71,7 +71,7 @@ function Sidebar() {
                   fontWeight: 'bold'
                 }}
               >
-                {course.title} - HTML
+                {course.title}
               </Typography>
               <Typography
                 textAlign="left"
