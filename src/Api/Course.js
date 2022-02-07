@@ -88,7 +88,7 @@ async function updateCourse(data) {
   formdata.append('title', data.title);
   formdata.append('description', data.description);
   formdata.append('price', data.price);
-  formdata.append('category', data.category);
+  formdata.append('category_id', data.category);
   formdata.append('image', data.image);
   formdata.append('status', data.status);
   const res = await fetch(`${API_SERVER}/admin/course/` + data.id, {

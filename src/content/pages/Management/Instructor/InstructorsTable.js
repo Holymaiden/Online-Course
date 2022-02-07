@@ -393,7 +393,7 @@ const InstructorsTable = ({ datas }) => {
                     <Avatar
                       variant="rounded"
                       alt={datas.username}
-                      src="/static/images/avatars/1.jpg"
+                      src={datas.avatar}
                     />
                   </TableCell>
                   <TableCell>
