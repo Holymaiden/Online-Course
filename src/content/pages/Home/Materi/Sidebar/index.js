@@ -86,13 +86,12 @@ function Sidebar() {
                 {course.username}
               </Typography>
               <Button
-                variant="contained"
+                variant={exist == 1 ? 'outlined' : 'contained'}
                 sx={{ mt: 5 }}
                 onClick={() => {
                   navigate('/payment', { state: { slug: course.slug } });
                 }}
-                disabled={exist == 1 ? 1 : 0}
-                color="success"
+                color={exist == 1 ? 'primary' : 'success'}
               >
                 {exist == 1 ? 'Sudah Dipesan' : 'Pesan Sekarang'}
               </Button>
