@@ -52,11 +52,14 @@ function Belajar() {
               key={datas.title}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell sx={{ color: 'black' }}>{index + 1}</TableCell>
+              <TableCell sx={{ color: 'black', paddingLeft: 6 }} width={100}>
+                {index + 1}.
+              </TableCell>
               <TableCell sx={{ color: 'black' }} component="th" scope="datas">
                 {datas.title}
               </TableCell>
               <IconButton
+                sx={{ top: 6 }}
                 aria-label="play"
                 color={datas.status == 1 ? 'primary' : 'warning'}
                 onClick={

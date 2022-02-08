@@ -9,7 +9,6 @@ import {
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 
-import { getCourseBySlug } from '../../../../../Api/Course';
 import { getExistCourse } from '../../../../../Api/TeachingMaterial';
 
 import { useParams, useNavigate } from 'react-router-dom';
@@ -98,9 +97,13 @@ function Sidebar({ course }) {
               <Button
                 variant={exist == 1 ? 'outlined' : 'contained'}
                 sx={{ mt: 5 }}
-                onClick={() => {
-                  navigate('/payment', { state: { slug: course.slug } });
-                }}
+                onClick={
+                  exist == 0
+                    ? () => {
+                        navigate('/payment', { state: { slug: course.slug } });
+                      }
+                    : null
+                }
                 color={exist == 1 ? 'primary' : 'success'}
               >
                 {exist == 1 ? 'Sudah Dipesan' : 'Pesan Sekarang'}

@@ -123,7 +123,7 @@ function Course() {
                               fontWeight: 'bold'
                             }}
                           >
-                            {datas.title} - HTML
+                            {datas.title}
                           </Typography>
                           <Typography
                             textAlign="left"
@@ -225,7 +225,7 @@ function Course() {
             </Grid>
           </MotionInView>
         </Grid>
-        <MotionInView variants={varFadeInUp}>
+        <MotionInView variants={varFadeInDown}>
           <Button
             variant="contained"
             sx={{ mt: 5 }}
