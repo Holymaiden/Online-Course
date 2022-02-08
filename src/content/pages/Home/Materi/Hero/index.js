@@ -1,20 +1,8 @@
 import { Container, Grid, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-
-import { getCourseBySlug } from '../../../../../Api/Course';
 
 import { varFadeInDown, MotionInView } from '../../../../../components/animate';
 
-function Hero() {
-  const { useMateri } = useParams();
-  const [course, setCourse] = useState([]);
-  useEffect(() => {
-    getCourseBySlug(useMateri).then(function (result) {
-      setCourse(result.data);
-    });
-  }, [useMateri]);
-
+function Hero({ course }) {
   return (
     <Container
       maxWidth="lg"
@@ -40,7 +28,7 @@ function Hero() {
                 color: `#FBD15B`
               }}
             >
-              Materi {course.title}
+              Materi {course && course.title}
             </Typography>
           </MotionInView>
         </Grid>

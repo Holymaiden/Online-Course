@@ -9,30 +9,19 @@ import {
   CardActionArea,
   Card
 } from '@mui/material';
-import { useEffect, useState } from 'react';
 
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 
-import { getCourseBySlug } from '../../../../../Api/Course';
 import Sidebar from '../Sidebar';
 import Belajar from '../Belajar';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import parse from 'html-react-parser';
 
 import { varFadeInLeft, MotionInView } from '../../../../../components/animate';
 
-function Content() {
-  const { useMateri } = useParams();
-  const [course, setCourse] = useState([]);
-
-  useEffect(() => {
-    getCourseBySlug(useMateri).then(function (result) {
-      setCourse(result.data);
-    });
-  }, [useMateri]);
-
+function Content({ course }) {
   let navigate = useNavigate();
 
   return (
@@ -51,7 +40,7 @@ function Content() {
           <Grid container>
             <CardActionArea
               onClick={() => {
-                navigate('/materi/' + course.slug);
+                navigate('/materi/' + course && course.slug);
               }}
             >
               <MotionInView variants={varFadeInLeft}>
@@ -59,7 +48,7 @@ function Content() {
                   component="img"
                   sx={{ maxWidth: 775, maxHeight: 441 }}
                   image={
-                    course.image
+                    course && course.image
                       ? course.image
                       : '/static/images/overview/anu.svg'
                   }
@@ -78,7 +67,7 @@ function Content() {
                     fontWeight: 'bold'
                   }}
                 >
-                  {course.title}
+                  {course && course.title}
                 </Typography>
                 <Typography
                   textAlign="left"
@@ -90,7 +79,7 @@ function Content() {
                     }
                   }}
                 >
-                  {course.category}
+                  {course && course.category}
                 </Typography>
               </CardContent>
               <CardActions>
@@ -150,12 +139,12 @@ function Content() {
                 mt: 2
               }}
             >
-              {parse(new String(course.description).toString())}
+              {course && parse(new String(course.description).toString())}
             </Typography>
             <Belajar />
           </Grid>
         </Grid>
-        <Sidebar />
+        <Sidebar course={course} />
       </Grid>
     </Container>
   );

@@ -21,23 +21,25 @@ const KursusWrapper = styled(Box)(
 
 function Materi() {
   const { useMateri } = useParams();
-  const [course, setCourse] = useState('');
+  const [course, setCourse] = useState();
+  const [title, setTitle] = useState('');
   useEffect(() => {
     getCourseBySlug(useMateri).then(function (result) {
-      setCourse(result.data.title);
+      setCourse(result.data);
+      setTitle(result.data.title);
     });
     window.scrollTo(0, 0);
   }, [useMateri]);
   return (
     <KursusWrapper>
       <Helmet>
-        <title> {course} - Online Course Maiden</title>
+        <title> {title} - Online Course Maiden</title>
       </Helmet>
       <Card sx={{ p: 10, backgroundColor: `#5A47AB` }}>
-        <Hero />
+        <Hero course={course} />
       </Card>
       <Container>
-        <Content />
+        <Content course={course} />
         <Course />
       </Container>
     </KursusWrapper>

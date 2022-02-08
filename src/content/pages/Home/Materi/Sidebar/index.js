@@ -14,17 +14,13 @@ import { getExistCourse } from '../../../../../Api/TeachingMaterial';
 
 import { useParams, useNavigate } from 'react-router-dom';
 
-function Sidebar() {
+function Sidebar({ course }) {
   const navigate = useNavigate();
   const { useMateri } = useParams();
-  const [course, setCourse] = useState([]);
   const [exist, setExist] = useState(0);
 
-  useEffect(() => {
-    getCourseBySlug(useMateri).then(function (result) {
-      setCourse(result.data);
-    });
-    getExistCourse(useMateri).then(function (result) {
+  useEffect(async () => {
+    await getExistCourse(useMateri).then(function (result) {
       if (result.code == 200) setExist(1);
       else setExist(0);
     });
@@ -38,7 +34,9 @@ function Sidebar() {
             <CardMedia
               component="img"
               image={
-                course.image ? course.image : '/static/images/overview/anu.svg'
+                course && course.image
+                  ? course.image
+                  : '/static/images/overview/anu.svg'
               }
               alt="camp"
               style={{
@@ -58,7 +56,7 @@ function Sidebar() {
                   mb: 2
                 }}
               >
-                {course.category}
+                {course && course.category}
               </Typography>
               <Typography
                 textAlign="left"
@@ -71,7 +69,7 @@ function Sidebar() {
                   fontWeight: 'bold'
                 }}
               >
-                {course.title}
+                {course && course.title}
               </Typography>
               <Typography
                 textAlign="left"
@@ -83,7 +81,19 @@ function Sidebar() {
                   }
                 }}
               >
-                {course.username}
+                {course && course.username}
+              </Typography>
+              <Typography
+                textAlign="left"
+                sx={{
+                  fontSize: {
+                    lg: 18,
+                    sm: 8,
+                    color: `#796F6F`
+                  }
+                }}
+              >
+                Rp. {course && course.price && course.price.toLocaleString()}
               </Typography>
               <Button
                 variant={exist == 1 ? 'outlined' : 'contained'}
