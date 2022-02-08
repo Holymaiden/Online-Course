@@ -26,18 +26,18 @@ import Snack from '../../../Components/SnackBar';
 const styles = makeStyles({
   root: {
     '& label.Mui-focused': {
-      color: 'white'
+      color: '#5A47AB'
     },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: 'white'
+        borderColor: '#5A47AB'
       },
       '&:hover fieldset': {
-        borderColor: 'white'
+        borderColor: '#5A47AB'
       }
     },
     '& .MuiFormLabel-root': {
-      color: 'white'
+      color: '#5A47AB'
     }
   }
 });
@@ -107,7 +107,7 @@ export default function LoginForm() {
             label="Username"
             className={classes.root}
             sx={{
-              input: { color: 'white' }
+              input: { color: '#5A47AB' }
             }}
             {...getFieldProps('username')}
             error={Boolean(touched.username && errors.username)}
@@ -121,7 +121,7 @@ export default function LoginForm() {
             label="Password"
             className={classes.root}
             sx={{
-              input: { color: 'white' }
+              input: { color: '#5A47AB' }
             }}
             {...getFieldProps('password')}
             InputProps={{

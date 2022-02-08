@@ -84,26 +84,28 @@ export default function Login() {
 
       <Container maxWidth="sm">
         <ContentStyle>
-          <Stack sx={{ mb: 5 }}>
-            <Typography variant="h4" gutterBottom>
-              Sign in to Online Course Maiden
-            </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>
-              Enter your details below.
-            </Typography>
-          </Stack>
-          <AuthSocial />
+          <Card sx={{ p: 4.8, backgroundColor: '#ffffff' }}>
+            <Stack sx={{ mb: 5 }}>
+              <Typography sx={{ color: '#5A47AB' }} variant="h4" gutterBottom>
+                Sign in to Online Course Maiden
+              </Typography>
+              <Typography sx={{ color: '#5A47AB' }}>
+                Enter your details below.
+              </Typography>
+            </Stack>
+            <AuthSocial />
 
-          <LoginForm />
+            <LoginForm />
 
-          <MHidden width="smUp">
-            <Typography variant="body2" align="center" sx={{ mt: 3 }}>
-              Don’t have an account?&nbsp;
-              <Link variant="subtitle2" component={RouterLink} to="register">
-                Get started
-              </Link>
-            </Typography>
-          </MHidden>
+            <MHidden width="smUp">
+              <Typography variant="body2" align="center" sx={{ mt: 3 }}>
+                Don’t have an account?&nbsp;
+                <Link variant="subtitle2" component={RouterLink} to="register">
+                  Get started
+                </Link>
+              </Typography>
+            </MHidden>
+          </Card>
         </ContentStyle>
       </Container>
     </RootStyle>
