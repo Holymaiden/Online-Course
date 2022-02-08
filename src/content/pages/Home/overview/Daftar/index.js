@@ -70,7 +70,9 @@ function Daftar() {
               <Button
                 variant="contained"
                 size="medium"
-                sx={{ background: '#39229A', mt: 1 }}
+                sx={{ background: '#39229A', mt: 1, width: '35%' }}
+                component={RouterLink}
+                to="/instructor"
               >
                 Instruktur
               </Button>

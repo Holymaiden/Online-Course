@@ -107,6 +107,8 @@ function Hero() {
                   marginRight: 15,
                   width: '60%'
                 }}
+                component={RouterLink}
+                to="/instructor"
               >
                 <Typography
                   variant="h4"

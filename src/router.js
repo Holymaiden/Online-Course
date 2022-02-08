@@ -51,6 +51,9 @@ const Overview = Loader(lazy(() => import('src/content/pages/Home/overview')));
 const Kursus = Loader(lazy(() => import('src/content/pages/Home/Kursus')));
 const Materi = Loader(lazy(() => import('src/content/pages/Home/Materi')));
 const Confirm = Loader(lazy(() => import('src/content/pages/Home/Confirm')));
+const InstructorHome = Loader(
+  lazy(() => import('src/content/pages/Home/Instructor'))
+);
 const Login = Loader(lazy(() => import('src/content/pages/Auth/Login/Login')));
 const SignUp = Loader(
   lazy(() => import('src/content/pages/Auth/SignUp/SignUp'))
@@ -186,6 +189,10 @@ const routes = [
   {
     path: 'signup',
     element: <SignUp />
+  },
+  {
+    path: 'instructor',
+    element: <InstructorHome />
   },
   {
     path: 'management',
