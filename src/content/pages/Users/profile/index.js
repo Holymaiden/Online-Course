@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Footer from 'src/components/Footer';
 
-import { Container, Grid, styled, Box } from '@mui/material';
+import { Container, Grid, styled, Box, Card } from '@mui/material';
 
 import ProfileCover from './ProfileCover';
 import RecentActivity from './RecentActivity';
@@ -78,7 +78,9 @@ function ManagementUserProfile() {
           </Grid>
         </Grid>
       </Container>
-      <Footer />
+      <Card sx={{ mt: 5, borderRadius: 0, backgroundColor: '#5A47AB' }}>
+        <Footer />
+      </Card>
     </ProfileWrapper>
   );
 }

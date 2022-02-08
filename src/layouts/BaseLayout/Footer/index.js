@@ -73,11 +73,11 @@ function Footer() {
                   variant="subtitle1"
                   color="#5A47AB"
                 >
-                  Page 1
+                  Stars
                 </Typography>
-                <Typography>Page 2</Typography>
-                <Typography>Page 2</Typography>
-                <Typography>Page 2</Typography>
+                <Typography>5 Star</Typography>
+                <Typography>4 Star</Typography>
+                <Typography>3 Star</Typography>
               </Box>
               <Box>
                 <Typography
@@ -99,11 +99,11 @@ function Footer() {
                   variant="subtitle1"
                   color="#5A47AB"
                 >
-                  Page 1
+                  Instructor
                 </Typography>
-                <Typography>Page 2</Typography>
-                <Typography>Page 2</Typography>
-                <Typography>Page 2</Typography>
+                <Typography>Fihaa</Typography>
+                <Typography>Fiqri</Typography>
+                <Typography>Haikhar</Typography>
               </Box>
             </Box>
           </MotionInView>
