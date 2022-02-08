@@ -166,10 +166,10 @@ function SecurityTab({ user }) {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <Box pb={2}>
-          <Typography color="white" variant="h3">
+          <Typography color={'#5A47AB'} variant="h3">
             Social Accounts
           </Typography>
-          <Typography color="white" variant="subtitle2">
+          <Typography color={'#5A47AB'} variant="subtitle2">
             Manage connected social accounts options
           </Typography>
         </Box>
@@ -242,10 +242,10 @@ function SecurityTab({ user }) {
       </Grid>
       <Grid item xs={12}>
         <Box pb={2}>
-          <Typography color="white" variant="h3">
+          <Typography color={'#5A47AB'} variant="h3">
             Security
           </Typography>
-          <Typography color="white" variant="subtitle2">
+          <Typography color={'#5A47AB'} variant="subtitle2">
             Change your security preferences below
           </Typography>
         </Box>

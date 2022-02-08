@@ -30,10 +30,10 @@ function NotificationsTab() {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <Box pb={2}>
-          <Typography color="white" variant="h3">
+          <Typography color={'#5A47AB'} variant="h3">
             Account
           </Typography>
-          <Typography color="white" variant="subtitle2">
+          <Typography color={'#5A47AB'} variant="subtitle2">
             Choose what notifications you want to receive
           </Typography>
         </Box>
@@ -79,10 +79,10 @@ function NotificationsTab() {
       </Grid>
       <Grid item xs={12}>
         <Box pb={2}>
-          <Typography color="white" variant="h3">
+          <Typography color={'#5A47AB'} variant="h3">
             Orders
           </Typography>
-          <Typography color="white" variant="subtitle2">
+          <Typography color={'#5A47AB'} variant="subtitle2">
             Receive email notifications related to your orders activity
           </Typography>
         </Box>

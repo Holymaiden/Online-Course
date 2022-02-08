@@ -17,7 +17,7 @@ const ProfileWrapper = styled(Box)(
     flex: 1;
     overflow-x: hidden;
     align-items: center;
-    background: #5A47AB;
+    background: #ffffff;
 `
 );
 
@@ -56,7 +56,7 @@ function ManagementUserProfile() {
       <Container
         sx={{
           mt: 3,
-          color: '#ffffff'
+          color: '#5A47AB'
         }}
         maxWidth="lg"
       >

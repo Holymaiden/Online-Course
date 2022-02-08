@@ -94,10 +94,15 @@ const ProfileCover = ({ user }) => {
           </IconButton>
         </Tooltip>
         <Box>
-          <Typography color="white" variant="h3" component="h3" gutterBottom>
+          <Typography
+            color={'#5A47AB'}
+            variant="h3"
+            component="h3"
+            gutterBottom
+          >
             Profile for {user.username}
           </Typography>
-          <Typography color="white" variant="subtitle2">
+          <Typography color={'#5A47AB'} variant="subtitle2">
             This is a profile page. Easy to modify, always blazing fast
           </Typography>
         </Box>
@@ -137,10 +142,10 @@ const ProfileCover = ({ user }) => {
         <Typography gutterBottom variant="h4">
           {user.username}
         </Typography>
-        <Typography variant="subtitle2" color="white">
+        <Typography variant="subtitle2" color={'#5A47AB'}>
           {user.description}
         </Typography>
-        <Typography sx={{ py: 2 }} variant="subtitle2" color="white">
+        <Typography sx={{ py: 2 }} variant="subtitle2" color={'#5A47AB'}>
           {user.jobtitle} | {user.location} | {user.followers} followers
         </Typography>
         <Box

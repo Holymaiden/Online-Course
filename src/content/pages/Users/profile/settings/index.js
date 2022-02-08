@@ -28,20 +28,20 @@ function ManagementUserSettings({ user }) {
   };
 
   return (
-    <Grid
-      container
-      direction="row"
-      justifyContent="center"
-      alignItems="stretch"
-      spacing={3}
-    >
-      <Grid item xs={12}>
+    <Grid container direction="row">
+      <Grid
+        item
+        xs={12}
+        backgroundColor="#5A47AB"
+        borderRadius={3}
+        marginBottom={3}
+        padding={2}
+      >
         <TabsWrapper
           onChange={handleTabsChange}
           value={currentTab}
           variant="scrollable"
           scrollButtons="auto"
-          textColor={'#FBD15B'}
           indicatorColor="primary"
         >
           {tabs.map((tab) => (
