@@ -48,7 +48,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
   minHeight: '100vh',
   flexDirection: 'column',
   justifyContent: 'center',
-  padding: theme.spacing(12, 0)
+  padding: theme.spacing(6, 0)
 }));
 
 // ----------------------------------------------------------------------
@@ -93,27 +93,32 @@ export default function SignUp() {
 
       <Container>
         <ContentStyle>
-          <Box sx={{ mb: 5 }}>
-            <Typography variant="h4" gutterBottom>
-              Ikutlah dengan kursus, bawa tradisi belajar ke masa depan.
-            </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>
-              Pengalaman belajar sebagai bagian dari komunitas kami.
-            </Typography>
-          </Box>
+          <Card sx={{ p: 4.8, backgroundColor: '#ffffff' }}>
+            <Box sx={{ mb: 5 }}>
+              <Typography variant="h4" sx={{ color: '#5A47AB' }} gutterBottom>
+                Ikutlah dengan kursus, bawa tradisi belajar ke masa depan.
+              </Typography>
+              <Typography sx={{ color: '#5A47AB' }}>
+                Pengalaman belajar sebagai bagian dari komunitas kami.
+              </Typography>
+            </Box>
 
-          <AuthSocial />
+            <AuthSocial />
 
-          <RegisterForm />
+            <RegisterForm />
 
-          <MHidden width="smUp">
-            <Typography variant="subtitle2" sx={{ mt: 3, textAlign: 'center' }}>
-              Already have an account?&nbsp;
-              <Link to="/login" component={RouterLink}>
-                Login
-              </Link>
-            </Typography>
-          </MHidden>
+            <MHidden width="smUp">
+              <Typography
+                variant="subtitle2"
+                sx={{ mt: 3, textAlign: 'center' }}
+              >
+                Already have an account?&nbsp;
+                <Link to="/login" component={RouterLink}>
+                  Login
+                </Link>
+              </Typography>
+            </MHidden>
+          </Card>
         </ContentStyle>
       </Container>
     </RootStyle>

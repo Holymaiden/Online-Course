@@ -15,18 +15,18 @@ import { createPeserta } from '../../../../../Api/Users';
 const styles = makeStyles({
   root: {
     '& label.Mui-focused': {
-      color: 'white'
+      color: '#5A47AB'
     },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: 'white'
+        borderColor: '#5A47AB'
       },
       '&:hover fieldset': {
-        borderColor: 'white'
+        borderColor: '#5A47AB'
       }
     },
     '& .MuiFormLabel-root': {
-      color: 'white'
+      color: '#5A47AB'
     }
   }
 });
@@ -78,7 +78,7 @@ export default function RegisterForm() {
               fullWidth
               label="First name"
               sx={{
-                input: { color: 'white' }
+                input: { color: '#5A47AB' }
               }}
               className={classes.root}
               {...getFieldProps('firstName')}
@@ -90,7 +90,7 @@ export default function RegisterForm() {
               fullWidth
               label="Last name"
               sx={{
-                input: { color: 'white' }
+                input: { color: '#5A47AB' }
               }}
               className={classes.root}
               {...getFieldProps('lastName')}
@@ -105,7 +105,7 @@ export default function RegisterForm() {
             type="email"
             label="Email address"
             sx={{
-              input: { color: 'white' }
+              input: { color: '#5A47AB' }
             }}
             className={classes.root}
             {...getFieldProps('email')}
@@ -119,7 +119,7 @@ export default function RegisterForm() {
             type={showPassword ? 'text' : 'password'}
             label="Password"
             sx={{
-              input: { color: 'white' }
+              input: { color: '#5A47AB' }
             }}
             className={classes.root}
             {...getFieldProps('password')}
