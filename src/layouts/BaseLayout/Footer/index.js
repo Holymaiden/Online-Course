@@ -1,6 +1,5 @@
 import { Box, Container, IconButton, Link, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { motion } from 'framer-motion';
 
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -115,10 +114,20 @@ function Footer() {
           <IconButton aria-label="Twitter" size="large" color="primary">
             <TwitterIcon />
           </IconButton>
-          <IconButton aria-label="Facebook" size="large" color="primary">
+          <IconButton
+            aria-label="Facebook"
+            size="large"
+            color="primary"
+            href="https://www.facebook.com/fiqri.haikar"
+          >
             <FacebookIcon />
           </IconButton>
-          <IconButton aria-label="Instagram" size="large" color="primary">
+          <IconButton
+            aria-label="Instagram"
+            size="large"
+            color="primary"
+            href="https://www.instagram.com/fiqri_haikhar/?hl=id"
+          >
             <InstagramIcon />
           </IconButton>
           <IconButton aria-label="Google" size="large" color="primary">
