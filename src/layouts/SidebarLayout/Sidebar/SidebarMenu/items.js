@@ -1,6 +1,6 @@
 import DesignServicesTwoToneIcon from '@mui/icons-material/DesignServicesTwoTone';
 import BrightnessLowTwoToneIcon from '@mui/icons-material/BrightnessLowTwoTone';
-import MmsTwoToneIcon from '@mui/icons-material/MmsTwoTone';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 import TableChartTwoToneIcon from '@mui/icons-material/TableChartTwoTone';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PaidIcon from '@mui/icons-material/Paid';
@@ -59,6 +59,11 @@ const menuItems = [
         name: 'Teaching Materials',
         icon: ArticleIcon,
         link: '/management/teachingmaterials'
+      },
+      {
+        name: 'Registrations',
+        icon: HowToRegIcon,
+        link: '/management/registrations'
       }
     ]
   },
